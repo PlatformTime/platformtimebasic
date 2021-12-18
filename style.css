@@ -1,0 +1,164 @@
+html {
+  height: 100%;
+  margin: auto;
+  width: 960px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  font-size: 18px;
+  font-family: 'Helvetica', sans-serif;
+  color: white;
+  background-color: #222211;
+}
+
+h1 {
+  font-size: 36px;
+  text-align: center;
+  margin-left: 0;
+  margin-bottom: 10px;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  padding: 9px 16px;
+  font-size: 27px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin: 10px;
+  margin-bottom: 10px;
+  transition: 0.3s;
+  position: relative;
+}
+
+#lirr_button {
+  position: absolute;
+  width: 300px;
+  left: 123px;
+  background-color:#F59B25;
+  color:#0039A6;
+}
+
+#mnr_button {
+  position: absolute;
+  width: 300px;
+  left: 495px;
+  background-color:#0039A6;
+  color:#FFFFFF;
+}
+
+#njt_button {
+  position: absolute;
+  background-color:#B61D8E;
+  width: 300px;
+  left: 309px;
+  color:#FFFFFF;
+}
+
+#lirr_button:hover {
+  background-color: white;
+  color: black;
+  transition: 0.3s; 
+}
+
+#mnr_button:hover {
+  background-color: white;
+  color: black;
+  transition: 0.3s; 
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+body {
+  position: relative;
+  margin: 0 auto;
+  padding: 20px;
+  border: none;
+}
+
+/* Fade In Delay 0.3s*/
+.fade-in {
+  text-align: center;
+  z-index: -10;
+  animation: fadeIn ease-in 0.6s;
+  -webkit-animation: fadeIn ease-in 0.6s;
+  -moz-animation: fadeIn ease-in 0.6s;
+  -o-animation: fadeIn ease-in 0.6s;
+  -ms-animation: fadeIn ease-in 0.6s;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  50% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  50% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  50% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  50% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  50% {opacity:0;}
+  100% {opacity:1;}
+}
+
+/* Fade In Delay 0.6s*/
+.fade-in-delay {
+  text-align: center;
+  z-index: -10;
+  animation: fadeInDelay ease-in 0.9s;
+  -webkit-animation: fadeInDelay ease-in 0.9s;
+  -moz-animation: fadeInDelay ease-in 0.9;
+  -o-animation: fadeInDelay ease-in 0.9s;
+  -ms-animation: fadeInDelay ease-in 0.9s;
+}
+
+@keyframes fadeInDelay {
+  0% {opacity:0;}
+  67% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeInDelay {
+  0% {opacity:0;}
+  67% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeInDelay {
+  0% {opacity:0;}
+  67% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeInDelay {
+  0% {opacity:0;}
+  67% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeInDelay {
+  0% {opacity:0;}
+  67% {opacity:0;}
+  100% {opacity:1;}
+}
