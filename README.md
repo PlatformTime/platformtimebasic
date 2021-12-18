@@ -23,18 +23,31 @@ TIME TABLES
 
 Time tables have four columns of information:
   Service - Service or Line the train is serving.
+  
   Terminus - Last stop on the train trip.
+  
   Scheduled Time - Time at which the train is scheduled to depart the station (please note: within the Trip Details window, this time is the scheduled arrival time).
+  
   Status - Live status of the train.
+  
     On Time - Train is running on time and should depart the station with four minutes of the scheduled time.
+    
     Delayed (min) - Train is delayed more than four minutes. In some cases, a service alert may be issued detailing the reason for the delay.
+    
     Enroute - Train is traveling to the selected station next.
+    
     Approaching Station - Train is approaching the station.
+    
     Arrived - Train is at the station and is loading at the platform.
+    
     Departed - Train has left the station and is continuing on its route.
+    
     LAST CALL - Train is set to depart its origin station.
+    
     SKIPPED - Train will skip the selected station. In some cases, a service alert may be issued detailing the reason for the station skip.
+    
     NO SERVICE - Train has been canceled and removed from service. In some cases, a service alert may be issued detailing the reason for the cancellation.
+    
     Not Dispatched - Train has not yet been dispatched from its yard.
     
 VERSIONS / CHANGE LOG
