@@ -26,9 +26,9 @@ Time tables have four columns of information:
   
   Terminus - Last stop on the train trip.
   
-  Scheduled Time - Time at which the train is scheduled to depart the station (please note: within the Trip Details window, this time is the scheduled arrival time).
+  Scheduled Time - Time at which the train trip is scheduled to depart the station (please note: within the Trip Details window, this time is the scheduled arrival time).
   
-  Status - Live status of the train.
+  Status - Live status of the train trip. Applicable train trip statuses:
   
     On Time - Train is running on time and should depart the station with four minutes of the scheduled time.
     
