@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>MNR - Platform Time Basic</title>
+  <link href="http://fonts.googleapis.com/css?family=Helvetica" rel="stylesheet" type="text/css">
+  <link href="styles/style.css" rel="stylesheet" type="text/css">
+  <link rel="icon" type="image/png" href="images/train.png">
+  <!-- Get live data on load (priming) -->
+  <script src="/MNR/scripts/bundle.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <div class="fade-in">
+    <h1 id="header">Platform Time Basic<br>MetroNorth Rail Road<br></h1>
+  </div>
+
+  <!--Button and dropdown-->
+
+  <div class="fade-in-delay">
+    <div class="dropdown">
+      <button id="StationDropdown" onclick="StationListFunction()" class="dropbtn" data-route="0">
+          Select Station...
+      </button>
+      <div class = "svcAlert hidden" onclick="showAlerts()" id="alertButton">
+        <div class="triangle"></div>
+        <p class = "exclaim">!</p>
+      </div>
+      <div id="searchInputdiv" class="dropdown-content">
+        <input type="text" placeholder="Search..." id="searchInput" onkeyup="filterFunction()" autocomplete="off">
+      </div>
+
+      <div id="StationList" class="dropdown-content">
+        <a href="#" onclick= "StationSelection(this)" data-route="6" data-stop="168" data-inform="[6]" data-code="5AN" id="Ansonia">Ansonia</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="99" data-inform="[2]" data-code="1AT" id="Appalachian Trail">Appalachian Trail</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="24" data-inform="[1]" data-code="0AR" id="Ardsley-on-Hudson">Ardsley-on-Hudson</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="46" data-inform="[1]" data-code="0BC" id="Beacon">Beacon</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="6" data-stop="170" data-inform="[6]" data-code="5BF" id="Beacon Falls">Beacon Falls</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="85" data-inform="[2]" data-code="1BH" id="Bedford Hills">Bedford Hills</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="5" data-stop="164" data-inform="[5]" data-code="4BE" id="Bethel">Bethel</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="57" data-inform="[2]" data-code="1BG" id="Botanical Garden">Botanical Garden</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="5" data-stop="162" data-inform="[5]" data-code="4BV" id="Branchville">Branchville</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="44" data-inform="[1]" data-code="0BK" id="Breakneck Ridge">Breakneck Ridge</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="91" data-inform="[2]" data-code="1BW" id="Brewster">Brewster</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="140" data-inform="[3,6]" data-code="2BP" id="Bridgeport">Bridgeport</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="65" data-inform="[2]" data-code="1BX" id="Bronxville">Bronxville</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="5" data-stop="161" data-inform="[5]" data-code="4CA" id="Cannondale">Cannondale</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="83" data-inform="[2]" data-code="1CQ" id="Chappaqua">Chappaqua</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="43" data-inform="[1]" data-code="0CS" id="Cold Spring">Cold Spring</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="37" data-inform="[1]" data-code="0CT" id="Cortlandt">Cortlandt</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="118" data-inform="[3,4,5,6]" data-code="2CC" id="Cos Cob">Cos Cob</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="68" data-inform="[2]" data-code="1CW" id="Crestwood">Crestwood</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="90" data-inform="[2]" data-code="1CF" id="Croton Falls">Croton Falls</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="33" data-inform="[1]" data-code="0HM" id="Croton-Harmon">Croton-Harmon</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="5" data-stop="165" data-inform="[5]" data-code="4DN" id="Danbury">Danbury</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="128" data-inform="[3,5,6]" data-code="2DA" id="Darien">Darien</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="6" data-stop="167" data-inform="[6]" data-code="5DE" id="Derby-Shleton">Derby-Shleton</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="23" data-inform="[1]" data-code="0DF" id="Dobbs Ferry">Dobbs Ferry</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="101" data-inform="[2]" data-code="1DO" id="Dover Plains">Dover Plains</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="133" data-inform="[3,6]" data-code="2EN" id="East Norwalk">East Norwalk</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="138" data-inform="[3,6]" data-code="2FF" id="Fairfield">Fairfield</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="188" data-inform="[3,6]" data-code="2FM" id="Fairfield Metro">Fairfield Metro</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="64" data-inform="[2]" data-code="1FW" id="Fleetwood">Fleetwood</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="56" data-inform="[2]" data-inform="[2,3,4,5,6]" data-code="1FO" id="Fordham">Fordham</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="42" data-inform="[1]" data-code="0GA" id="Garrison">Garrison</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="4" data-stop="153" data-inform="[4]" data-code="3GB" id="Glenbrook">Glenbrook</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="19" data-inform="[1]" data-code="0GD" id="Glenwood">Glenwood</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="88" data-inform="[2]" data-code="1GO" id="Goldens Bridge">Goldens Bridge</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="0" data-stop="1" data-inform="[1,2,3,4,5,6]" data-code="0NY" id="Grand Central Terminal">Grand Central</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="136" data-inform="[3,6]" data-code="2GF" id="Green's Farms">Green's Farms</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="116" data-inform="[3,4,5,6]" data-code="2GN" id="Greenwich">Greenwich</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="20" data-inform="[1]" data-code="0GY" id="Greystone">Greystone</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="0" data-stop="4" data-inform="[1,2,3,4,5,6]" data-code="0HL" id="Harlem-125th St.">Harlem-125th St.</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="112" data-inform="[3,4,5,6]" data-code="2HS" id="Harrison">Harrison</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="72" data-inform="[2]" data-code="1HA" id="Hartsdale">Hartsdale</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="22" data-inform="[1]" data-code="0HS" id="Hastings-on-Hudson">Hastings-on-Hudson</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="80" data-inform="[2]" data-code="1HN" id="Hawthorne">Hawthorne</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="100" data-inform="[2]" data-code="1WI" id="HM Valley-Wingdale">HM Valley-Wingdale</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="25" data-inform="[1]" data-code="0IV" id="Irvington">Irvington</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="86" data-inform="[2]" data-code="1KA" id="Katonah">Katonah</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="110" data-inform="[3,4,5,6]" data-code="2LA" id="Larchmont">Larchmont</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="17" data-inform="[1]" data-code="0LU" id="Ludlow">Ludlow</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="111" data-inform="[3,4,5,6]" data-code="2MA" id="Mamaroneck">Mamaroneck</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="40" data-inform="[1]" data-code="0MN" id="Manitou">Manitou</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="11" data-inform="[1]" data-code="0MB" id="Marble Hill">Marble Hill</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="54" data-inform="[2]" data-code="1ML" id="Melrose">Melrose</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="5" data-stop="158" data-inform="[5]" data-code="4M7" id="Merritt 7">Merritt 7</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="145" data-inform="[3]" data-code="2MI" id="Milford">Milford</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="9" data-inform="[1]" data-code="0MH" id="Morris Heights">Morris Heights</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="84" data-inform="[2]" data-code="1MK" id="Mount Kisco">Mount Kisco</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="79" data-inform="[2]" data-code="1MP" id="Mount Pleasant">Mount Pleasant</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="105" data-inform="[3,4,5,6]" data-code="2ME" id="Mt Vernon East ">Mt Vernon East </a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="62" data-inform="[2]" data-code="1MW" id="Mt Vernon West">Mt Vernon West</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="6" data-stop="171" data-inform="[6]" data-code="5NA" id="Naugatuck">Naugatuck</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="4" data-stop="157" data-inform="[4]" data-code="3NC" id="New Canaan">New Canaan</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="49" data-inform="[1]" data-code="0NM" id="New Hamburg">New Hamburg</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="149" data-inform="[3]" data-code="2NH" id="New Haven">New Haven</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="151" data-inform="[3]" data-code="2SS" id="New Haven - State Street">NH-State St.</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="108" data-inform="[3,4,5,6]" data-code="2NR" id="New Rochelle">New Rochelle</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="127" data-inform="[3,5,6]" data-code="2NO" id="Noroton Heights">Noroton Heights</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="76" data-inform="[2]" data-code="1NW" id="North White Plains">North White Plains</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="121" data-inform="[3,4,5,6]" data-code="2OG" id="Old Greenwich">Old Greenwich</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="31" data-inform="[1]" data-code="0OS" id="Ossining">Ossining</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="97" data-inform="[2]" data-code="1PA" id="Patterson">Patterson</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="98" data-inform="[2]" data-code="1PW" id="Pawling">Pawling</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="39" data-inform="[1]" data-code="0PE" id="Peekskill">Peekskill</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="106" data-inform="[3,4,5,6]" data-code="2PH" id="Pelham">Pelham</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="29" data-inform="[1]" data-code="0PM" id="Philipse Manor">Philipse Manor</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="81" data-inform="[2]" data-code="1PV" id="Pleasantville">Pleasantville</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="115" data-inform="[3,4,5,6]" data-code="2PC" id="Port Chester">Port Chester</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="51" data-inform="[1]" data-code="0PO" id="Poughkeepsie">Poughkeepsie</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="89" data-inform="[2]" data-code="1PY" id="Purdy's">Purdy's</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="5" data-stop="163" data-inform="[5]" data-code="4RD" id="Redding">Redding</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="16" data-inform="[1]" data-code="0RV" id="Riverdale">Riverdale</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="120" data-inform="[3,4,5,6]" data-code="2RS" id="Riverside">Riverside</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="129" data-inform="[3,5,6]" data-code="2RO" id="Rowayton">Rowayton</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="114" data-inform="[3,4,5,6]" data-code="2RY" id="Rye">Rye</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="30" data-inform="[1]" data-code="0SB" id="Scarborough">Scarborough</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="71" data-inform="[2]" data-code="1SC" id="Scarsdale">Scarsdale</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="6" data-stop="169" data-inform="[6]" data-code="5SE" id="Seymour">Seymour</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="131" data-inform="[3,5,6]" data-code="2SN" id="South Norwalk">South Norwalk</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="94" data-inform="[2]" data-code="1BR" id="Southeast">Southeast</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="137" data-inform="[3,6]" data-code="2SP" id="Southport">Southport</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="4" data-stop="154" data-inform="[4]" data-code="3SD" id="Springdale">Springdale</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="14" data-inform="[1]" data-code="0DV" id="Spuyten Duyvil">Spuyten Duyvil</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="124" data-inform="[3,4,5,6]" data-code="2SM" id="Stamford">Stamford</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="143" data-inform="[3,6]" data-code="2SR" id="Stratford">Stratford</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="4" data-stop="155" data-inform="[4]" data-code="3TH" id="Talmadge Hill">Talmadge Hill</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="27" data-inform="[1]" data-code="0TT" id="Tarrytown">Tarrytown</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="176" data-inform="[2]" data-code="1TM" id="Tenmile River">Tenmile River</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="55" data-inform="[2]" data-code="1TR" id="Tremont">Tremont</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="66" data-inform="[2]" data-code="1TK" id="Tuckahoe">Tuckahoe</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="10" data-inform="[1]" data-code="0UH" id="University Heights">University Heights</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="78" data-inform="[2]" data-code="1VA" id="Valhalla">Valhalla</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="61" data-inform="[2]" data-code="1WF" id="Wakefield">Wakefield</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="177" data-inform="[2]" data-code="1WA" id="Wassaic">Wassaic</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="6" data-stop="172" data-inform="[6]" data-code="5WB" id="Waterbury">Waterbury</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="190" data-inform="[3]" data-code="2WH" id="West Haven">West Haven</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="3" data-stop="134" data-inform="[3,6]" data-code="2WP" id="Westport">Westport</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="74" data-inform="[2]" data-code="1WP" id="White Plains">White Plains</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="58" data-inform="[2]" data-code="1WG" id="Williams Bridge">Williams Bridge</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="5" data-stop="160" data-inform="[5]" data-code="4WI" id="Wilton">Wilton</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="2" data-stop="59" data-inform="[2]" data-code="1WN" id="Woodlawn">Woodlawn</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="622" data-inform="[1]" data-code="0YS" id="Yankees-E153 St.">Yankees-E153 St.</a>
+        <a href="#" onclick= "StationSelection(this)" data-route="1" data-stop="18" data-inform="[1]" data-code="0YK" id="Yonkers">Yonkers</a>
+      </div>
+    </div>
+  </div>
+
+  <!--Tables-->
+
+  <br>
+  <div class="tables" id="tables">
+  
+  <div class="fade-in">
+  <h2 id="southbound-header">Southbound</h2>
+  <table class="southbound-table">
+    <tr>
+      <th>Service</th>
+      <th>Terminus</th>
+      <th>Scheduled Time</th>
+      <th>Status</th>
+    </tr>
+    <tbody id="sbData"></tbody>
+  </table>
+  </div>
+  <div id="sbDataButton" class="smolbtn fade-in-delay hidden" onclick="increaseTableLength(southboundTrips,'sbData',sbTableLength), sbTableLength += 6"><i>Show more...</i></div>
+
+  <br>
+  <br>
+  <br>
+
+  <div class="fade-in-delay">
+  <h3 id="northbound-header">Northbound</h3>
+  <table class="northbound-table">
+    <tr>
+      <th>Service</th>
+      <th>Terminus</th>
+      <th>Scheduled Time</th>
+      <th>Status</th>
+    </tr>
+    <tbody id="nbData"></tbody>
+  </table>
+  </div>
+  <div id="nbDataButton" class="smolbtn fade-in-delay-delay hidden" onclick="increaseTableLength(northboundTrips,'nbData',nbTableLength), nbTableLength += 6"><i>Show more...</i></div>
+  <p style="text-align: center; padding-left:0;" class="fade-in-delay"><br><i>Please note: This application is for East of Hudson trains only.<!--For West of Hudson trains, please refer to the NJ Transit application.--></i></p>
+  </div>
+
+  <!--List of following stops-->
+
+  <div class="listContainer hidden" id="stopList">
+    <table id=stopListTable>
+      <th>Stopping At:</th>
+      <tbody id="stopListBody"></tbody>
+    </table>
+  </div>
+
+  <!--List of service alerts-->
+
+  <div class="listContainer hidden" id="alertList">
+    <table id=alertListTable>
+      <tr><th class='alertTD'>Service Alerts:</th></tr>
+      <tbody id="alertListBody"><tr><td>Please select a station to see service alerts.</td></tr></tbody>
+    </table>
+  </div>
+
+  <div id="root"></div>
+</body>
+
+<script>
+
+  var rawDate = new Date;
+  var currentDate = rawDate.getFullYear()+''+("0"+(rawDate.getMonth()+1)).slice(-2)+''+("0"+rawDate.getDate()).slice(-2);
+  var currentTime = rawDate.toLocaleTimeString('en-US', {hour12: false});
+
+  console.log('Page Loaded At: '+currentDate+' '+currentTime);
+
+  /* Converts relevant CSV files to arrays for use */
+
+    /* Routes Array */
+
+    var routesArray = [];
+  
+    window.onload = function loadRoutes() {
+      var routesTXT = null;
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("GET", "data/routes.txt", false);
+      xmlhttp.send();
+      if (xmlhttp.status==200) {
+        routesTXT = xmlhttp.responseText;
+      }
+      
+      routesArray = routesTXTToArray(routesTXT);
+      /*console.table(routesArray);*/
+      loadCalendar();
+
+      return routesTXT;
+    }
+
+    function routesTXTToArray(routesTXT) {
+      rows = routesTXT.split("\r\n");
+      return rows.map(function (row) {
+        return row.split(",");
+      });
+    }
+
+    /* Calendar Dates Array */
+
+    var calendarArray = [];
+
+    function loadCalendar() {
+      var calendarTXT = null;
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("GET", "data/calendar_dates.txt", false);
+      xmlhttp.send();
+      if (xmlhttp.status==200) {
+        calendarTXT = xmlhttp.responseText;
+      }
+      
+      calendarArray = calendarTXTToArray(calendarTXT);
+      /*console.table(calendarArray);*/
+      loadTrips();
+
+      return calendarTXT;
+    }
+
+    function calendarTXTToArray(calendarTXT) {
+      rows = calendarTXT.split("\n");
+      return rows.map(function (row) {
+        return row.split(",");
+      });
+    }
+
+    /* Trips Array */
+
+    var tripsArray = [];
+
+    function loadTrips() {
+      var tripsTXT = null;
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("GET", "data/trips.txt", false);
+      xmlhttp.send();
+      if (xmlhttp.status==200) {
+        tripsTXT = xmlhttp.responseText;
+      }
+      
+      tripsArray = tripsTXTToArray(tripsTXT);
+      /*console.table(tripsArray);*/
+      loadStops();
+
+      return tripsTXT;
+    }
+
+    function tripsTXTToArray(tripsTXT) {
+      rows = tripsTXT.split("\n");
+      return rows.map(function (row) {
+        return row.split(",");
+      });
+    }
+
+    /* Stops Array */
+
+    var stopsArray = [];
+
+    function loadStops() {
+      var stopsTXT = null;
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("GET", "data/stops.txt", false);
+      xmlhttp.send();
+      if (xmlhttp.status==200) {
+        stopsTXT = xmlhttp.responseText;
+      }
+
+      stopsArray = stopsTXTToArray(stopsTXT);
+      /*console.table(stopsArray);*/
+      loadStopTimes();
+
+      return stopsTXT;
+    }
+
+    function stopsTXTToArray(stopsTXT) {
+      rows = stopsTXT.split("\n");
+      return rows.map(function (row) {
+        return row.split(",");
+      });
+    }
+
+    /* Stop Times Array */
+
+    var stoptimesArray = [];
+
+    function loadStopTimes() {
+      var stoptimesTXT = null;
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("GET", "data/stop_times.txt", false);
+      xmlhttp.send();
+      if (xmlhttp.status==200) {
+        stoptimesTXT = xmlhttp.responseText;
+      }
+      
+      stoptimesArray = stoptimesTXTToArray(stoptimesTXT);
+      /*console.table(stoptimesArray);*/
+
+      return stoptimesTXT;
+    }
+
+    function stoptimesTXTToArray(stoptimesTXT) {
+      rows = stoptimesTXT.split("\n");
+      return rows.map(function (row) {
+        return row.split(",");
+      });
+    }
+
+  /* When the user clicks on the button, 
+  toggle between hiding and showing the dropdown content and clear search */
+  function StationListFunction() {
+    var r=document.querySelector(':root');
+    r.style.setProperty('--searchz',0);
+    document.getElementById("StationList").classList.toggle("show");
+    document.getElementById("StationList").scrollTop = 0;
+    document.getElementById("searchInputdiv").classList.toggle("show");
+    document.getElementById("searchInput").value = null;
+    
+    SearchReset();
+  } 
+  
+  function SearchReset() {
+    var a
+    div = document.getElementById("StationList");
+    a = div.getElementsByTagName("a");
+      for (i = 0; i < a.length; i++) {
+        txtValue = a[i].textContent || a[i].innerText; {
+          a[i].style.display = "";
+        }
+      }
+  }
+  
+window.onclick = function(event) {
+
+  /* Close the dropdown if the user clicks outside of it or outside of the search bar */
+
+    if (!event.target.matches('.dropbtn') && !event.target.matches('#searchInput')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+
+  /* Sets stop list pop-up position and closes it when clicked outside table */
+
+  const stopList = document.getElementById('stopList');
+  const tableContainer = document.getElementById('tables');
+
+  const rect = tableContainer.getBoundingClientRect();
+  const x = event.pageX - rect.left - window.scrollX + 20;
+  const y = event.pageY - rect.top - window.scrollY + 15;
+
+  stopList.style.top = `${y}px`;
+  stopList.style.left = `${x}px`;
+
+
+  if (!event.target.matches('td') && !event.target.matches('#tripService') && !event.target.matches('#tripTerminus')) {
+    stopList.classList.add('hidden');
+  }
+
+  /* Sets alert list pop-up position and closes it when clicked outside table */
+
+  const alertList = document.getElementById('alertList');
+ 
+  alertList.style.top = `0px`;
+  alertList.style.left = `130px`;
+
+  if (!event.target.matches('.triangle') && !event.target.matches('.exclaim') && !event.target.matches('td.alertTD') && !event.target.matches('p') && !event.target.matches('a')) {
+    alertList.classList.add('hidden');
+  }
+}
+
+  /* Dropdown Filter */
+
+  function filterFunction() {
+    var input, filter, ul, li, a, i;
+      input = document.getElementById("searchInput");
+      filter = input.value.toUpperCase();
+      div = document.getElementById("StationList");
+      a = div.getElementsByTagName("a");
+      for (i = 0; i < a.length; i++) {
+        txtValue = a[i].textContent || a[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          a[i].style.display = "";
+        }         
+        else {
+          a[i].style.display = "none";
+        }
+      }
+  }   
+    
+  var station = [];
+  var route = [];
+  var selected_route_index = [];
+  var stopid = [];
+  var stopcode = [];
+  var informedRoutes = ['1','2','3','4','5','6'];
+  var rawDate = [];
+  var currentDate = [];
+  var currentTime = [];
+  var startDate = [];
+  var startTime = [];
+  var endDate = [];
+  var endTime = [];
+  var sbTableLength = "";
+  var nbTableLength = "";
+    
+  function StationSelection(element) {
+    station = (element.id);
+    route = (element.getAttribute("data-route"));
+    selected_route_index = routeIndex(routesArray, route);
+    stopid = (element.getAttribute("data-stop"));
+    stopcode = (element.getAttribute("data-code"));
+    informedRoutes = (element.getAttribute('data-inform'));
+    rawDate = new Date();
+    currentDate = rawDate.getFullYear()+''+("0"+(rawDate.getMonth()+1)).slice(-2)+''+("0"+rawDate.getDate()).slice(-2);
+    currentTime = rawDate.toLocaleTimeString('en-US', {hour12: false});
+
+    /* Clears header */
+
+    document.getElementById('header').innerHTML = "";
+
+    /* Subfunctions */
+
+      /* Date, Time, Info, and Start/End times on station selection */
+
+      console.log(station+' Selected At: '+currentDate+' '+currentTime);
+      console.log('Stop ID: '+stopid);
+      console.log('Stop Code: '+stopcode);
+    
+    sbTableLength = 6;
+    nbTableLength = 6;
+    setDropdownText();
+    setButtonFormat();
+    document.getElementById('sbDataButton').classList.add('hidden');
+    document.getElementById('nbDataButton').classList.add('hidden');
+    drawTables();
+    getAlerts();
+    refreshData();
+  }
+
+  function routeIndex(array, xroute) {
+    for (i = 0; i < array.length; i++) {
+      if (array[i]['0'] == xroute) {
+        return i;
+      }
+    }
+  }
+
+  /* Change button text */
+
+  function setDropdownText() {
+    var text = "Select Station..."
+
+      if (station.length >= 1) {
+        document.getElementById('StationDropdown').innerHTML = document.getElementById(station).innerText;
+      }
+      else {
+        document.getElementById('StationDropdown').innerHTML = 'Select Station...';
+      }
+  }
+    
+  /* Change button colors. Colors as per MTA spec. */
+
+  function setButtonFormat() {
+    var r=document.querySelector(':root');
+
+    r.style.setProperty('--route-text-color', '#'+routesArray[selected_route_index]['8']);
+    r.style.setProperty('--route-background-color', '#'+routesArray[selected_route_index]['7']);
+  }
+  
+  /* Refresh live data */
+
+  function refreshData() {
+
+    rawDate = new Date();
+    var MLseconds = rawDate.getTime();
+    startDate = new Date(MLseconds - 900000);
+    startTime = new Date(MLseconds - 900000);
+    endDate = new Date (MLseconds + 86400000);
+    endTime = new Date (MLseconds + 86400000);
+
+    startDate = startDate.getFullYear()+''+("0"+(startDate.getMonth()+1)).slice(-2)+''+("0"+startDate.getDate()).slice(-2);
+    startTime = startTime.toLocaleTimeString('en-US', {hour12: false});
+    endDate = endDate.getFullYear()+''+("0"+(endDate.getMonth()+1)).slice(-2)+''+("0"+endDate.getDate()).slice(-2);
+    endTime = endTime.toLocaleTimeString('en-US', {hour12: false});
+  
+    console.log('Live Data Refreshing...');
+    console.log('Retrieving trips from '+station+' between '+startDate+' '+startTime+' and '+endDate+' '+endTime);
+
+    var script = document.createElement('script');
+    script.src = '/MNR/scripts/bundle.js';
+    var head = document.getElementsByTagName("head")[0];
+    head.appendChild(script);
+
+    console.log(globalFeed);
+    console.log(alertFeed);
+
+    filterCalendar();        
+    filterStops();
+    addDataToTable(southboundTrips,'sbData',sbTableLength);
+    addDataToTable(northboundTrips,'nbData',nbTableLength);
+
+    if (stopList.classList.contains('hidden')) {
+    }
+    else {
+      stoppingAt(document.getElementById(dataRowSelection));
+    }
+  }
+
+  setInterval(refreshData,20000);
+
+  /* Draw Tables */
+  
+  function sleep(ms) {
+    return new Promise(
+      resolve => setTimeout(resolve, ms)
+    );
+  }
+
+  async function drawTables() {
+    var r=document.querySelector(':root');
+    
+    r.style.setProperty('--southtabledisplay', 'none');
+    r.style.setProperty('--northtabledisplay', 'none');
+    r.style.setProperty('--headertabledisplay', 'none');
+    await sleep(300);
+    r.style.setProperty('--headertabledisplay', 'show');
+
+    if (stopid == '1') {
+      document.getElementById('southbound-header').innerHTML = "Arriving Trains";
+      document.getElementById('northbound-header').innerHTML = "Northbound";
+      r.style.setProperty('--southtabledisplay', 'show');
+      r.style.setProperty('--northtabledisplay', 'show');
+    }
+    else if (stopid == '51' || stopid == '151' || stopid == '157' || stopid == '165' || stopid == '172' || stopid == '177') {
+      document.getElementById('southbound-header').innerHTML = "Southbound";
+      document.getElementById('northbound-header').innerHTML = "Arriving Trains";
+      r.style.setProperty('--southtabledisplay', 'show');
+      r.style.setProperty('--northtabledisplay', 'show');
+    }
+    else {
+      document.getElementById('southbound-header').innerHTML = "Southbound";
+      document.getElementById('northbound-header').innerHTML = "Northbound";
+      r.style.setProperty('--southtabledisplay', 'show');
+      r.style.setProperty('--northtabledisplay', 'show');
+    }
+  }
+
+  /* Find next trips for selected station */
+
+  var startCalendar = [];
+  var endCalendar = [];
+  var startTrips = [];
+  var endTrips = [];
+  var allTrips =[];
+
+  function filterCalendar() {
+
+    if (startDate == endDate) {
+      startCalendar = calendarArray.filter(date => date.includes(startDate));
+      startTrips = filterTrips(startCalendar);
+      startTrips = dateTrips(startTrips, startDate);
+    }
+    else {
+      startCalendar = calendarArray.filter(date => date.includes(startDate));
+      startTrips = filterTrips(startCalendar);
+      startTrips = dateTrips(startTrips, startDate);
+
+      endCalendar = calendarArray.filter(date => date.includes(endDate));
+      endTrips = filterTrips(endCalendar, endDate);
+      endTrips = dateTrips(endTrips, endDate);
+    }
+    allTrips = startTrips.concat(endTrips);
+
+    /*addedTrips();*/
+  }
+
+  /*PUSH ADDED TRIPS
+
+  function addedTrips() {
+
+    addedTrips = noop;
+
+    for (i = 0; i < globalFeed.entity.length; i++) {
+      if (globalFeed.entity[i].id.slice(-2) == '_T') {
+        if (globalFeed.entity[i].tripUpdate.trip.scheduleRelationship == 1) {
+
+          var terminus = stopsArray.filter(j => j['0'] == globalFeed.entity[i].tripUpdate.stopTimeUpdate[globalFeed.entity[i].tripUpdate.stopTimeUpdate.length - 1].stopId)
+          
+          allTrips.push([
+            globalFeed.entity[i].tripUpdate.trip.routeId,
+            '',
+            globalFeed.entity[i].tripUpdate.trip.tripId,
+            terminus['0']['2'],
+            '',
+            globalFeed.entity[i].tripUpdate.trip.directionId.toString(),
+            globalFeed.entity[i].tripUpdate.trip.startDate
+          ])
+        }
+      }
+    }
+  }*/
+
+  function filterTrips(calendar) {
+
+    var filteredTrips = [];
+    var serviceIds = [];
+
+    for (j = 0; j < calendar.length; j++) {
+      serviceIds.push(calendar[j]['0']);
+    }
+
+    filteredTrips = tripsArray.filter(trips => serviceIds.includes(trips[1]));
+    filteredTrips = JSON.parse(JSON.stringify(filteredTrips));
+
+    return filteredTrips;
+  }
+
+  function dateTrips(calendar, date) {
+    for (i = 0; i < calendar.length; i++) {
+      calendar[i]['6'] = date;
+    }
+    return calendar;
+  }
+
+  var filteredStopTimes = [];
+  var southboundTrips = [];
+  var northboundTrips = [];
+
+  /* Find next trips for selected station */
+
+  function filterStops() {
+
+    var tripsHere = [];
+    for (i = 0; i < allTrips.length; i++) {
+      tripsHere.push(allTrips[i]['2']);
+    }
+
+    /*addedStops();*/
+
+    filteredStopTimes = stoptimesArray.filter(i => i['3'] == stopid);
+    stopsToday = filteredStopTimes.filter(trips => tripsHere.includes(trips['0']));
+
+    var stopsHere = [];
+    for (i = 0; i < stopsToday.length; i++) {
+      stopsHere.push(stopsToday[i]['0']);
+    }
+    
+    tripsToday = allTrips.filter(stops => stopsHere.includes(stops['2']));
+    tripsToday = JSON.parse(JSON.stringify(tripsToday));
+
+    for (i = 0; i < tripsToday.length; i++) {
+      var stopInfo = [];
+      stopInfo = stopsToday.filter(j => j['0'].match(tripsToday[i]['2']));
+      tripsToday[i]['7'] = stopInfo['0']['2'];
+      tripsToday[i]['8'] = stopInfo['0']['3'];
+      tripsToday[i]['9'] = stopInfo['0']['4'];
+    }
+    
+    stopsNow = tripsToday.filter(j => j['6']+j['7'] >= startDate+startTime && j['6']+j['7'] <= endDate+endTime);
+
+    southboundTrips = stopsNow.filter(j => j['5'].match('1'));
+    southboundTrips.sort(sortTrips);
+
+    northboundTrips = stopsNow.filter(j => j['5'].match('0'));
+    northboundTrips.sort(sortTrips);
+
+    /*console.table(southboundTrips);
+    console.log('Southbound')
+    console.table(northboundTrips);
+    console.log('Northbound')*/
+  }
+
+  function sortTrips(a,b) {
+    if (a['6'] == b['6']){
+      return a['7'] > b['7'] ? 1 : -1;
+    }
+    return a['6'] > b['6'] ? 1 : -1;
+  }
+
+  /* PUSH ADDED STOPS 
+
+  function addedStops() {
+
+    addedStops = noop;
+
+    for (i = 0; i < globalFeed.entity.length; i++) {
+      if (globalFeed.entity[i].id.slice(-2) == '_T') {
+        if (globalFeed.entity[i].tripUpdate.trip.scheduleRelationship == 1) {
+
+          var terminus = stopsArray.filter(j => j['0'] == globalFeed.entity[i].tripUpdate.stopTimeUpdate[globalFeed.entity[i].tripUpdate.stopTimeUpdate.length - 1].stopId)
+
+          for (j = 0; j < globalFeed.entity[i].tripUpdate.stopTimeUpdate.length; j++) {
+
+            var addedStopTime = "";
+            var addedStopId = "";
+            var addedStopSeq = "";
+
+            if (globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].scheduleRelationship == 0) {
+              if (j == 0) {
+                addedStopTime = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].departure.time
+              }
+              else {
+                addedStopTime = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].arrival.time
+              }
+              
+              addedStopId = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopId
+              addedStopSeq = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopSequence
+            }
+            else {
+              addedStopTime = 0
+              addedStopId = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopId
+              addedStopSeq = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopSequence
+            }
+
+            addedStopTime = addedStopTime * 1000;
+
+            addedStopTime = new Date(addedStopTime);
+
+            addedStopTime = addedStopTime.toLocaleTimeString('en-US', {hour12: false});
+            stoptimesArray.push([
+            globalFeed.entity[i].tripUpdate.trip.tripId,
+            addedStopTime,
+            addedStopTime,
+            addedStopId,
+            addedStopSeq.toString()
+            ])
+          }
+        }
+      }
+    }
+  }*/
+
+  /* Add data to tables */
+
+  function increaseTableLength(tripArray, tripTable, tableLength) {
+    tableLength += 6;
+    addDataToTable(tripArray,tripTable,tableLength);
+    return tableLength;
+  } 
+
+  function addDataToTable(tripArray,tripTable,tableLength) {
+    var result = "";
+    var len = "";
+    var delayedTrip = "";
+    var tableButton = document.getElementById(tripTable+'Button')
+
+    /* If there are few trips, display message */
+
+    if (tripArray.length < 6){
+      len = tripArray.length;
+      var startTimeIndex = 0;
+    }
+
+    /* Adjust start index if there are more than 6 trips */
+    
+    else {
+      for (i = 0; i < tripArray.length; i++){
+        var tripDate = tripArray[i]['6']
+        if (tripDate+tripArray[i]['7'] > startDate+startTime) {
+          startTimeIndex = i
+          break;
+        }
+      }
+      len = tableLength + startTimeIndex
+      if (len > tripArray.length) {
+        len = tripArray.length
+      }
+    }
+
+    if (len - startTimeIndex < 6) {
+      result += "<td colspan=4><div><i>There are few trains in the near future. Here are trains for the next 24 hours.</i><div></td>"
+    }
+
+    for (i = startTimeIndex; i < len; i++) {
+      var true_route_index = "";
+
+      for (j = 0; j < routesArray.length; j++) {
+        if (routesArray[j]['0'] == tripArray[i]['0']) {
+          true_route_index = j;
+        }
+      }
+
+      var service_id = routesArray[true_route_index]['3'];
+      var tripId = tripArray[i]['2'];
+      var shortTripId = tripArray[i]['4'];
+      var terminus_id = tripArray[i]['3'];
+      var terminus_route_index = "";
+
+      for (j = 0; j < routesArray.length; j++) {
+        if (routesArray[j]['0'] == document.getElementById(terminus_id).getAttribute('data-route')) {
+          terminus_route_index = j;
+        }
+        /*break;*/
+      }
+
+      var tripDate = tripArray[i]['6']
+      var stopSeq = Number(tripArray[i]['9']);
+      var stop_time_noConvert = tripArray[i]['7']
+      var stop_time = "";
+      var AMPM = "";
+      var timeArray = new Array();
+
+      /* Sets time to 12-hr AM/PM */
+
+      timeArray = tripArray[i]['7'].split(':')
+      
+      if (timeArray['0'] < '12' || timeArray['0'] >= '24') {
+        var AMPM = " AM";
+      }
+      else {
+        var AMPM = " PM"
+      }
+      
+      if (timeArray['0'] > '12') {
+        while (timeArray['0'] > '12'){
+          timeArray['0'] = timeArray['0']-12;
+        }
+      }
+      else if (timeArray['0'] == '00') {
+        timeArray['0'] = 12
+      }
+      else {
+        timeArray['0'] = timeArray['0']-0;
+      }
+
+      stop_time += timeArray['0']+":"+timeArray['1']+AMPM;
+
+      /* Get live data */
+
+      var currentStatus = "";
+      var currentStop = "";
+      var currentStopSeq = "";
+      var delay = "";
+      var trainScheduleRelationship = "";
+      var stopScheduleRelationship = "";
+      var tripCheck = "";
+      
+      for (j = 0; j < globalFeed.entity.length; j++) {
+        if (globalFeed.entity[j].id == shortTripId) {
+          tripCheck = globalFeed.entity[j].id
+          currentStatus = globalFeed.entity[j].vehicle.currentStatus;
+          currentStop = globalFeed.entity[j].vehicle.stopId;
+          trainScheduleRelationship = globalFeed.entity[j].tripUpdate.trip.scheduleRelationship
+        
+          for (k = 0; k < globalFeed.entity[j].tripUpdate.stopTimeUpdate.length; k++) {
+            stopScheduleRelationship = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].scheduleRelationship;
+
+            if (stopScheduleRelationship == 2) {
+              delay = 0;
+              currentStopSeq = Number(globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopSequence);
+            }
+            else if (stopid == currentStop){
+              delay = 0;
+              currentStopSeq = Number(stopSeq);
+            }
+            else if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId == currentStop) {
+              for (m = 0; m < stoptimesArray.length; m++) {
+                if (stoptimesArray[m]['0'] == tripId && stoptimesArray[m]['3'] == currentStop) {
+                  currentStopSeq = Number(stoptimesArray[m]['4']);
+                }
+              }
+            }
+            else if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId == stopid) {
+              if (stopSeq == "1") {
+                delay = 0;
+              }
+              else {
+                delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival.delay;
+              }
+            }
+          }
+        }
+      }
+
+      /* Adds results to tables */
+      if (tripDate+stop_time_noConvert > startDate+startTime || ((delay > 600 && delay < 3600 && currentStopSeq < stopSeq) || (delay > 600 && delay < 3600 &&currentStopSeq == stopSeq))) {
+        result += "<tr class='datarow' onclick='stoppingAt(this)' data-trip-date='"+tripArray[i]['6']+"' data-trip-id='"+tripArray[i]['2']+"' data-short-trip='"+tripArray[i]['4']+"' data-stop-seq='"+tripArray[i]['9']+"' id='datarow"+tripArray[i]['4']+"'>";
+        result += "<td><div id='tripService' style='margin-left:5px;width:170px;border:solid 5px;border-top:solid 9px;border-radius:8px;border-color:#"+routesArray[true_route_index]['7']+";background-color:#"+routesArray[true_route_index]['7']+";color:#"+routesArray[true_route_index]['8']+"'>"+service_id+"</div></td>";
+        result += "<td><div id='tripTerminus' style='margin-left:5px;width:170px;border:solid 5px;border-top:solid 9px;border-radius:8px;border-color:#"+routesArray[terminus_route_index]['7']+";background-color:#"+routesArray[terminus_route_index]['7']+";color:#"+routesArray[terminus_route_index]['8']+"'>"+document.getElementById(terminus_id).innerText+"</div></td>";
+        result += "<td style='padding-top:3px;'>"+stop_time;
+        
+        if (tripArray[i]['6'] > startDate || tripArray[i]['7'] > '24:00:00'){
+          result += "<br><font size='-1'><i>(Next Day)</i></font>";
+        }
+
+        result += "</td>";
+        
+        if (trainScheduleRelationship == 3 && tripDate == currentDate) {
+          result += "<td style='padding-top:3px;color:#DD0000;font-weight:bold;'>NO SERVICE</td>"
+        }
+        else if (stopScheduleRelationship == 1 && tripDate == currentDate) {
+          result += "<td style='padding-top:3px;color:#DD0000;font-weight:bold;'>SKIPPED</td>"
+        }
+        else if (currentStop == stopid && stopSeq == 1 && currentStatus == 1 && tripDate == currentDate) {
+          result += "<td style='padding-top:3px;font-weight:bold;'>LAST CALL</td>"
+        }
+        else if (stopid == '1' && (currentStop == "" || currentStop == '1') && (currentStatus == 1 || currentStatus == "")) {
+          result += "<td style='padding-top:3px;font-weight:bold;'>Arrived</td>"
+        }
+        else if ((currentStopSeq > stopSeq && tripDate == currentDate) || (currentStop == "" && currentDate+currentTime > tripDate+stop_time_noConvert)) {
+          result += "<td style='padding-top:3px;color:#AAAAAA;font-style:italic;'>Departed</td>"
+        }
+        else if (currentStop == stopid && currentStatus == 2 && tripDate == currentDate) {
+          result += "<td style='padding-top:3px;''>Enroute</td>"
+        }
+        else if (currentStop == stopid && currentStatus == 1 && tripDate == currentDate) {
+          result += "<td style='padding-top:3px;font-weight:bold;'>Arrived</td>"
+        }
+        else if (currentStop == stopid && currentStatus == 0 && tripDate == currentDate) {
+          result += "<td style='padding-top:3px;font-weight:bold;'>Approaching Station</td>"
+        }
+        else if (delay > 359 && tripDate == currentDate) {
+          result += "<td style='padding-top:3px;color:#CCAA00;font-weight:bold;'>Delayed ("+Math.ceil(delay/60)+" min)</td>"
+        }
+        else if (tripCheck == "" || tripDate > currentDate) {
+          result += "<td style='padding-top:3px;color:#AAAAAA;font-style:italic;'>Not Dispatched</td>"
+        }
+        else {
+          result += "<td style='padding-top:3px;'>On Time</td>"
+        }
+        
+        result += "</tr>";
+      } 
+    }
+
+    if (tripArray.length > len){
+      if (tableButton.classList.contains('hidden')){
+        tableButton.classList.remove('hidden')
+      }
+    }
+    else {
+      tableButton.classList.add('hidden')
+    }
+
+    document.getElementById(tripTable).innerHTML = result;
+
+    return result;
+  }
+
+  /* On trip click, show list of following stops */
+
+  var dataRowSelection = "";
+
+  function stoppingAt(tripSelection) {
+    var stopList = document.getElementById('stopList');
+    var stopTimesList = "";
+
+    if (stopList.classList.contains('hidden')) {
+      stopList.classList.remove('hidden');
+    }
+
+    var tripId = tripSelection.getAttribute('data-trip-id');
+    var shortTripId = tripSelection.getAttribute('data-short-trip');
+    var tripDate = tripSelection.getAttribute('data-trip-date');
+    var stopSeq = parseInt(tripSelection.getAttribute('data-stop-seq'));
+    var tripStopArray = stoptimesArray.filter(i => i['0'].match("^"+tripId+"$"));
+    var len = tripStopArray.length;
+
+    dataRowSelection = "";
+    dataRowSelection = tripSelection.getAttribute('id');
+
+    for (i = 0; i < len; i++) {
+
+      var stop_id = tripStopArray[i]['3'];
+      var stop_name = document.querySelector('[data-stop="'+stop_id+'"]').getAttribute('id');
+      var stop_list_seq = parseInt(tripStopArray[i]['4']);
+      var stop_time = "";
+      var AMPM = "";
+      var timeArray = new Array();
+      var convertedTime = [];
+      var true_route_index = "";
+
+      for (j = 0; j < routesArray.length; j++) {
+        if (routesArray[j]['0'] == document.getElementById(stop_name).getAttribute('data-route')) {
+          true_route_index = j;
+        }
+      }
+
+      /* Sets time to 12-hr AM/PM */
+
+      timeArray = tripStopArray[i]['1'].split(':');
+
+      convertedTime = timeConverter(timeArray,tripDate);
+      
+      if (timeArray['0'] < '12' || timeArray['0'] >= '24') {
+        var AMPM = " AM";
+      }
+      else {
+        var AMPM = " PM"
+      }
+      
+      if (timeArray['0'] > '12') {
+        while (timeArray['0'] > '12'){
+          timeArray['0'] = timeArray['0']-12;
+        }
+      }
+      else if (timeArray['0'] == '00') {
+        timeArray['0'] = 12
+      }
+      else {
+        timeArray['0'] = timeArray['0']-0;
+      }
+
+      stop_time += timeArray['0']+":"+timeArray['1']+AMPM;
+
+      stopTimesList += "<tr class='stoprow', onclick='StationSelection(this)', data-route='"+document.getElementById(stop_name).getAttribute('data-route')+"',data-code='"+document.getElementById(stop_name).getAttribute('data-code')+"', data-stop='"+stop_id+"', data-inform='"+document.getElementById(stop_name).getAttribute('data-inform')+"', id='"+stop_name+"'><td><div style='text-align:center;margin-left:15px;margin-right:15px;width:170px;border:solid 5px;border-top:solid 9px;border-radius:8px;border-color:#"+routesArray[true_route_index]['7']+";background-color:#"+routesArray[true_route_index]['7']+";color:#"+routesArray[true_route_index]['8']+"'>"+document.getElementById(stop_name).innerText+"</div></td>";
+      stopTimesList += "<td id=stopListTime style='padding-right:15px;padding-top:5px;"
+
+      if (convertedTime < rawDate) {
+        stopTimesList += 'font-style:italic;'
+      }
+      
+      if (stopSeq > stop_list_seq) {
+        stopTimesList += "color:#AAAAAA;"
+      }
+      else if (stopSeq == stop_list_seq) {
+        stopTimesList += "font-weight:bold;"
+      }
+      
+      stopTimesList += "'>"+stop_time+"</td>";
+      
+      for (j = 0; j < globalFeed.entity.length; j++) {
+        if (globalFeed.entity[j].id == shortTripId) {
+          if (globalFeed.entity[j].vehicle.stopId == stop_id && tripDate == currentDate) {
+            stopTimesList += "<td id=stopListTime style='padding-right:15px;padding-top:2px;'><img src='images/train.png' height='20'></td>";
+          }
+          else {
+            stopTimesList += "<td style='width:auto;'></td>"
+          }
+        }
+      }
+      stopTimesList += "</tr>";
+    }
+
+    document.getElementById('stopListBody').innerHTML = stopTimesList;
+
+  }
+
+  function showAlerts() {
+    var alertList = document.getElementById('alertList');
+
+    if (alertList.classList.contains('hidden')) {
+      alertList.classList.remove('hidden');
+    }
+  }
+
+  function getAlerts() {
+
+    var unixTime = Date.now()/1000;
+    var alertButton = document.getElementById('alertButton');
+    var alertResults = "";
+
+    for (i = 0; i < alertFeed.entity.length; i++){
+      if (alertFeed.entity[i].id.includes('MNR')){
+        for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
+          if (stopid == alertFeed.entity[i].alert.informedEntity[k].stopId) {
+            alertResults += "<tr><td class='alertTD'><br>"+alertFeed.entity[i].alert.headerText.translation[0].text+"<p></p></td></tr>"
+          }
+          break;
+        }
+      }
+      else if (alertFeed.entity[i].id.includes('alert')) {
+        for (j = 0; j < alertFeed.entity[i].alert.activePeriod.length; j++) {
+          var alertStart = alertFeed.entity[i].alert.activePeriod[j].start
+          var alertEnd = 9999999999
+          if (unixTime > alertStart && unixTime < alertEnd) {
+            for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
+              if (informedRoutes.includes(alertFeed.entity[i].alert.informedEntity[k].routeId)) {
+                alertResults += "<tr><td class='alertTD'><br>"+alertFeed.entity[i].alert.headerText.translation[0].text
+                alertResults += alertFeed.entity[i].alert.descriptionText.translation[1].text+"</td></tr>"
+              }
+              break;
+            }
+          }
+        }
+      }
+      else {
+        for (j = 0; j < alertFeed.entity[i].alert.activePeriod.length; j++) {
+          var alertStart = alertFeed.entity[i].alert.activePeriod[j].start
+          var alertEnd = alertFeed.entity[i].alert.activePeriod[j].end
+          if (unixTime > alertStart && unixTime < alertEnd) {
+            for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
+              if (informedRoutes.includes(alertFeed.entity[i].alert.informedEntity[k].routeId)) {
+                alertResults += "<tr><td class='alertTD'><br>"+alertFeed.entity[i].alert.headerText.translation[1].text
+                alertResults += alertFeed.entity[i].alert.descriptionText.translation[1].text+"</td></tr>"
+              }
+              break;
+            }
+          }
+        }
+      }
+    }
+
+    if (alertResults == "") {
+      alertResults = "<tr><td>No alerts at this time.</td></tr>"
+      alertButton.classList.add('hidden');
+    }
+    else if (alertButton.classList.contains('hidden')) {
+      alertButton.classList.remove('hidden');
+    }
+
+    document.getElementById('alertListBody').innerHTML = alertResults;
+  }
+
+  function timeConverter(timeArray,tripDate) {
+    var year = tripDate.slice(0,4);
+    var month = tripDate.slice(4,6) - 1;
+    var day = tripDate.slice(6,8);
+    var hour = timeArray['0'];
+    var min = timeArray['1'];
+    var sec = '00';
+    var recombo = "";
+
+    recombo = new Date(year,month,day,hour,min,sec);
+
+    return recombo;
+  }
+
+  function noop() {};
+
+</script>
+
+</html>

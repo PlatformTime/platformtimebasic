@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "match": "^1.2.10",
+    "protobufjs": "^6.11.2",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "gtfs-realtime-bindings": "^0.0.6"
+  }
+}
