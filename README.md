@@ -30,9 +30,10 @@ Time tables have four columns of information:
   
   Status - Live status of the train trip. Applicable train trip statuses:
   
-    On Time - Train is running on time and should depart the station with four minutes of the scheduled time.
+    On Time - Train is running on time and should depart the station with six minutes of the scheduled time. 
+      (note: this is in accordance with the FRC standard for delayed trains.)
     
-    Delayed (min) - Train is delayed more than four minutes. In some cases, a service alert may be issued detailing the reason for the delay.
+    Delayed (min) - Train is delayed six minutes or more. In some cases, a service alert may be issued detailing the reason for the delay.
     
     Enroute - Train is traveling to the selected station next.
     
