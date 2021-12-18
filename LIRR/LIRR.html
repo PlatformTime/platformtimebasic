@@ -8,7 +8,7 @@
   <link href="styles/style.css" rel="stylesheet" type="text/css">
   <link rel="icon" type="image/png" href="images/train.png">
   <!-- Get live data on load (priming) -->
-  <script src="/LIRR/scripts/bundle.js" type="text/javascript"></script>
+  <script src="/platformtimebasic/LIRR/scripts/bundle.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -545,7 +545,7 @@
     console.log('Retrieving trips from '+station+' between '+startDate+' '+startTime+' and '+endDate+' '+endTime);
 
     var script = document.createElement('script');
-    script.src = '/LIRR/scripts/bundle.js';
+    script.src = '/platformtimebasic/LIRR/scripts/bundle.js';
     var head = document.getElementsByTagName("head")[0];
     head.appendChild(script);
 
