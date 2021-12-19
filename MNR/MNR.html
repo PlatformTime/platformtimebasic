@@ -239,7 +239,7 @@
     }
 
     function routesTXTToArray(routesTXT) {
-      rows = routesTXT.split("\r\n");
+      rows = routesTXT.split("\n");
       return rows.map(function (row) {
         return row.split(",");
       });
