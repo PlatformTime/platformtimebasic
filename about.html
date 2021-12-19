@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>About - Platform Time Basic</title>
+  <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+  <link href="styles/style.css" rel="stylesheet" type="text/css">
+  <link rel="icon" type="image/png" href="LIRR/images/train.png">
+</head>
+
+<body>
+  <div class="fade-in">
+    <h1 id="header">About Platform Time Basic</h1><hr><br>
+  </div>
+  <div class="fade-in-delay">
+    <p style="width:600px;margin:auto;">Platform Time Basic is a commuter-oriented application designed to show trains arriving and departing from stations in the next 24-hour period on commuter rail lines in and around New York City.</p>
+    <br>
+    <h3>Using this Application</h3>
+    <br>
+    <p style="width:600px;margin:auto;">To use this application, select a transit agency to begin.</p>
+    <br>
+    <p style="width:600px;margin:auto;">Find a station or search for it in the dropdown menu. Click the station name to show the next 12 train trips departing (or arriving for terminal stations) at the selected station on two time tables. (6 towards NYC (Westbound, Southbound) and 6 towards suburban areas (Eastbound, Northbound)).</p>
+    <br>
+    <h3>Show More Trips</h3>
+    <br>
+    <p style="width:600px;margin:auto;">To reveal more train trips, click the "Show more..." button below the list to show 6 more train trips for that time table. This can be repeated until the end of the 24-hour period has been reached.</p>
+    <br>
+    <h3>Trip Details</h3>
+    <br>
+    <p style="width:600px;margin:auto;">To see the preceeding and following station stops with stop times, click on a train trip to open the Trip Details window. If the train has been dispatched for the trip, this window will also show the current stop position of the train. Within this window, clicking on a station will redirect the time tables to show train trips at that station. Click outside of the Trip Details window and time tables to close this window.</p>
+    <br>
+    <h3>Service Alerts</h3>
+    <br>
+    <p style="width:600px;margin:auto;">If there is a service alert affecting the station or line the station is on, a "!" icon will appear next to the station name. Click this icon to show the Service Alert window. Click outside of the Service Alert window to close it.</p>
+    <br>
+    <h3>Time Tables</h3>
+    <br>
+    <p style="width:600px;margin:auto;margin-bottom:0;">Time tables have four columns of information:</p>
+    <br>
+    <p style="width:600px;margin:auto;margin-bottom:0;">Service - Service or Line the train is serving.</p>
+    <br>
+    <p style="width:600px;margin:auto;margin-bottom:0;">Terminus - Last stop on the train trip.</p>
+    <br>
+    <p style="width:600px;margin:auto;margin-bottom:0;">Scheduled Time - Time at which the train trip is scheduled to depart the station (please note: within the Trip Details window, this time is the scheduled arrival time).</p>
+    <br>
+    <p style="width:600px;margin:auto;margin-bottom:0;">Status - Live status of the train trip. Applicable train trip statuses:</p>      
+    <br>
+    <br>
+    </div>
+    <div class="fade-in-delay">
+    <table>
+      <tbody>
+        <tr>
+          <th style="width:150px;">On Time</th><th>Train is running on time and should depart the station with six minutes of the scheduled time.<br><br>(Note: this is in accordance with industry standards; a train is condidered On Time if it arrives within six minutes of its scheduled time)</th>
+        </tr>
+        <tr>
+          <th style="width:150px;font-weight:bold;color:#CCAA00;">Delayed (min)</th><th>Train is delayed six minutes or more.<br><br>In some cases, a service alert may be issued detailing the reason for the delay.</th>
+        </tr>
+        <tr>
+          <th style="width:150px;">Enroute</th><th>Train is traveling to the selected station next.</th>
+        </tr>
+        <tr>
+          <th style="width:150px;font-weight:bold;">Approaching Station</th><th>Train is approaching the station.</th>
+        </tr>
+        <tr>
+          <th style="width:150px;font-style:italic;color:#AAAAAA;">Departed</th><th>Train has left the station and is continuing on its route.</th>
+        </tr>
+        <tr>
+          <th style="width:150px;font-weight:bold;">LAST CALL</th><th>Train is set to depart its origin station.<br><br>(Terminal stations only)</th>
+        </tr>
+        <tr>
+          <th style="width:150px;font-weight:bold;color:#DD0000;">SKIPPED</th><th>Train will skip the selected station.<br><br>In some cases, a service alert may be issued detailing the reason for the delay.</th>
+        </tr>
+        <tr>
+          <th style="width:150px;font-weight:bold;color:#DD0000;">NO SERVICE</th><th>Train has been canceled and removed from service.<br><br>In some cases, a service alert may be issued detailing the reason for the delay.</th>
+        </tr>
+        <tr>
+          <th style="width:150px;font-style:italic;color:#AAAAAA;">Not Dispatched</th><th>Train has not yet been dispatched from its yard.</th>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <br>
+    <br>
+    <div class="fade-in-delay">
+      <p style="width:600px;margin:auto;margin-bottom:0;">Version 1.0 - 2021-12-18</p>
+      <br>
+      <a href="mailto:njboccio@gmail.com" style="color:#FFFFFF;text-decoration: underline; font-size:18px;">Contact: njboccio@gmail.com</a>
+    </div>
+
+</body>
+
+</html>
