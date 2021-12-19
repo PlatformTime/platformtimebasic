@@ -18,6 +18,19 @@ h1 {
   color: white;
 }
 
+h3 {
+  font-size: 27px;
+  text-align: center;
+  margin-left: 0;
+  margin-bottom: 10px;
+  color: white;
+}
+
+p {
+  text-align: center;
+  margin-left: 0;
+}
+
 a {
   text-decoration: none;
   text-align: center;
@@ -36,7 +49,7 @@ a {
 #lirr_button {
   position: absolute;
   width: 300px;
-  left: 28px;
+  left: 43px;
   background-color:#F59B25;
   color:#0039A6;
 }
@@ -44,7 +57,7 @@ a {
 #mnr_button {
   position: absolute;
   width: 300px;
-  left: 420px;
+  left: 425px;
   background-color:#0039A6;
   color:#FFFFFF;
 }
@@ -53,7 +66,7 @@ a {
   position: absolute;
   background-color:#B61D8E;
   width: 300px;
-  left: 224px;
+  left: 234px;
   color:#FFFFFF;
 }
 
@@ -79,6 +92,25 @@ body {
   margin: 0 auto;
   padding: 20px;
   border: none;
+}
+
+table {
+  width: 600px;
+  margin: auto;
+  border: 1px solid #AAAAAA;
+  border-collapse: collapse;
+}
+
+th {
+  font-weight: normal;
+  border: 1px solid #AAAAAA;
+  border-collapse: collapse;
+  padding:10px;
+  height: 135px;
+}
+
+tr:nth-child(even) {
+  background-color: #444433;
 }
 
 /* Fade In Delay 0.3s*/
