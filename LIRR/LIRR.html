@@ -955,7 +955,7 @@
           result += "<td style='padding-top:3px;font-weight:bold;'>Approaching Station</td>"
         }
         else if (delay > 359 && tripDate == currentDate) {
-          result += "<td style='padding-top:3px;color:#CCAA00;font-weight:bold;'>Delayed ("+Math.ceil(delay/60)+" min)</td>"
+          result += "<td style='padding-top:3px;color:#CCAA00;font-weight:bold;'>Delayed ("+Math.floor(delay/60)+" min)</td>"
         }
         else if (currentStopSeq == "" || tripDate > currentDate) {
           result += "<td style='padding-top:3px;color:#AAAAAA;font-style:italic;'>Not Dispatched</td>"
