@@ -58,16 +58,24 @@ a {
   position: absolute;
   width: 300px;
   left: 420px;
-  background-color:#0039A6;
-  color:#FFFFFF;
+  padding-top: 1px;
+  padding-bottom: 2px;
+  font-style: italic;
+  border-top: 15px solid #0039A6;
+  background-color: #FFFFFF;
+  color:#000000;
 }
 
 #njt_button {
   position: absolute;
-  background-color:#B61D8E;
   width: 300px;
   left: 224px;
+  padding-top: 1px;
+  padding-bottom: 2px;
+  border-top: 15px solid #B61D8E;
+  background-color: #000000;
   color:#FFFFFF;
+  cursor: default;
 }
 
 #lirr_button:hover {
@@ -77,8 +85,8 @@ a {
 }
 
 #mnr_button:hover {
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
   transition: 0.3s; 
 }
 
@@ -112,7 +120,6 @@ th {
 tr:nth-child(even) {
   background-color: #444433;
 }
-
 
 /* Fade In Delay 0.3s*/
 .fade-in {
