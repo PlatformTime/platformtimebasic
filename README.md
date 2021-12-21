@@ -54,3 +54,5 @@ Time tables have four columns of information:
 VERSIONS / CHANGE LOG
 
 v1.0 - 2021-12-18: Initial release.
+
+v1.1 - 2021-12-20: Updated styles for MetroNorth to match station signage and fixed dropdown content for LIRR
