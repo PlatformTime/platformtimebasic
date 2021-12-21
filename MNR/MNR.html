@@ -1055,7 +1055,7 @@ window.onclick = function(event) {
 
       stop_time += timeArray['0']+":"+timeArray['1']+AMPM;
 
-      stopTimesList += "<tr class='stoprow', onclick='StationSelection(this)', data-route='"+document.getElementById(stop_name).getAttribute('data-route')+"',data-code='"+document.getElementById(stop_name).getAttribute('data-code')+"', data-stop='"+stop_id+"', data-inform='"+document.getElementById(stop_name).getAttribute('data-inform')+"', id='"+stop_name+"'><td><div style='text-align:center;margin-left:15px;margin-right:15px;width:170px;border:solid 5px;border-top:solid 9px;border-radius:8px;border-color:#"+routesArray[true_route_index]['7']+";background-color:#"+routesArray[true_route_index]['7']+";color:#"+routesArray[true_route_index]['8']+"'>"+document.getElementById(stop_name).innerText+"</div></td>";
+      stopTimesList += "<tr class='stoprow', onclick='StationSelection(this)', data-route='"+document.getElementById(stop_name).getAttribute('data-route')+"',data-code='"+document.getElementById(stop_name).getAttribute('data-code')+"', data-stop='"+stop_id+"', data-inform='"+document.getElementById(stop_name).getAttribute('data-inform')+"', id='"+stop_name+"'><td><div style='text-align:center;margin:5px 15px;width:180px;padding-top:2px;padding-bottom:2px;font-style:italic;font-weight:bold;border-top:solid 10px #"+routesArray[true_route_index]['7']+";border-radius:8px;background-color:#FFFFFF;color:#000000'>"+document.getElementById(stop_name).innerText+"</div></td>";
       stopTimesList += "<td id=stopListTime style='padding-right:15px;padding-top:5px;"
 
       if (convertedTime < rawDate) {
