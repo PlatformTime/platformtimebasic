@@ -927,8 +927,8 @@ window.onclick = function(event) {
       /* Adds results to tables */
       if (tripDate+stop_time_noConvert > startDate+startTime || ((delay > 600 && delay < 3600 && currentStopSeq < stopSeq) || (delay > 600 && delay < 3600 &&currentStopSeq == stopSeq))) {
         result += "<tr class='datarow' onclick='stoppingAt(this)' data-trip-date='"+tripArray[i]['6']+"' data-trip-id='"+tripArray[i]['2']+"' data-short-trip='"+tripArray[i]['4']+"' data-stop-seq='"+tripArray[i]['9']+"' id='datarow"+tripArray[i]['4']+"'>";
-        result += "<td><div id='tripService' style='margin-left:5px;width:170px;border:solid 5px;border-top:solid 9px;border-radius:8px;border-color:#"+routesArray[true_route_index]['7']+";background-color:#"+routesArray[true_route_index]['7']+";color:#"+routesArray[true_route_index]['8']+"'>"+service_id+"</div></td>";
-        result += "<td><div id='tripTerminus' style='margin-left:5px;width:170px;border:solid 5px;border-top:solid 9px;border-radius:8px;border-color:#"+routesArray[terminus_route_index]['7']+";background-color:#"+routesArray[terminus_route_index]['7']+";color:#"+routesArray[terminus_route_index]['8']+"'>"+document.getElementById(terminus_id).innerText+"</div></td>";
+        result += "<td><div id='tripService' style='margin-left:5px;width:180px;padding-top:2px;padding-bottom:2px;font-style:italic;font-weight:bold;border-top:solid 10px #"+routesArray[true_route_index]['7']+";border-radius:8px;background-color:#FFFFFF;color:#000000'>"+service_id+"</div></td>";
+        result += "<td><div id='tripTerminus' style='margin-left:5px;width:180px;padding-top:2px;padding-bottom:2px;font-style:italic;font-weight:bold;border-top:solid 10px #"+routesArray[terminus_route_index]['7']+";border-radius:8px;background-color:#FFFFFF;color:#000000'>"+document.getElementById(terminus_id).innerText+"</div></td>";
         result += "<td style='padding-top:3px;'>"+stop_time;
         
         if (tripArray[i]['6'] > startDate || tripArray[i]['7'] > '24:00:00'){
