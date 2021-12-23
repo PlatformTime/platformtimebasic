@@ -641,21 +641,14 @@
     await sleep(300);
     r.style.setProperty('--headertabledisplay', 'show');
 
-    if (stopid == '118' || stopid == '237' || stopid == '241') {
+    if (stopid == '1' || stopid == '63' || stopid == '105') {
       document.getElementById('westbound-header').innerHTML = "Arriving Trains";
       document.getElementById('eastbound-header').innerHTML = "Outbound";
       r.style.setProperty('--westheadersize', '27px');
       r.style.setProperty('--westtabledisplay', 'show');
       r.style.setProperty('--easttabledisplay', 'show');
     }
-    else if (stopid == '359') {
-      document.getElementById('westbound-header').innerHTML = "<i>No westbound service at this station.</i>";
-      document.getElementById('eastbound-header').innerHTML = "Outbound";
-      r.style.setProperty('--westheadersize', '18px');
-      r.style.setProperty('--westtabledisplay', 'none');
-      r.style.setProperty('--easttabledisplay', 'show');
-    }
-    else if (stopid == '24' || stopid == '65' || stopid == '73' || stopid == '84' || stopid == '113' || stopid == '141' || stopid == '154' || stopid == '164' || stopid == '171' || stopid == '216') {
+    else if (stopid == '10' || stopid == '13' || stopid == '49' || stopid == '54' || stopid == '60' || stopid == '123' || stopid == '142' || stopid == '148') {
       document.getElementById('westbound-header').innerHTML = "Inbound";
       document.getElementById('eastbound-header').innerHTML = "Arriving Trains";
       r.style.setProperty('--westheadersize', '27px');
