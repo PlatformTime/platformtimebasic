@@ -795,6 +795,7 @@ window.onclick = function(event) {
     var len = "";
     var delayedTrip = "";
     var tableButton = document.getElementById(tripTable+'Button')
+    var unixTime = Date.now()/1000;
 
     /* If there are few trips, display message */
 
@@ -886,6 +887,7 @@ window.onclick = function(event) {
       var trainScheduleRelationship = "";
       var stopScheduleRelationship = "";
       var tripCheck = "";
+      var terminal_departure = "";
       
       for (j = 0; j < globalFeed.entity.length; j++) {
         if (globalFeed.entity[j].id == shortTripId) {
@@ -893,6 +895,7 @@ window.onclick = function(event) {
           currentStatus = globalFeed.entity[j].vehicle.currentStatus;
           currentStop = globalFeed.entity[j].vehicle.stopId;
           trainScheduleRelationship = globalFeed.entity[j].tripUpdate.trip.scheduleRelationship
+          terminal_departure = globalFeed.entity[j].tripUpdate.stopTimeUpdate[0].departure.time
         
           for (k = 0; k < globalFeed.entity[j].tripUpdate.stopTimeUpdate.length; k++) {
             stopScheduleRelationship = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].scheduleRelationship;
@@ -964,7 +967,7 @@ window.onclick = function(event) {
         else if (delay > 359 && tripDate == currentDate) {
           result += "<td style='padding-top:3px;color:#CCAA00;font-weight:bold;'>Delayed ("+Math.floor(delay/60)+" min)</td>"
         }
-        else if (tripCheck == "" || tripDate > currentDate) {
+        else if (tripCheck == "" || tripDate > currentDate || unixTime < terminal_departure) {
           result += "<td style='padding-top:3px;color:#AAAAAA;font-style:italic;'>Not Dispatched</td>"
         }
         else {
@@ -1055,7 +1058,8 @@ window.onclick = function(event) {
 
       stop_time += timeArray['0']+":"+timeArray['1']+AMPM;
 
-      stopTimesList += "<tr class='stoprow', onclick='StationSelection(this)', data-route='"+document.getElementById(stop_name).getAttribute('data-route')+"',data-code='"+document.getElementById(stop_name).getAttribute('data-code')+"', data-stop='"+stop_id+"', data-inform='"+document.getElementById(stop_name).getAttribute('data-inform')+"', id='"+stop_name+"'><td><div style='text-align:center;margin:5px 15px;width:180px;padding-top:2px;padding-bottom:2px;font-style:italic;font-weight:bold;border-top:solid 10px #"+routesArray[true_route_index]['7']+";border-radius:8px;background-color:#FFFFFF;color:#000000'>"+document.getElementById(stop_name).innerText+"</div></td>";
+      stopTimesList += "<tr class='stoprow', onclick='StationSelection(this)', data-route='"+document.getElementById(stop_name).getAttribute('data-route')+"',data-code='"+document.getElementById(stop_name).getAttribute('data-code')+"', data-stop='"+stop_id+"', data-inform='"+document.getElementById(stop_name).getAttribute('data-inform')+"', id='"+stop_name+"'>";
+      stopTimesList += "<td><div style='text-align:center;margin:5px 15px;width:180px;padding-top:2px;padding-bottom:2px;font-style:italic;font-weight:bold;border-top:solid 10px #"+routesArray[true_route_index]['7']+";border-radius:8px;background-color:#FFFFFF;color:#000000'>"+document.getElementById(stop_name).innerText+"</div></td>";
       stopTimesList += "<td id=stopListTime style='padding-right:15px;padding-top:5px;"
 
       if (convertedTime < rawDate) {
