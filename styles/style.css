@@ -75,7 +75,6 @@ a {
   border-top: 15px solid #B61D8E;
   background-color: #000000;
   color:#FFFFFF;
-  cursor: default;
 }
 
 #lirr_button:hover {
@@ -85,6 +84,12 @@ a {
 }
 
 #mnr_button:hover {
+  background-color: black;
+  color: white;
+  transition: 0.3s; 
+}
+
+#njt_button:hover {
   background-color: black;
   color: white;
   transition: 0.3s; 
