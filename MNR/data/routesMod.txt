@@ -10,3 +10,4 @@ route_id,agency_id,route_short_name,route_long_name,route_desc,route_type,route_
 6,1,,Waterbury,,2,,EE0034,FFFFFF
 1,1,,Hudson,,2,,009B3A,FFFFFF
 2,1,,Harlem,,2,,0039A6,FFFFFF
+0,1,,City Zone,,2,,4D5357,FFFFFF
