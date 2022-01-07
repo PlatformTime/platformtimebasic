@@ -1,7 +1,7 @@
 stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,zone_id,stop_url,location_type,parent_station,wheelchair_boarding
 1,0NY,Grand Central Terminal,,40.752998,-73.977056,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=1,0,,1
-4,0HL,Harlem-125th St.,,40.805157,-73.939149,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=2,0,,1
-622,0YS,Yankees-E153 St.,,40.8253,-73.9299,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=3,0,,1
+4,0HL,Harlem-125 St,,40.805157,-73.939149,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=2,0,,1
+622,0YS,Yankees-E 153 St,,40.8253,-73.9299,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=3,0,,1
 9,0MH,Morris Heights,,40.854252,-73.919583,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=4,0,,1
 10,0UH,University Heights,,40.862248,-73.91312,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=6,0,,1
 11,0MB,Marble Hill,,40.874333,-73.910941,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=8,0,,0
@@ -48,11 +48,11 @@ stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,zone_id,stop_url,locatio
 74,1WP,White Plains,,41.032589,-73.775208,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=132,0,,1
 76,1NW,North White Plains,,41.049806,-73.773142,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=134,0,,1
 78,1VA,Valhalla,,41.072819,-73.772599,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=136,0,,1
-79,1MP,Mount Pleasant,,41.095877,-73.793822,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=140,0,,0
+79,1MP,Mt Pleasant,,41.095877,-73.793822,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=140,0,,0
 80,1HN,Hawthorne,,41.108581,-73.79625,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=142,0,,1
 81,1PV,Pleasantville,,41.135222,-73.792661,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=146,0,,1
 83,1CQ,Chappaqua,,41.158015,-73.774885,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=148,0,,1
-84,1MK,Mount Kisco,,41.208242,-73.729778,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=150,0,,1
+84,1MK,Mt Kisco,,41.208242,-73.729778,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=150,0,,1
 85,1BH,Bedford Hills,,41.237316,-73.699936,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=152,0,,1
 86,1KA,Katonah,,41.259552,-73.684155,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=154,0,,1
 88,1GO,Goldens Bridge,,41.294338,-73.677655,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=156,0,,1
@@ -63,7 +63,7 @@ stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,zone_id,stop_url,locatio
 97,1PA,Patterson,,41.511827,-73.604584,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=164,0,,1
 98,1PW,Pawling,,41.564205,-73.600524,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=166,0,,1
 99,1AT,Appalachian Trail,,41.61081,-73.57871,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=167,0,,0
-100,1WI,HM Valley-Wingdale,,41.637525,-73.57145,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=168,0,,1
+100,1WI,Harlem Valley-Wingdale,,41.637525,-73.57145,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=168,0,,1
 101,1DO,Dover Plains,,41.740401,-73.576502,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=170,0,,1
 176,1TM,Tenmile River,,41.779938,-73.558204,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=172,0,,1
 177,1WA,Wassaic,,41.814722,-73.562197,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=174,0,,1
@@ -104,7 +104,7 @@ stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,zone_id,stop_url,locatio
 140,2BP,Bridgeport,,41.178677,-73.187076,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=246,0,,1
 143,2SR,Stratford,,41.194255,-73.131532,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=248,0,,0
 144,261,CP 261,,41.208638,-73.097415,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=,0,,0
-167,5DE,Derby,,41.319718,-73.083548,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=290,0,,0
+167,5DE,Derby-Shelton,,41.319718,-73.083548,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=290,0,,0
 168,5AN,Ansonia,,41.344156,-73.079892,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=292,0,,0
 169,5SE,Seymour,,41.395139,-73.072499,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=294,0,,0
 170,5BF,Beacon Falls,,41.441752,-73.06359,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=295,0,,0
@@ -113,7 +113,7 @@ stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,zone_id,stop_url,locatio
 145,2MI,Milford,,41.223231,-73.057647,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=250,0,,0
 190,2WH,West Haven,,41.27142,-72.963488,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=251,0,,1
 149,2NH,New Haven,,41.296501,-72.92829,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=252,0,,1
-151,2SS,New Haven - State Street,,41.304979,-72.921747,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=253,0,,1
+151,2SS,New Haven-State St,,41.304979,-72.921747,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=253,0,,1
 502,12KK,Kappock St/Knolls Crescent,,40.879135,-73.916842,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=,0,,0
 504,12IA,Henry Hudson Pkwy/Independence Ave,,40.881049,-73.91917,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=,0,,0
 505,12227,227th St/Henry Hudson Pkwy-East Side,,40.881836,-73.917936,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=,0,,0
