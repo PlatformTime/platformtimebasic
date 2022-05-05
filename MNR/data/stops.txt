@@ -104,11 +104,11 @@ stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,zone_id,stop_url,locatio
 140,2BP,Bridgeport,,41.178677,-73.187076,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=246,0,,1
 143,2SR,Stratford,,41.194255,-73.131532,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=248,0,,0
 144,261,CP 261,,41.208638,-73.097415,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=,0,,0
-167,5DE,Derby-Shelton,,41.319718,-73.083548,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=290,0,,0
+167,5DB,Derby-Shelton,,41.319718,-73.083548,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=290,0,,0
 168,5AN,Ansonia,,41.344156,-73.079892,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=292,0,,0
-169,5SE,Seymour,,41.395139,-73.072499,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=294,0,,0
+169,5SY,Seymour,,41.395139,-73.072499,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=294,0,,0
 170,5BF,Beacon Falls,,41.441752,-73.06359,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=295,0,,0
-171,5NA,Naugatuck,,41.494204,-73.052655,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=296,0,,0
+171,5NG,Naugatuck,,41.494204,-73.052655,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=296,0,,0
 172,5WB,Waterbury,,41.552728,-73.046126,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=298,0,,1
 145,2MI,Milford,,41.223231,-73.057647,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=250,0,,0
 190,2WH,West Haven,,41.27142,-72.963488,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=251,0,,1
