@@ -590,13 +590,6 @@
       r.style.setProperty('--westtabledisplay', 'show');
       r.style.setProperty('--easttabledisplay', 'show');
     }
-    else if (stopid == '359') {
-      document.getElementById('westbound-header').innerHTML = "<i>No westbound service at this station.</i>";
-      document.getElementById('eastbound-header').innerHTML = "Eastbound";
-      r.style.setProperty('--westheadersize', '18px');
-      r.style.setProperty('--westtabledisplay', 'none');
-      r.style.setProperty('--easttabledisplay', 'show');
-    }
     else if (stopid == '24' || stopid == '65' || stopid == '73' || stopid == '84' || stopid == '113' || stopid == '141' || stopid == '154' || stopid == '164' || stopid == '171' || stopid == '216') {
       document.getElementById('westbound-header').innerHTML = "Westbound";
       document.getElementById('eastbound-header').innerHTML = "Arriving Trains";
