@@ -833,7 +833,13 @@
 
     for (i = startTimeIndex; i < len; i++) {
 
-      var service_id = routesArray[tripArray[i]['0']]['2'].slice('0','-7');
+      if (routesArray[tripArray[i]['0']]['0'] == '12') {
+        var service_id = routesArray[tripArray[i]['0']]['2'];
+      }
+      else {
+        var service_id = routesArray[tripArray[i]['0']]['2'].slice('0','-7');
+      }
+      
       var tripId = tripArray[i]['2'];
       var terminus_id = tripArray[i]['3'];
       var tripDate = tripArray[i]['6']
