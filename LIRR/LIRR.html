@@ -1098,8 +1098,13 @@
             if (informedRoutes.includes(alertFeed.entity[i].alert.informedEntity[k].routeId)) {
               alertResults += "<tr><td class='alertTD'><br>"
               alertResults += alertFeed.entity[i].alert.headerText.translation[1].text
-              alertResults += alertFeed.entity[i].alert.descriptionText.translation[1].text
-              alertResults += "</td></tr>"
+              if (alertFeed.entity[i].alert.descriptionText == null) {
+                alertResults += "</td></tr>"
+              }
+              else {
+                alertResults += alertFeed.entity[i].alert.descriptionText.translation[1].text
+                alertResults += "</td></tr>"
+              }
             }
             break;
           }
