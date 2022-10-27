@@ -1008,7 +1008,7 @@ window.onclick = function(event) {
     var shortTripId = tripSelection.getAttribute('data-short-trip');
     var tripDate = tripSelection.getAttribute('data-trip-date');
     var stopSeq = parseInt(tripSelection.getAttribute('data-stop-seq'));
-    var tripStopArray = stoptimesArray.filter(i => i['0'] == ("^"+tripId+"$"));
+    var tripStopArray = stoptimesArray.filter(i => i['0'] == (tripId));
     var len = tripStopArray.length;
 
     dataRowSelection = "";
