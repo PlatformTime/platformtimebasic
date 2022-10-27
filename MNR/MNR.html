@@ -703,12 +703,12 @@ window.onclick = function(event) {
     for (i = 0; i < tripsToday.length; i++) {
       var stopInfo = [];
       stopInfo = stopsToday.filter(j => j['0'] == (tripsToday[i]['2']));
-      tripsToday[i]['10'] = stopInfo['0']['2'];
-      tripsToday[i]['11'] = stopInfo['0']['3'];
-      tripsToday[i]['12'] = stopInfo['0']['4'];
+      tripsToday[i]['7'] = stopInfo['0']['2'];
+      tripsToday[i]['8'] = stopInfo['0']['3'];
+      tripsToday[i]['9'] = stopInfo['0']['4'];
     }
     
-    stopsNow = tripsToday.filter(j => j['6']+j['10'] >= startDate+startTime && j['6']+j['10'] <= endDate+endTime);
+    stopsNow = tripsToday.filter(j => j['6']+j['7'] >= startDate+startTime && j['6']+j['7'] <= endDate+endTime);
 
     southboundTrips = stopsNow.filter(j => j['5'].match('1'));
     southboundTrips.sort(sortTrips);
@@ -724,7 +724,7 @@ window.onclick = function(event) {
 
   function sortTrips(a,b) {
     if (a['6'] == b['6']){
-      return a['10'] > b['10'] ? 1 : -1;
+      return a['7'] > b['7'] ? 1 : -1;
     }
     return a['6'] > b['6'] ? 1 : -1;
   }
@@ -809,7 +809,7 @@ window.onclick = function(event) {
     else {
       for (i = 0; i < tripArray.length; i++){
         var tripDate = tripArray[i]['6']
-        if (tripDate+tripArray[i]['10'] > startDate+startTime) {
+        if (tripDate+tripArray[i]['7'] > startDate+startTime) {
           startTimeIndex = i
           break;
         }
@@ -855,7 +855,7 @@ window.onclick = function(event) {
 
       /* Sets time to 12-hr AM/PM */
 
-      timeArray = tripArray[i]['10'].split(':')
+      timeArray = tripArray[i]['7'].split(':')
       
       if (timeArray['0'] < '12' || timeArray['0'] >= '24') {
         var AMPM = " AM";
@@ -929,12 +929,12 @@ window.onclick = function(event) {
 
       /* Adds results to tables */
       if (tripDate+stop_time_noConvert > startDate+startTime || ((delay > 600 && delay < 3600 && currentStopSeq < stopSeq) || (delay > 600 && delay < 3600 &&currentStopSeq == stopSeq))) {
-        result += "<tr class='datarow' onclick='stoppingAt(this)' data-trip-date='"+tripArray[i]['6']+"' data-trip-id='"+tripArray[i]['2']+"' data-short-trip='"+tripArray[i]['4']+"' data-stop-seq='"+tripArray[i]['12']+"' id='datarow"+tripArray[i]['4']+"'>";
+        result += "<tr class='datarow' onclick='stoppingAt(this)' data-trip-date='"+tripArray[i]['6']+"' data-trip-id='"+tripArray[i]['2']+"' data-short-trip='"+tripArray[i]['4']+"' data-stop-seq='"+tripArray[i]['9']+"' id='datarow"+tripArray[i]['4']+"'>";
         result += "<td><div id='tripService' style='margin-left:5px;width:180px;padding-top:2px;padding-bottom:2px;font-style:italic;font-weight:bold;border-top:solid 10px #"+routesArray[true_route_index]['7']+";border-radius:8px;background-color:#FFFFFF;color:#000000'>"+service_id+"</div></td>";
         result += "<td><div id='tripTerminus' style='margin-left:5px;width:180px;padding-top:2px;padding-bottom:2px;font-style:italic;font-weight:bold;border-top:solid 10px #"+routesArray[terminus_route_index]['7']+";border-radius:8px;background-color:#FFFFFF;color:#000000'>"+document.getElementById(terminus_id).innerText+"</div></td>";
         result += "<td style='padding-top:3px;'>"+stop_time;
         
-        if (tripArray[i]['6'] > startDate || tripArray[i]['10'] > '24:00:00'){
+        if (tripArray[i]['6'] > startDate || tripArray[i]['7'] > '24:00:00'){
           result += "<br><font size='-1'><i>(Next Day)</i></font>";
         }
 
