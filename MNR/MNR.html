@@ -702,7 +702,7 @@ window.onclick = function(event) {
 
     for (i = 0; i < tripsToday.length; i++) {
       var stopInfo = [];
-      stopInfo = stopsToday(j => j['0'] == (tripsToday[i]['2']));
+      stopInfo = stopsToday.filter(j => j['0']match.(tripsToday[i]['2']));
       tripsToday[i]['7'] = stopInfo['0']['2'];
       tripsToday[i]['8'] = stopInfo['0']['3'];
       tripsToday[i]['9'] = stopInfo['0']['4'];
