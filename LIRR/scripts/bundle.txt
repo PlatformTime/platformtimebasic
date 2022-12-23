@@ -51339,7 +51339,8 @@ $root.transit_realtime = (function() {
              * @property {transit_realtime.TripUpdate.IStopTimeEvent|null} [arrival] StopTimeUpdate arrival
              * @property {transit_realtime.TripUpdate.IStopTimeEvent|null} [departure] StopTimeUpdate departure
              * @property {transit_realtime.TripUpdate.StopTimeUpdate.ScheduleRelationship|null} [scheduleRelationship] StopTimeUpdate scheduleRelationship
-		  * @property {string|null} [track] StopTimeUpdate track
+		  * @property {transit_realtime.TripUpdate.IStopTimeEvent|null} [status] StopTimeUpdate status
+
              */
 
             /**
@@ -51397,13 +51398,13 @@ $root.transit_realtime = (function() {
              */
             StopTimeUpdate.prototype.scheduleRelationship = 0;
 
-		 /**
-             * StopTimeUpdate track.
-             * @member {string} track
+            /**
+             * StopTimeUpdate status.
+             * @member {transit_realtime.TripUpdate.IStopTimeEvent|null|undefined} status
              * @memberof transit_realtime.TripUpdate.StopTimeUpdate
              * @instance
              */
-            StopTimeUpdate.prototype.track = "";
+            StopTimeUpdate.prototype.status = null;
 
             /**
              * Creates a new StopTimeUpdate instance using the specified properties.
@@ -51439,8 +51440,9 @@ $root.transit_realtime = (function() {
                     writer.uint32(/* id 4, wireType 2 =*/34).string(message.stopId);
                 if (message.scheduleRelationship != null && message.hasOwnProperty("scheduleRelationship"))
                     writer.uint32(/* id 5, wireType 0 =*/40).int32(message.scheduleRelationship);
-			if (message.track != null && message.hasOwnProperty("track"))
-                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.track);
+			if (message.status != null && message.hasOwnProperty("status"))
+                    $root.transit_realtime.TripUpdate.StopTimeEvent.encode(message.status, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+
 
                 return writer;
             };
@@ -51492,7 +51494,7 @@ $root.transit_realtime = (function() {
                         message.scheduleRelationship = reader.int32();
                         break;
 			    case 6:
-                        message.track = reader.string();
+                        message.status = $root.transit_realtime.TripUpdate.StopTimeEvent.decode(reader, reader.uint32());
                         break;
                     default:
                         reader.skipType(tag & 7);
@@ -51554,10 +51556,12 @@ $root.transit_realtime = (function() {
                     case 2:
                         break;
                     }
-			if (message.track != null && message.hasOwnProperty("track"))
-                    if (!$util.isString(message.track))
-                        return "track: string expected";
-                return null;
+			if (message.status != null && message.hasOwnProperty("status")) {
+                    var error = $root.transit_realtime.TripUpdate.StopTimeEvent.verify(message.status);
+                    if (error)
+                        return "status." + error;
+                }
+
             };
 
             /**
@@ -51576,8 +51580,11 @@ $root.transit_realtime = (function() {
                     message.stopSequence = object.stopSequence >>> 0;
                 if (object.stopId != null)
                     message.stopId = String(object.stopId);
-			if (object.track != null)
-                    message.track = String(object.track);
+			if (object.status != null) {
+                    if (typeof object.status !== "object")
+                        throw TypeError(".transit_realtime.TripUpdate.StopTimeUpdate.status: object expected");
+                    message.status = $root.transit_realtime.TripUpdate.StopTimeEvent.fromObject(object.status);
+                }
                 if (object.arrival != null) {
                     if (typeof object.arrival !== "object")
                         throw TypeError(".transit_realtime.TripUpdate.StopTimeUpdate.arrival: object expected");
@@ -51623,7 +51630,7 @@ $root.transit_realtime = (function() {
                     object.arrival = null;
                     object.departure = null;
                     object.stopId = "";
-			    object.track = "";
+			    object.status = null;
                     object.scheduleRelationship = options.enums === String ? "SCHEDULED" : 0;
                 }
                 if (message.stopSequence != null && message.hasOwnProperty("stopSequence"))
@@ -51634,8 +51641,8 @@ $root.transit_realtime = (function() {
                     object.departure = $root.transit_realtime.TripUpdate.StopTimeEvent.toObject(message.departure, options);
                 if (message.stopId != null && message.hasOwnProperty("stopId"))
                     object.stopId = message.stopId;
-			if (message.track != null && message.hasOwnProperty("track"))
-                    object.track = message.track;
+			if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = $root.transit_realtime.TripUpdate.StopTimeEvent.toObject(message.status, options);
                 if (message.scheduleRelationship != null && message.hasOwnProperty("scheduleRelationship"))
                     object.scheduleRelationship = options.enums === String ? $root.transit_realtime.TripUpdate.StopTimeUpdate.ScheduleRelationship[message.scheduleRelationship] : message.scheduleRelationship;
                 return object;
@@ -51685,7 +51692,6 @@ $root.transit_realtime = (function() {
          * @property {transit_realtime.IPosition|null} [position] VehiclePosition position
          * @property {number|null} [currentStopSequence] VehiclePosition currentStopSequence
          * @property {string|null} [stopId] VehiclePosition stopId
-	    * @property {string|null} [track] VehiclePosition track
          * @property {transit_realtime.VehiclePosition.VehicleStopStatus|null} [currentStatus] VehiclePosition currentStatus
          * @property {number|Long|null} [timestamp] VehiclePosition timestamp
          * @property {transit_realtime.VehiclePosition.CongestionLevel|null} [congestionLevel] VehiclePosition congestionLevel
@@ -51746,14 +51752,6 @@ $root.transit_realtime = (function() {
          * @instance
          */
         VehiclePosition.prototype.stopId = "";
-
-	  /**
-         * VehiclePosition track.
-         * @member {string} track
-         * @memberof transit_realtime.VehiclePosition
-         * @instance
-         */
-        VehiclePosition.prototype.track = "";
 
         /**
          * VehiclePosition currentStatus.
@@ -51825,8 +51823,6 @@ $root.transit_realtime = (function() {
                 writer.uint32(/* id 6, wireType 0 =*/48).int32(message.congestionLevel);
             if (message.stopId != null && message.hasOwnProperty("stopId"))
                 writer.uint32(/* id 7, wireType 2 =*/58).string(message.stopId);
-		 if (message.track != null && message.hasOwnProperty("track"))
-                writer.uint32(/* id 7, wireType 2 =*/58).string(message.track);
             if (message.vehicle != null && message.hasOwnProperty("vehicle"))
                 $root.transit_realtime.VehicleDescriptor.encode(message.vehicle, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
             if (message.occupancyStatus != null && message.hasOwnProperty("occupancyStatus"))
@@ -51879,9 +51875,6 @@ $root.transit_realtime = (function() {
                     break;
                 case 7:
                     message.stopId = reader.string();
-                    break;
-			case 10:
-                    message.track = reader.string();
                     break;
                 case 4:
                     message.currentStatus = reader.int32();
@@ -51951,9 +51944,6 @@ $root.transit_realtime = (function() {
             if (message.stopId != null && message.hasOwnProperty("stopId"))
                 if (!$util.isString(message.stopId))
                     return "stopId: string expected";
-		 if (message.track != null && message.hasOwnProperty("track"))
-                if (!$util.isString(message.track))
-                    return "track: string expected";
             if (message.currentStatus != null && message.hasOwnProperty("currentStatus"))
                 switch (message.currentStatus) {
                 default:
@@ -52024,8 +52014,6 @@ $root.transit_realtime = (function() {
                 message.currentStopSequence = object.currentStopSequence >>> 0;
             if (object.stopId != null)
                 message.stopId = String(object.stopId);
-		 if (object.track != null)
-                message.track = String(object.track);
             switch (object.currentStatus) {
             case "INCOMING_AT":
             case 0:
@@ -52129,7 +52117,6 @@ $root.transit_realtime = (function() {
                     object.timestamp = options.longs === String ? "0" : 0;
                 object.congestionLevel = options.enums === String ? "UNKNOWN_CONGESTION_LEVEL" : 0;
                 object.stopId = "";
-			object.track = "";
                 object.vehicle = null;
                 object.occupancyStatus = options.enums === String ? "EMPTY" : 0;
             }
@@ -52150,8 +52137,6 @@ $root.transit_realtime = (function() {
                 object.congestionLevel = options.enums === String ? $root.transit_realtime.VehiclePosition.CongestionLevel[message.congestionLevel] : message.congestionLevel;
             if (message.stopId != null && message.hasOwnProperty("stopId"))
                 object.stopId = message.stopId;
-            if (message.track != null && message.hasOwnProperty("track"))
-                object.track = message.track;
             if (message.vehicle != null && message.hasOwnProperty("vehicle"))
                 object.vehicle = $root.transit_realtime.VehicleDescriptor.toObject(message.vehicle, options);
             if (message.occupancyStatus != null && message.hasOwnProperty("occupancyStatus"))
@@ -54012,7 +53997,6 @@ $root.transit_realtime = (function() {
          * @property {number|null} [routeType] EntitySelector routeType
          * @property {transit_realtime.ITripDescriptor|null} [trip] EntitySelector trip
          * @property {string|null} [stopId] EntitySelector stopId
-         * @property {string|null} [track] EntitySelector track
          */
 
         /**
@@ -54071,15 +54055,6 @@ $root.transit_realtime = (function() {
         EntitySelector.prototype.stopId = "";
 
         /**
-         * EntitySelector track.
-         * @member {string} track
-         * @memberof transit_realtime.EntitySelector
-         * @instance
-         */
-        EntitySelector.prototype.track = "";
-
-
-        /**
          * Creates a new EntitySelector instance using the specified properties.
          * @function create
          * @memberof transit_realtime.EntitySelector
@@ -54112,9 +54087,7 @@ $root.transit_realtime = (function() {
             if (message.trip != null && message.hasOwnProperty("trip"))
                 $root.transit_realtime.TripDescriptor.encode(message.trip, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             if (message.stopId != null && message.hasOwnProperty("stopId"))
-                writer.uint32(/* id 5, wireType 2 =*/42).string(message.track);
-            if (message.stopId != null && message.hasOwnProperty("track"))
-                writer.uint32(/* id 5, wireType 2 =*/42).string(message.track);
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.stopId);
             return writer;
         };
 
@@ -54163,9 +54136,6 @@ $root.transit_realtime = (function() {
                     break;
                 case 5:
                     message.stopId = reader.string();
-                    break;
-                case 6:
-                    message.track = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -54219,9 +54189,7 @@ $root.transit_realtime = (function() {
             if (message.stopId != null && message.hasOwnProperty("stopId"))
                 if (!$util.isString(message.stopId))
                     return "stopId: string expected";
-            if (message.track != null && message.hasOwnProperty("track"))
-                if (!$util.isString(message.track))
-                    return "track: string expected";
+           
             return null;
         };
 
@@ -54250,8 +54218,7 @@ $root.transit_realtime = (function() {
             }
             if (object.stopId != null)
                 message.stopId = String(object.stopId);
-            if (object.track != null)
-                message.track = String(object.track);
+            
             return message;
         };
 
@@ -54274,7 +54241,6 @@ $root.transit_realtime = (function() {
                 object.routeType = 0;
                 object.trip = null;
                 object.stopId = "";
-                object.track = "";
             }
             if (message.agencyId != null && message.hasOwnProperty("agencyId"))
                 object.agencyId = message.agencyId;
@@ -54286,8 +54252,7 @@ $root.transit_realtime = (function() {
                 object.trip = $root.transit_realtime.TripDescriptor.toObject(message.trip, options);
             if (message.stopId != null && message.hasOwnProperty("stopId"))
                 object.stopId = message.stopId;
-            if (message.track != null && message.hasOwnProperty("track"))
-                object.track = message.track;
+            
             return object;
         };
 
