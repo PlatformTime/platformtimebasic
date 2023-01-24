@@ -831,10 +831,9 @@
     if ((len - startTimeIndex) == 0) {
       result += "<td colspan=4><div><i>There are no scheduled trains in the next 24 hours.</i><div></td>"
     }
-    else if (((len - startTimeIndex) > 0) && (len - startTimeIndex) < 6)) {
+    
+    if (((len - startTimeIndex) > 0) && ((len - startTimeIndex) < 6)) {
       result += "<td colspan=4><div><i>There are few trains in the near future. Here are trains for the next 24 hours.</i><div></td>"
-    }
-    else {
     }
 
     for (i = startTimeIndex; i < len; i++) {
