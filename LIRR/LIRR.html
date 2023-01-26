@@ -698,6 +698,7 @@
     }
 
     addedStops();
+    addedStops = noop;
 
     filteredStopTimes = stoptimesArray.filter(i => i['3'] == stopid);
     stopsToday = filteredStopTimes.filter(trips => tripsHere.includes(trips['0']));
