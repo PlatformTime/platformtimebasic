@@ -51512,7 +51512,7 @@ $root.transit_realtime = (function() {
                     case 5:
                         message.scheduleRelationship = reader.int32();
                         break;
-                    case 6
+                    case 6:
                         message.MtaRailroadStopTimeUpdate = $root.transit_realtime.TripUpdate.MtaUpdate.decode(reader, reader.uint32());
                         break;
 
