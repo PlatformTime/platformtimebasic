@@ -51091,7 +51091,7 @@ $root.transit_realtime = (function() {
              * @property {number|null} [delay] StopTimeEvent delay
              * @property {number|Long|null} [time] StopTimeEvent time
              * @property {number|null} [uncertainty] StopTimeEvent uncertainty
-             * @property {number|null} [track] StopTimeEvent track
+             * @property {string|null} [track] StopTimeEvent track
              */
 
             /**
@@ -51135,11 +51135,11 @@ $root.transit_realtime = (function() {
 
              /**
              * StopTimeEvent track.
-             * @member {number} track
+             * @member {string} track
              * @memberof transit_realtime.TripUpdate.StopTimeEvent
              * @instance
              */
-            StopTimeEvent.prototype.track = 0;
+            StopTimeEvent.prototype.track = "";
 
             /**
              * Creates a new StopTimeEvent instance using the specified properties.
@@ -51295,7 +51295,7 @@ $root.transit_realtime = (function() {
                 if (object.uncertainty != null)
                     message.uncertainty = object.uncertainty | 0;
                 if (object.track != null)
-                    message.delay = object.track | 0;
+                    message.track = object.track | "";
 
                 return message;
             };
