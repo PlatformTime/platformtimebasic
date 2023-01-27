@@ -51172,7 +51172,7 @@ $root.transit_realtime = (function() {
                 if (message.uncertainty != null && message.hasOwnProperty("uncertainty"))
                     writer.uint32(/* id 3, wireType 0 =*/24).int32(message.uncertainty);
                 if (message.track != null && message.hasOwnProperty("track"))
-                    writer.uint32(/* id 1, wireType 0 =*/32).int32(message.track);
+                    writer.uint32(/* id 1005, wireType 0 =*/32).int32(message.track);
                 return writer;
             };
 
@@ -51451,8 +51451,8 @@ $root.transit_realtime = (function() {
             StopTimeUpdate.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.MtaRailroadStopTimeUpdate != null && message.hasOwnProperty("MtaRailroadStopTimeUpdate "))
-                    $root.transit_realtime.TripUpdate.MtaUpdate.encode(message.MtaRailroadStopTimeUpdate, writer.uint32(/* id 1005, wireType 2 =*/18).fork()).ldelim();
+                if (message.mta_railroad_stop_time_update != null && message.hasOwnProperty("MtaRailroadStopTimeUpdate "))
+                    $root.transit_realtime.TripUpdate.MtaUpdate.encode(message.mta_railroad_stop_time_update, writer.uint32(/* id 1005, wireType 2 =*/2).fork()).ldelim();
                 if (message.stopSequence != null && message.hasOwnProperty("stopSequence"))
                     writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.stopSequence);
                 if (message.arrival != null && message.hasOwnProperty("arrival"))
@@ -51551,8 +51551,8 @@ $root.transit_realtime = (function() {
             StopTimeUpdate.verify = function verify(message) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
-                if (message.MtaRailroadStopTimeUpdate != null && message.hasOwnProperty("MtaRailroadStopTimeUpdate ")) {
-                    var error = $root.transit_realtime.TripUpdate.MtaUpdate.verify(message.MtaRailroadStopTimeUpdate);
+                if (message.mta_railroad_stop_time_update != null && message.hasOwnProperty("MtaRailroadStopTimeUpdate")) {
+                    var error = $root.transit_realtime.TripUpdate.MtaUpdate.verify(message.mta_railroad_stop_time_update);
                     if (error)
                         return "MtaRailroadStopTimeUpdate." + error;
                 }
@@ -51599,7 +51599,7 @@ $root.transit_realtime = (function() {
                 if (object.MtaRailroadStopTimeUpdate != null) {
                     if (typeof object.MtaRailroadStopTimeUpdate !== "object")
                         throw TypeError(".transit_realtime.TripUpdate.StopTimeUpdate.MtaRailroadStopTimeUpdate: object expected");
-                    message.MtaRailroadStopTimeUpdate = $root.transit_realtime.TripUpdate.StopTimeUpdate.MtaRailroadStopTimeUpdate.fromObject(object.MtaRailroadStopTimeUpdate);
+                    message.mta_railroad_stop_time_update = $root.transit_realtime.TripUpdate.StopTimeUpdate.MtaRailroadStopTimeUpdate.fromObject(object.MtaRailroadStopTimeUpdate);
                 }
 
                 if (object.stopSequence != null)
@@ -51654,8 +51654,8 @@ $root.transit_realtime = (function() {
                     object.stopId = "";
                     object.scheduleRelationship = options.enums === String ? "SCHEDULED" : 0;
                 }
-                if (message.MtaRailroadStopTimeUpdate != null && message.hasOwnProperty("MtaRailroadStopTimeUpdate"))
-                    object.MtaRailroadStopTimeUpdate= $root.transit_realtime.TripUpdate.MtaRailroadStopTimeUpdate.toObject(message.MtaRailroadStopTimeUpdate, options);
+                if (message.mta_railroad_stop_time_update != null && message.hasOwnProperty("MtaRailroadStopTimeUpdate"))
+                    object.MtaRailroadStopTimeUpdate= $root.transit_realtime.TripUpdate.MtaRailroadStopTimeUpdate.toObject(message.mta_railroad_stop_time_update, options);
 
                 if (message.stopSequence != null && message.hasOwnProperty("stopSequence"))
                     object.stopSequence = message.stopSequence;
