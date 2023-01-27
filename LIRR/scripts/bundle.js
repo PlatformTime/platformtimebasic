@@ -1,6 +1,7 @@
 var globalFeed = [];
 var alertFeed = [];
 
+
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 
 },{}],2:[function(require,module,exports){
@@ -51356,6 +51357,7 @@ $root.transit_realtime = (function() {
              * Properties of a StopTimeUpdate.
              * @memberof transit_realtime.TripUpdate
              * @interface IStopTimeUpdate
+         	   * @property {Array.<transit_realtime.StopTimeUpdate.IMtaRailroadStopTimeUpdate>|null} [MtaRailroadStopTimeUpdate] StopTimeUpdate MtaRailroadStopTimeUpdate
              * @property {number|null} [stopSequence] StopTimeUpdate stopSequence
              * @property {string|null} [stopId] StopTimeUpdate stopId
              * @property {transit_realtime.TripUpdate.IStopTimeEvent|null} [arrival] StopTimeUpdate arrival
@@ -51377,6 +51379,14 @@ $root.transit_realtime = (function() {
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
+
+	    /**
+         * StopTimeUpdate MtaRailroadStopTimeUpdate.
+         * @member {Array.<transit_realtime.TripUpdate.StopTimeUpdate.IMtaRailroadStopTimeUpdate>} MtaRailroadStopTimeUpdate
+         * @memberof transit_realtime.TripUpdate.stopTimeUpdate
+         * @instance
+         */
+        StopTimeUpdate.prototype.MtaRailroadStopTimeUpdate = $util.emptyArray;
 
             /**
              * StopTimeUpdate stopSequence.
@@ -51442,6 +51452,10 @@ $root.transit_realtime = (function() {
             StopTimeUpdate.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
+                if (message.MtaRailroadstopTimeUpdate != null && message.MtaRailroadStopTimeUpdate.length)
+                for (var i = 0; i < message.MtaRailroadStopTimeUpdate.length; ++i)
+                    $root.transit_realtime.TripUpdate.StopTimeUpdate.MtaRailroadStopTimeUpdate.encode(message.MtaRailroadStopTimeUpdate[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+
                 if (message.stopSequence != null && message.hasOwnProperty("stopSequence"))
                     writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.stopSequence);
                 if (message.arrival != null && message.hasOwnProperty("arrival"))
@@ -51501,6 +51515,12 @@ $root.transit_realtime = (function() {
                     case 5:
                         message.scheduleRelationship = reader.int32();
                         break;
+                    case 6:
+                    if (!(message.MtaRailroadStopTimeUpdate && message.MtaRailroadStopTimeUpdate.length))
+                        message.MtaRailroadStopTimeUpdate = [];
+                    message.MtaRailroadStopTimeUpdate.push($root.transit_realtime.TripUpdate.StopTimeUpdate.MtaRailroadStopTimeUpdate.decode(reader, reader.uint32()));
+                    break;
+
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -51536,6 +51556,15 @@ $root.transit_realtime = (function() {
             StopTimeUpdate.verify = function verify(message) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (message.MtaRailroadStopTimeUpdate != null && message.hasOwnProperty("MtaRailroadStopTimeUpdate")) {
+                if (!Array.isArray(message.MtaRailroadStopTimeUpdate))
+                    return "MtaRailroadStopTimeUpdate: array expected";
+                for (var i = 0; i < message.MtaRailroadStopTimeUpdate.length; ++i) {
+                    var error = $root.transit_realtime.TripUpdate.StopTimeUpdate.MtaRailroadStopTimeUpdate.verify(message.stopTimeUpdate[i]);
+                    if (error)
+                        return "MtaRailroadStopTimeUpdate." + error;
+                }
+            }
                 if (message.stopSequence != null && message.hasOwnProperty("stopSequence"))
                     if (!$util.isInteger(message.stopSequence))
                         return "stopSequence: integer expected";
@@ -51576,6 +51605,16 @@ $root.transit_realtime = (function() {
                 if (object instanceof $root.transit_realtime.TripUpdate.StopTimeUpdate)
                     return object;
                 var message = new $root.transit_realtime.TripUpdate.StopTimeUpdate();
+            if (object.MtaRailroadStopTimeUpdate) {
+                if (!Array.isArray(object.MtaRailroadStopTimeUpdate))
+                    throw TypeError(".transit_realtime.TripUpdate.stopTimeUpdate.MtaRailroadStopTimeUpdate: array expected");
+                message.MtaRailroadStopTimeUpdate = [];
+                for (var i = 0; i < object.MtaRailroadStopTimeUpdate.length; ++i) {
+                    if (typeof object.MtaRailroadStopTimeUpdate[i] !== "object")
+                        throw TypeError(".transit_realtime.TripUpdate.stopTimeUpdate.MtaRailroadStopTimeUpdate: object expected");
+                    message.MtaRailroadStopTimeUpdate[i] = $root.transit_realtime.TripUpdate.StopTimeUpdate.MtaRailroadStopTimeUpdate.fromObject(object.MtaRailroadStopTimeUpdate[i]);
+                }
+            }
                 if (object.stopSequence != null)
                     message.stopSequence = object.stopSequence >>> 0;
                 if (object.stopId != null)
@@ -51620,12 +51659,19 @@ $root.transit_realtime = (function() {
                 if (!options)
                     options = {};
                 var object = {};
+			if (options.arrays || options.defaults)
+                	object.MtaRailroadStopTimeUpdate = [];
                 if (options.defaults) {
                     object.stopSequence = 0;
                     object.arrival = null;
                     object.departure = null;
                     object.stopId = "";
                     object.scheduleRelationship = options.enums === String ? "SCHEDULED" : 0;
+                }
+                if (message.MtaRailroadStopTimeUpdate && message.MtaRailroadStopTimeUpdate.length) {
+                object.MtaRailroadStopTimeUpdate = [];
+                for (var j = 0; j < message.MtaRailroadStopTimeUpdate.length; ++j)
+                    object.MtaRailroadStopTimeUpdate[j] = $root.transit_realtime.TripUpdate.StopTimeUpdate.MtaRailroadStopTimeUpdate.toObject(message.MtaRailroadStopTimeUpdate[j], options);
                 }
                 if (message.stopSequence != null && message.hasOwnProperty("stopSequence"))
                     object.stopSequence = message.stopSequence;
