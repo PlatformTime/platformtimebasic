@@ -51713,12 +51713,7 @@ $root.transit_realtime = (function() {
                 return values;
             })();
 
-            return StopTimeUpdate;
-        })();
-
-        return TripUpdate;
-    })();
-
+            
 TripUpdate.StopTimeUpdate.MtaRailroadStopTimeUpdate = (function() {
 
             /**
@@ -51872,12 +51867,6 @@ TripUpdate.StopTimeUpdate.MtaRailroadStopTimeUpdate = (function() {
                 if (message.trainStatus != null && message.hasOwnProperty("trainStatus"))
                     if (!$util.isString(message.trainStatus))
                         return "trainStatus: string expected";
-
-                    case 0:
-                    case 1:
-                    case 2:
-                        break;
-                    }
                 return null;
             };
 
@@ -51911,7 +51900,7 @@ TripUpdate.StopTimeUpdate.MtaRailroadStopTimeUpdate = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            StopTimeUpdate.toObject = function toObject(message, options) {
+            MtaRailroadStopTimeUpdate.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
                 var object = {};			                
