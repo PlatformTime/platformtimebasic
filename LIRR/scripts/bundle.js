@@ -51497,7 +51497,7 @@ $root.transit_realtime = (function() {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.TripUpdate.StopTimeUpdate();
-                while (reader.pos < end) {
+                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
@@ -51714,7 +51714,7 @@ $root.transit_realtime = (function() {
             })();
 
             
-TripUpdate.StopTimeUpdate.MtaRailroadStopTimeUpdate = (function() {
+StopTimeUpdate.MtaRailroadStopTimeUpdate = (function() {
 
             /**
              * Properties of a MtaRailroadStopTimeUpdate.
@@ -55309,7 +55309,7 @@ TripUpdate.StopTimeUpdate = (function() {
                 return values;
             })();
 
-TripUpdate.StopTimeUpdate.MtaRailroadStopTimeUpdate = (function() {
+StopTimeUpdate.MtaRailroadStopTimeUpdate = (function() {
 
             /**
              * Properties of a MtaRailroadStopTimeUpdate.
