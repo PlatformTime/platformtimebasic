@@ -640,11 +640,9 @@
 
   function addedTrips() {
 
-    /*addedTrips = noop;*/
-
     for (i = 0; i < globalFeed.entity.length; i++) {
       if (globalFeed.entity[i].id.slice(-2) == '_T') {
-        if (globalFeed.entity[i].tripUpdate.trip.scheduleRelationship == 1) {
+        if ([globalFeed.entity[i].tripUpdate.trip.scheduleRelationship == 1] && [allTrips.includes(k => k['2'] == globalFeed.entity[i].tripUpdate.trip.tripId) == false]) {
 
           var terminus = stopsArray.filter(j => j['0'] == globalFeed.entity[i].tripUpdate.stopTimeUpdate[globalFeed.entity[i].tripUpdate.stopTimeUpdate.length - 1].stopId)
           
@@ -657,6 +655,8 @@
             globalFeed.entity[i].tripUpdate.trip.directionId.toString(),
             globalFeed.entity[i].tripUpdate.trip.startDate
           ])
+          
+          addedStops(); 
         }
       }
     }
@@ -696,9 +696,6 @@
     for (i = 0; i < allTrips.length; i++) {
       tripsHere.push(allTrips[i]['2']);
     }
-
-    addedStops();
-    addedStops = noop;
 
     filteredStopTimes = stoptimesArray.filter(i => i['3'] == stopid);
     stopsToday = filteredStopTimes.filter(trips => tripsHere.includes(trips['0']));
