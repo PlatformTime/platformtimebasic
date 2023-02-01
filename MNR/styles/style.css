@@ -76,6 +76,7 @@ a:visited {
   color: #bb77ff
 }
 
+
 .triangle {
   float:right;
   position:absolute;
@@ -173,9 +174,10 @@ td{
 
 .stoprow:hover, .stoprow:focus {
   background-color: white;
-  color: black;
+  color: black;  
   transition: 0.3s;
 }
+
 
 /* Southbound Trip Table */
 .southbound-table {
@@ -415,7 +417,7 @@ td{
   height: 35px;
 }
 
-#stopListTime {
+.stoptime {
   width: auto;
 }
 
