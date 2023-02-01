@@ -435,6 +435,10 @@ td{
   width: auto;
 }
 
+.stoptime {
+  width: auto;
+}
+
 #alertListTable {
   position: absolute;
   margin: 0 auto;
