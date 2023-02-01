@@ -504,7 +504,7 @@ window.onclick = function(event) {
     var text = "Select Station..."
 
       if (station.length >= 1) {
-        document.getElementById('StationDropdown').innerHTML = document.getElementById(station).innerText;
+        document.getElementById('StationDropdown').innerHTML = document.getElementById(station).id;
       }
       else {
         document.getElementById('StationDropdown').innerHTML = 'Select Station...';
@@ -1092,7 +1092,7 @@ function addedTrips() {
       for (j = 0; j < globalFeed.entity.length; j++) {
         if (globalFeed.entity[j].id == shortTripId) {
           if (globalFeed.entity[j].vehicle.stopId == stop_id && tripDate == currentDate) {
-            stopTimesList += "<td onclick=window.location='#"+document.getElementById(stop_name).getAttribute('data-code')+"' class=stoptime style='padding-right:15px;padding-top:2px;'><img src='images/train.png' height='20'></td>";
+            stopTimesList += "<td onclick=window.location='#"+document.getElementById(stop_name).getAttribute('data-code')+"' class='stoptime' style='padding-right:15px;padding-top:2px;'><img src='images/train.png' height='20'></td>";
           }
           else {
             stopTimesList += "<td style='width:auto;'></td>"
