@@ -510,7 +510,7 @@
     var text = "Select Station..."
 
       if (station.length >= 1) {
-        document.getElementById('StationDropdown').innerHTML = document.getElementById(station).innerText;
+        document.getElementById('StationDropdown').innerHTML = document.getElementById(station).id;
       }
       else {
         document.getElementById('StationDropdown').innerHTML = 'Select Station...';
@@ -644,23 +644,25 @@
       if (globalFeed.entity[i].id.slice(-2) == '_T') {
         if (globalFeed.entity[i].tripUpdate.trip.scheduleRelationship == 1) {
 
-          var terminus = stopsArray.filter(j => j['0'] == globalFeed.entity[i].tripUpdate.stopTimeUpdate[globalFeed.entity[i].tripUpdate.stopTimeUpdate.length - 1].stopId)
-          
+          var terminus = stopsArray.filter(j => j['0'] == globalFeed.entity[i].tripUpdate.stopTimeUpdate[globalFeed.entity[i].tripUpdate.stopTimeUpdate.length - 1].stopId);
+          var addedRouteId = globalFeed.entity[i].tripUpdate.trip.routeId;
+          var addedTripId = globalFeed.entity[i].tripUpdate.trip.tripId;
+          var addedDirectionId = globalFeed.entity[i].tripUpdate.trip.directionId.toString();
+          var addedStartDate = globalFeed.entity[i].tripUpdate.trip.startDate
+
           allTrips.push([
-            globalFeed.entity[i].tripUpdate.trip.routeId,
+            addedRouteId,
             '',
-            globalFeed.entity[i].tripUpdate.trip.tripId,
+            addedTripId,
             terminus['0']['2'],
             '',
-            globalFeed.entity[i].tripUpdate.trip.directionId.toString(),
-            globalFeed.entity[i].tripUpdate.trip.startDate
+            addedDirectionId,
+            addedStartDate
           ])
-          
-          addedStops();
-          addedStops = noop;
         }
       }
     }
+    addedStops();
   }
 
   function filterTrips(calendar) {
@@ -742,53 +744,65 @@
 
   function addedStops() {
 
-    /*addedStops = noop;*/
-
     for (i = 0; i < globalFeed.entity.length; i++) {
       if (globalFeed.entity[i].id.slice(-2) == '_T') {
         if (globalFeed.entity[i].tripUpdate.trip.scheduleRelationship == 1) {
-
+         
           var terminus = stopsArray.filter(j => j['0'] == globalFeed.entity[i].tripUpdate.stopTimeUpdate[globalFeed.entity[i].tripUpdate.stopTimeUpdate.length - 1].stopId)
+          var addedTripId = globalFeed.entity[i].tripUpdate.trip.tripId;
 
-          for (j = 0; j < globalFeed.entity[i].tripUpdate.stopTimeUpdate.length; j++) {
+          if (!checkAddedTrips(stoptimesArray,addedTripId)) {
+            for (j = 0; j < globalFeed.entity[i].tripUpdate.stopTimeUpdate.length; j++) {
 
-            var addedStopTime = "";
-            var addedStopId = "";
-            var addedStopSeq = "";
+              var addedStopTime = "";
+              var addedStopId = "";
+              var addedStopSeq = "";
 
-            if (globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].scheduleRelationship == 0) {
-              if (j == 0) {
-                addedStopTime = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].departure.time
+              if (globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].scheduleRelationship == 0) {
+                if (j == 0) {
+                  addedStopTime = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].departure.time
+                }
+                else {
+                  addedStopTime = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].arrival.time
+                }
+                
+                addedStopId = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopId
+                addedStopSeq = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopSequence
               }
               else {
-                addedStopTime = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].arrival.time
+                addedStopTime = globalFeed.entity[i].tripUpdate.timestamp
+                addedStopId = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopId
+                addedStopSeq = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopSequence
               }
-              
-              addedStopId = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopId
-              addedStopSeq = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopSequence
+
+              addedStopTime = addedStopTime * 1000;
+
+              addedStopTime = new Date(addedStopTime);
+
+              addedStopTime = addedStopTime.toLocaleTimeString('en-US', {hour12: false});
+              stoptimesArray.push([
+              addedTripId,
+              addedStopTime,
+              addedStopTime,
+              addedStopId,
+              addedStopSeq.toString()
+              ])
             }
-            else {
-              addedStopTime = globalFeed.entity[i].tripUpdate.timestamp
-              addedStopId = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopId
-              addedStopSeq = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopSequence
-            }
-
-            addedStopTime = addedStopTime * 1000;
-
-            addedStopTime = new Date(addedStopTime);
-
-            addedStopTime = addedStopTime.toLocaleTimeString('en-US', {hour12: false});
-            stoptimesArray.push([
-            globalFeed.entity[i].tripUpdate.trip.tripId,
-            addedStopTime,
-            addedStopTime,
-            addedStopId,
-            addedStopSeq.toString()
-            ])
           }
         }
       }
     }
+  }
+
+  /* Check if added stops have already been added */
+
+  function checkAddedTrips(array,trip) {
+    for (var i = 0; i < array.length; i++) {
+      if (array[i]['0'] == trip) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /* Add data to tables */
@@ -1044,13 +1058,15 @@
 
       stop_time += timeArray['0']+":"+timeArray['1']+AMPM;
 
-      stopTimesList += "<tr class='stoprow'><td><a href='#"+document.getElementById(stop_name).getAttribute('data-code')+"', onclick='StationSelection(this)', data-route='"+document.getElementById(stop_name).getAttribute('data-route')+"', data-code='"+document.getElementById(stop_name).getAttribute('data-code')+"', data-stop='"+stop_id+"', data-inform='"+document.getElementById(stop_name).getAttribute('data-inform')+"', id='"+stop_name+"', data-trip-id='"+tripId+"', style='text-decoration:none'><div style='text-align:center;text-decoration:none;margin:5px 15px;width:170px;border:solid 5px;border-top:solid 9px;border-radius:8px;border-color:#"+routesArray[document.getElementById(stop_name).getAttribute('data-route')]['4']+";background-color:#"+routesArray[document.getElementById(stop_name).getAttribute('data-route')]['4']+";color:#"+routesArray[document.getElementById(stop_name).getAttribute('data-route')]['5']+"'>"+document.getElementById(stop_name).innerText+"</div></a></td>";
-      stopTimesList += "<td id=stopListTime style='padding-right:15px;padding-top:5px;"
+      stopTimesList += "<tr class='stoprow'><td><a href='#"+document.getElementById(stop_name).getAttribute('data-code')+"', onclick='StationSelection(this)', data-route='"+document.getElementById(stop_name).getAttribute('data-route')+"', data-code='"+document.getElementById(stop_name).getAttribute('data-code')+"', data-stop='"+stop_id+"', data-inform='"+document.getElementById(stop_name).getAttribute('data-inform')+"', id='"+stop_name+"', data-trip-id='"+tripId+"', style='text-decoration:none'>";
+      stopTimesList += "<div style='text-align:center;text-decoration:none;margin:5px 15px;width:170px;border:solid 5px;border-top:solid 9px;border-radius:8px;border-color:#"+routesArray[document.getElementById(stop_name).getAttribute('data-route')]['4']+";background-color:#"+routesArray[document.getElementById(stop_name).getAttribute('data-route')]['4']+";color:#"+routesArray[document.getElementById(stop_name).getAttribute('data-route')]['5']+"'>"+document.getElementById(stop_name).innerText+"</div></a></td>";
+      stopTimesList += "<td class='stoptime', id='"+stop_name+"' style='padding-right:15px;padding-top:5px;>";       
+      stopTimesList += "<a href='#"+document.getElementById(stop_name).getAttribute('data-code')+"', onclick='StationSelection(this)', data-route='"+document.getElementById(stop_name).getAttribute('data-route')+"', data-code='"+document.getElementById(stop_name).getAttribute('data-code')+"', data-stop='"+stop_id+"', data-inform='"+document.getElementById(stop_name).getAttribute('data-inform')+"', id='"+stop_name+"', data-trip-id='"+tripId+"', style='text-decoration:none'>"
+      stopTimesList += "<div style="
 
       if (convertedTime < rawDate) {
-        stopTimesList += 'font-style:italic;'
+        stopTimesList += "font-style:italic;"
       }
-      
       if (stopSeq > stop_list_seq) {
         stopTimesList += "color:#AAAAAA;"
       }
@@ -1058,7 +1074,7 @@
         stopTimesList += "font-weight:bold;"
       }
       
-      stopTimesList += "'>"+stop_time+"</td>";
+      stopTimesList += ">"+stop_time+"</div></a></td>";
       
       for (j = 0; j < globalFeed.entity.length; j++) {
         if (globalFeed.entity[j].id == tripId+"_V") {
@@ -1070,7 +1086,7 @@
           }
         }
       }
-      stopTimesList += "</tr>";
+      stopTimesList += "</a></tr>";
     }
 
     document.getElementById('stopListBody').innerHTML = stopTimesList;
