@@ -67,7 +67,7 @@
         <a href="#3GB" onclick= "StationSelection(this)" data-route="4" data-stop="153" data-inform="[4]" data-code="3GB" id="Glenbrook">Glenbrook</a>
         <a href="#0GD" onclick= "StationSelection(this)" data-route="1" data-stop="19" data-inform="[1]" data-code="0GD" id="Glenwood">Glenwood</a>
         <a href="#1GO" onclick= "StationSelection(this)" data-route="2" data-stop="88" data-inform="[2]" data-code="1GO" id="Goldens Bridge">Goldens Bridge</a>
-        <a href="#0NY" onclick= "StationSelection(this)" data-route="0" data-stop="1" data-inform="[1,2,3,4,5,6]" data-code="0NY" id="Grand Central">Grand Central</a>
+        <a href="#0NY" onclick= "StationSelection(this)" data-route="0" data-stop="1" data-inform="[1,2,3,4,5,6]" data-code="0NY" id="Grand Central Terminal">Grand Central</a>
         <a href="#2GF" onclick= "StationSelection(this)" data-route="3" data-stop="136" data-inform="[3,6]" data-code="2GF" id="Green's Farms">Green's Farms</a>
         <a href="#2GN" onclick= "StationSelection(this)" data-route="3" data-stop="116" data-inform="[3,4,5,6]" data-code="2GN" id="Greenwich">Greenwich</a>
         <a href="#0GY" onclick= "StationSelection(this)" data-route="1" data-stop="20" data-inform="[1]" data-code="0GY" id="Greystone">Greystone</a>
@@ -219,139 +219,153 @@
 
   /* Converts relevant CSV files to arrays for use */
 
-    /* Routes Array */
+  /* Routes Array */
 
-    var routesArray = [];
-  
-    window.onload = function loadRoutes() {
-      var routesTXT = null;
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open("GET", "data/routesMod.txt", false);
-      xmlhttp.send();
-      if (xmlhttp.status==200) {
-        routesTXT = xmlhttp.responseText;
-      }
-      
-      routesArray = routesTXTToArray(routesTXT);
-      /*console.table(routesArray);*/
-      loadCalendar();
+  var routesArray = [];
 
-      return routesTXT;
+  window.onload = function loadRoutes() {
+    var routesTXT = null;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "data/routesMod.txt", false);
+    xmlhttp.send();
+    if (xmlhttp.status==200) {
+      routesTXT = xmlhttp.responseText;
+    }
+    
+    routesArray = routesTXTToArray(routesTXT);
+    /*console.table(routesArray);*/
+    loadCalendar();
+
+    return routesTXT;
+  }
+
+  function routesTXTToArray(routesTXT) {
+    rows = routesTXT.split("\n");
+    return rows.map(function (row) {
+      return row.split(",");
+    });
+  }
+
+  /* Calendar Dates Array */
+
+  var calendarArray = [];
+
+  function loadCalendar() {
+    var calendarTXT = null;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "data/calendar_dates.txt", false);
+    xmlhttp.send();
+    if (xmlhttp.status==200) {
+      calendarTXT = xmlhttp.responseText;
+    }
+    
+    calendarArray = calendarTXTToArray(calendarTXT);
+    /*console.table(calendarArray);*/
+    loadTrips();
+
+    return calendarTXT;
+  }
+
+  function calendarTXTToArray(calendarTXT) {
+    rows = calendarTXT.split("\n");
+    return rows.map(function (row) {
+      return row.split(",");
+    });
+  }
+
+  /* Trips Array */
+
+  var tripsArray = [];
+
+  function loadTrips() {
+    var tripsTXT = null;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "data/trips.txt", false);
+    xmlhttp.send();
+    if (xmlhttp.status==200) {
+      tripsTXT = xmlhttp.responseText;
+    }
+    
+    tripsArray = tripsTXTToArray(tripsTXT);
+    /*console.table(tripsArray);*/
+    loadStops();
+
+    return tripsTXT;
+  }
+
+  function tripsTXTToArray(tripsTXT) {
+    rows = tripsTXT.split("\n");
+    return rows.map(function (row) {
+      return row.split(",");
+    });
+  }
+
+  /* Stops Array */
+
+  var stopsArray = [];
+
+  function loadStops() {
+    var stopsTXT = null;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "data/stops.txt", false);
+    xmlhttp.send();
+    if (xmlhttp.status==200) {
+      stopsTXT = xmlhttp.responseText;
     }
 
-    function routesTXTToArray(routesTXT) {
-      rows = routesTXT.split("\n");
-      return rows.map(function (row) {
-        return row.split(",");
-      });
+    stopsArray = stopsTXTToArray(stopsTXT);
+    /*console.table(stopsArray);*/
+    loadStopTimes();
+
+    return stopsTXT;
+  }
+
+  function stopsTXTToArray(stopsTXT) {
+    rows = stopsTXT.split("\n");
+    return rows.map(function (row) {
+      return row.split(",");
+    });
+  }
+
+  /* Stop Times Array */
+
+  var stoptimesArray = [];
+
+  async function loadStopTimes() {
+    var stoptimesTXT = null;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "data/stop_times.txt", false);
+    xmlhttp.send();
+    if (xmlhttp.status==200) {
+      stoptimesTXT = xmlhttp.responseText;
     }
+    
+    stoptimesArray = stoptimesTXTToArray(stoptimesTXT);
+    /*console.table(stoptimesArray);*/
+    refreshData();
+    await sleep(400);
+    checkHash();
 
-    /* Calendar Dates Array */
+    return stoptimesTXT;
+  }
 
-    var calendarArray = [];
+  function stoptimesTXTToArray(stoptimesTXT) {
+    rows = stoptimesTXT.split("\n");
+    return rows.map(function (row) {
+      return row.split(",");
+    });
+  }
 
-    function loadCalendar() {
-      var calendarTXT = null;
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open("GET", "data/calendar_dates.txt", false);
-      xmlhttp.send();
-      if (xmlhttp.status==200) {
-        calendarTXT = xmlhttp.responseText;
-      }
-      
-      calendarArray = calendarTXTToArray(calendarTXT);
-      /*console.table(calendarArray);*/
-      loadTrips();
-
-      return calendarTXT;
+  function checkHash(){
+    if (window.location.hash) {
+      var hash = window.location.hash.substring(1);
+    
+      StationSelection(document.querySelector('[data-code="'+hash+'"]'));
     }
-
-    function calendarTXTToArray(calendarTXT) {
-      rows = calendarTXT.split("\n");
-      return rows.map(function (row) {
-        return row.split(",");
-      });
+    else {
+    
     }
-
-    /* Trips Array */
-
-    var tripsArray = [];
-
-    function loadTrips() {
-      var tripsTXT = null;
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open("GET", "data/trips.txt", false);
-      xmlhttp.send();
-      if (xmlhttp.status==200) {
-        tripsTXT = xmlhttp.responseText;
-      }
-      
-      tripsArray = tripsTXTToArray(tripsTXT);
-      /*console.table(tripsArray);*/
-      loadStops();
-
-      return tripsTXT;
-    }
-
-    function tripsTXTToArray(tripsTXT) {
-      rows = tripsTXT.split("\n");
-      return rows.map(function (row) {
-        return row.split(",");
-      });
-    }
-
-    /* Stops Array */
-
-    var stopsArray = [];
-
-    function loadStops() {
-      var stopsTXT = null;
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open("GET", "data/stops.txt", false);
-      xmlhttp.send();
-      if (xmlhttp.status==200) {
-        stopsTXT = xmlhttp.responseText;
-      }
-
-      stopsArray = stopsTXTToArray(stopsTXT);
-      /*console.table(stopsArray);*/
-      loadStopTimes();
-
-      return stopsTXT;
-    }
-
-    function stopsTXTToArray(stopsTXT) {
-      rows = stopsTXT.split("\n");
-      return rows.map(function (row) {
-        return row.split(",");
-      });
-    }
-
-    /* Stop Times Array */
-
-    var stoptimesArray = [];
-
-    function loadStopTimes() {
-      var stoptimesTXT = null;
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open("GET", "data/stop_times.txt", false);
-      xmlhttp.send();
-      if (xmlhttp.status==200) {
-        stoptimesTXT = xmlhttp.responseText;
-      }
-      
-      stoptimesArray = stoptimesTXTToArray(stoptimesTXT);
-      /*console.table(stoptimesArray);*/
-
-      return stoptimesTXT;
-    }
-
-    function stoptimesTXTToArray(stoptimesTXT) {
-      rows = stoptimesTXT.split("\n");
-      return rows.map(function (row) {
-        return row.split(",");
-      });
-    }
+  }
 
   /* When the user clicks on the button, 
   toggle between hiding and showing the dropdown content and clear search */
@@ -489,6 +503,16 @@ window.onclick = function(event) {
     getAlerts();
     refreshData();
   }
+
+  window.onhashchange = function() {
+    if(window.location.hash) {
+      var hash = window.location.hash.substring(1);
+
+      StationSelection(document.querySelector('[data-code="'+hash+'"]'));
+    }
+    else {
+    }
+  };
 
   function routeIndex(array, xroute) {
     for (i = 0; i < array.length; i++) {
