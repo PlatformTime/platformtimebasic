@@ -58,3 +58,5 @@ v1.0 - 2021-12-18: Initial release.
 v1.1 - 2021-12-20: Updated styles for MetroNorth to match station signage and fixed dropdown content for LIRR
 
 v1.2 - 2021-12-23: Added NJT timetables
+
+v1.3 - 2023-02-06: Added ability to navigate using browser history and load a specific staion on start via hash
