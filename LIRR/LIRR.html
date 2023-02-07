@@ -347,7 +347,7 @@
 
   var stoptimesArray = [];
 
-  function loadStopTimes() {
+  async function loadStopTimes() {
     var stoptimesTXT = null;
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", "data/stop_times.txt", false);
@@ -359,6 +359,9 @@
     stoptimesTXT = stoptimesTXT.replace(/["]+/g, '');
     stoptimesArray = stoptimesTXTToArray(stoptimesTXT);
     /*console.table(stoptimesArray);*/
+    refreshData();
+    await sleep(400);
+    checkHash();
 
     return stoptimesTXT;
   }
@@ -368,6 +371,17 @@
     return rows.map(function (row) {
       return row.split(",");
     });
+  }
+
+  function checkHash(){
+    if (window.location.hash) {
+      var hash = window.location.hash.substring(1);
+
+      StationSelection(document.querySelector('[data-code="'+hash+'"]'));
+    }
+    else {
+
+    }
   }
 
   /* When the user clicks on the button, 
@@ -503,6 +517,16 @@
     getAlerts();
     refreshData();
   }
+
+  window.onhashchange = function() {
+    if(window.location.hash) {
+      var hash = window.location.hash.substring(1);
+
+      StationSelection(document.querySelector('[data-code="'+hash+'"]'));
+    }
+    else {
+    }
+  };
 
   /* Change button text */
 
