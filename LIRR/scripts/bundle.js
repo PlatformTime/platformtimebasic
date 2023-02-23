@@ -51625,7 +51625,7 @@ $root.transit_realtime = (function() {
                     options = {};
                 var object = {};
                 if (options.defaults) {
-			    object.MtaRailroadStopTimeUpdate = null;
+		    object.StopTimeStatus = null;
                     object.stopSequence = 0;
                     object.arrival = null;
                     object.departure = null;
@@ -51682,9 +51682,9 @@ $root.transit_realtime = (function() {
 StopTimeUpdate.StopTimeStatus = (function() {
 
             /**
-             * Properties of a MtaUpdate.
+             * Properties of a StopTimeStatus.
              * @memberof transit_realtime.TripUpdate.StopTimeUpdate.StopTimeStatus
-             * @interface IMtaUpdate
+             * @interface IStopTimeStatus
          	   * @property {string|null} [track] StopTimeStatus track
          	   * @property {string|null} [trainStatus] StopTimeStatus trainStatus
 
@@ -51754,7 +51754,7 @@ StopTimeUpdate.StopTimeStatus = (function() {
             };
 
             /**
-             * Encodes the specified StopTimeStatus message, length delimited. Does not implicitly {@link transit_realtime.TripUpdate.MtaUpdate.verify|verify} messages.
+             * Encodes the specified StopTimeStatus message, length delimited. Does not implicitly {@link transit_realtime.TripUpdate.StopTimeUpdate.StopTimeStatus.verify|verify} messages.
              * @function encodeDelimited
              * @memberof transit_realtime.TripUpdate.StopTimeUpdate
              * @static
@@ -51780,7 +51780,7 @@ StopTimeUpdate.StopTimeStatus = (function() {
             StopTimeStatus.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.TripUpdate.MtaUpdate();
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.transit_realtime.TripUpdate.StopTimeUpdate.StopTimeStatus();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
