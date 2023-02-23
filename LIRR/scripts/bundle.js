@@ -51430,7 +51430,7 @@ $root.transit_realtime = (function() {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.status != null && message.hasOwnProperty("status"))
-                    $root.transit_realtime.TripUpdate.StopTimeStatus.encode(message.status, writer.uint32(/* id 1005, wireType 2 =*/2).fork()).ldelim();
+                    $root.transit_realtime.TripUpdate.StopTimeStatus.encode(message.status, writer.uint32(/* id 1005, wireType 2 =*/1005).fork()).ldelim();
                 if (message.stopSequence != null && message.hasOwnProperty("stopSequence"))
                     writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.stopSequence);
                 if (message.arrival != null && message.hasOwnProperty("arrival"))
@@ -51746,9 +51746,9 @@ $root.transit_realtime = (function() {
                 if (!writer)
                     writer = $Writer.create();           
                 if (message.track != null && message.hasOwnProperty("track"))
-                    writer.uint32(/* id 1, wireType 2 =*/34).string(message.track);
+                    writer.uint32(/* id 1, wireType 0 =*/8).string(message.track);
                 if (message.trainStatus != null && message.hasOwnProperty("trainStatus"))
-                    writer.uint32(/* id 2, wireType 2 =*/34).string(message.trainStatus);
+                    writer.uint32(/* id 2, wireType 0 =*/16).string(message.trainStatus);
                 return writer;
             };
 
