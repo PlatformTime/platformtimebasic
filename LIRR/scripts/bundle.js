@@ -51430,7 +51430,7 @@ $root.transit_realtime = (function() {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.status != null && message.hasOwnProperty("status"))
-                    $root.transit_realtime.TripUpdate.StopTimeUpdate.encode(message.status, writer.uint32(/* id 1005, wireType 2 =*/2).fork()).ldelim();
+                    $root.transit_realtime.TripUpdate.StopTimeStatus.encode(message.status, writer.uint32(/* id 1005, wireType 2 =*/2).fork()).ldelim();
                 if (message.stopSequence != null && message.hasOwnProperty("stopSequence"))
                     writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.stopSequence);
                 if (message.arrival != null && message.hasOwnProperty("arrival"))
@@ -51678,7 +51678,6 @@ $root.transit_realtime = (function() {
             return StopTimeUpdate;
         })();
 
-            
 	TripUpdate.StopTimeStatus = (function() {
 
             /**
