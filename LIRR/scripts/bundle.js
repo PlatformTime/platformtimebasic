@@ -51679,7 +51679,7 @@ $root.transit_realtime = (function() {
         })();
 
             
-StopTimeUpdate.StopTimeStatus = (function() {
+	TripUpdate.StopTimeUpdate.StopTimeStatus = (function() {
 
             /**
              * Properties of a StopTimeStatus.
