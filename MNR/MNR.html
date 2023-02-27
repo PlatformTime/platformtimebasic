@@ -67,7 +67,7 @@
         <a href="#3GB" onclick= "StationSelection(this)" data-route="4" data-stop="153" data-inform="[4]" data-code="3GB" id="Glenbrook">Glenbrook</a>
         <a href="#0GD" onclick= "StationSelection(this)" data-route="1" data-stop="19" data-inform="[1]" data-code="0GD" id="Glenwood">Glenwood</a>
         <a href="#1GO" onclick= "StationSelection(this)" data-route="2" data-stop="88" data-inform="[2]" data-code="1GO" id="Goldens Bridge">Goldens Bridge</a>
-        <a href="#0NY" onclick= "StationSelection(this)" data-route="0" data-stop="1" data-inform="[1,2,3,4,5,6]" data-code="0NY" id="Grand Central Terminal">Grand Central</a>
+        <a href="#0NY" onclick= "StationSelection(this)" data-route="0" data-stop="1" data-inform="[1,2,3,4,5,6]" data-code="0NY" id="Grand Central">Grand Central</a>
         <a href="#2GF" onclick= "StationSelection(this)" data-route="3" data-stop="136" data-inform="[3,6]" data-code="2GF" id="Green's Farms">Green's Farms</a>
         <a href="#2GN" onclick= "StationSelection(this)" data-route="3" data-stop="116" data-inform="[3,4,5,6]" data-code="2GN" id="Greenwich">Greenwich</a>
         <a href="#0GY" onclick= "StationSelection(this)" data-route="1" data-stop="20" data-inform="[1]" data-code="0GY" id="Greystone">Greystone</a>
@@ -877,7 +877,7 @@ function addedTrips() {
       var terminus_id = tripArray[i]['3'];
       var terminus_route_index = "";
 
-      for (j = 0; j < routesArray.length; j++) {
+      for (j = 1; j < routesArray.length; j++) {
         if (routesArray[j]['0'] == document.getElementById(terminus_id).getAttribute('data-route')) {
           terminus_route_index = j;
         }
@@ -888,6 +888,9 @@ function addedTrips() {
       var stopSeq = Number(tripArray[i]['9']);
       var stop_time_noConvert = tripArray[i]['7']
       var stop_time = "";
+      var stop_time_w_delay = "";
+      var delayed_min = "";
+      var delayed_hour = "";
       var AMPM = "";
       var timeArray = new Array();
 
@@ -966,11 +969,69 @@ function addedTrips() {
       }
 
       /* Adds results to tables */
+
+      if (Number(timeArray['1'])+Math.floor(delay/60) > 59){
+        delayed_hour = Number(timeArray['0'])+1;
+        delayed_min = Number(timeArray['1'])+Math.floor(delay/60)-60;
+        if (delayed_hour > 12) {
+          delayed_hour = delayed_hour - 12
+          AMPM = " PM"
+        }
+        else if (delayed_hour == 0) {
+          delayed_hour = 12
+          AMPM = " AM"
+        }
+        else if (delayed_hour > 24) {
+          delayed_hour = delayed_hour - 24
+          AMPM = " AM"
+        }
+
+        if (delayed_min < 10) {
+          delayed_min = "0"+delayed_min+AMPM;
+        }
+        else{
+          delayed_min = delayed_min+AMPM;
+        }
+
+        stop_time_w_delay = delayed_hour+":"+delayed_min;
+      }
+      else {
+        delayed_hour = Number(timeArray['0']);
+        delayed_min = Number(timeArray['1'])+Math.floor(delay/60)
+        if (delayed_hour > 12) {
+          delayed_hour = delayed_hour - 12
+          AMPM = " PM"
+        }
+        else if (delayed_hour > 24) {
+          delayed_hour = delayed_hour - 24
+          AMPM = " AM"
+        }
+
+        if (delayed_min < 10) {
+          delayed_min = "0"+delayed_min+AMPM;
+        }
+        else{
+          delayed_min = delayed_min+AMPM;
+        }
+
+        stop_time_w_delay = delayed_hour+":"+delayed_min;
+      }
+
       if (tripDate+stop_time_noConvert > startDate+startTime || ((delay > 600 && delay < 3600 && currentStopSeq < stopSeq) || (delay > 600 && delay < 3600 &&currentStopSeq == stopSeq))) {
         result += "<tr class='datarow' onclick='stoppingAt(this)' data-trip-date='"+tripArray[i]['6']+"' data-trip-id='"+tripArray[i]['2']+"' data-short-trip='"+tripArray[i]['4']+"' data-stop-seq='"+tripArray[i]['9']+"' id='datarow"+tripArray[i]['4']+"'>";
         result += "<td><div id='tripService' style='margin-left:5px;width:180px;padding-top:2px;padding-bottom:2px;font-style:italic;font-weight:bold;border-top:solid 10px #"+routesArray[true_route_index]['7']+";border-radius:8px;background-color:#FFFFFF;color:#000000'>"+service_id+"</div></td>";
         result += "<td><div id='tripTerminus' style='margin-left:5px;width:180px;padding-top:2px;padding-bottom:2px;font-style:italic;font-weight:bold;border-top:solid 10px #"+routesArray[terminus_route_index]['7']+";border-radius:8px;background-color:#FFFFFF;color:#000000'>"+document.getElementById(terminus_id).innerText+"</div></td>";
-        result += "<td style='padding-top:3px;'>"+stop_time;
+        result += "<td style='padding-top:3px;'>";
+        if (delay > 120) {
+          result += "<s>"+stop_time+"</s>";
+        }
+        else {
+          result += stop_time;
+        }
+
+        if (delay > 120) {
+          result += "<br>"+stop_time_w_delay;
+        }
         
         if (tripArray[i]['6'] > startDate || tripArray[i]['7'] > '24:00:00'){
           result += "<br><font size='-1'><i>(Next Day)</i></font>";
