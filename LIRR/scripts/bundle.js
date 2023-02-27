@@ -1,5 +1,5 @@
-var globalFeed = [];
-var alertFeed = [];
+var globalFeed = null;
+var alertFeed = null;
 
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 
@@ -51334,7 +51334,7 @@ $root.transit_realtime = (function() {
              * Properties of a StopTimeUpdate.
              * @memberof transit_realtime.TripUpdate
              * @interface IStopTimeUpdate
-             * @property {transit_realtime.TripUpdate.IStopTimeStatus|null} [status] StopTimeUpdate status
+             * @property {string|null} [track] StopTimeUpdate track
              * @property {number|null} [stopSequence] StopTimeUpdate stopSequence
              * @property {string|null} [stopId] StopTimeUpdate stopId
              * @property {transit_realtime.TripUpdate.IStopTimeEvent|null} [arrival] StopTimeUpdate arrival
@@ -51359,11 +51359,11 @@ $root.transit_realtime = (function() {
 
 	    /**
              * StopTimeUpdate status.
-             * @member {transit_realtime.TripUpdate.IStopTimeStatus|null|undefined} status
+             * @member {string} track
              * @memberof transit_realtime.TripUpdate.StopTimeUpdate
              * @instance
              */
-            StopTimeUpdate.prototype.status = null;
+            StopTimeUpdate.prototype.track = "";
 
             /**
              * StopTimeUpdate stopSequence.
@@ -51429,8 +51429,8 @@ $root.transit_realtime = (function() {
             StopTimeUpdate.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.status != null && message.hasOwnProperty("status"))
-                    $root.transit_realtime.TripUpdate.StopTimeStatus.encode(message.status, writer.uint32(/* id 1005, wireType 2 =*/1005).fork()).ldelim();
+                if (message.track != null && message.hasOwnProperty("track"))
+                    writer.uint32(/* id 1005, wireType 2 =*/8040).string(message.track);
                 if (message.stopSequence != null && message.hasOwnProperty("stopSequence"))
                     writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.stopSequence);
                 if (message.arrival != null && message.hasOwnProperty("arrival"))
@@ -51491,7 +51491,7 @@ $root.transit_realtime = (function() {
                         message.scheduleRelationship = reader.int32();
                         break;
                     case 6:
-                        message.status = $root.transit_realtime.TripUpdate.StopTimeStatus.decode(reader, reader.uint32());
+                        message.track = reader.string();
                         break;
 
                     default:
@@ -51529,11 +51529,9 @@ $root.transit_realtime = (function() {
             StopTimeUpdate.verify = function verify(message) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
-                if (message.status != null && message.hasOwnProperty("status")) {
-                    var error = $root.transit_realtime.TripUpdate.StopTimeStatus.verify(message.status);
-                    if (error)
-                        return "status." + error;
-                }
+                if (message.track != null && message.hasOwnProperty("track"))
+                    if (!$util.isString(message.track))
+                        return "track: string expected";
                 if (message.stopSequence != null && message.hasOwnProperty("stopSequence"))
                     if (!$util.isInteger(message.stopSequence))
                         return "stopSequence: integer expected";
@@ -51574,12 +51572,8 @@ $root.transit_realtime = (function() {
                 if (object instanceof $root.transit_realtime.TripUpdate.StopTimeUpdate)
                     return object;
                 var message = new $root.transit_realtime.TripUpdate.StopTimeUpdate();
-                if (object.status != null) {
-                    if (typeof object.status !== "object")
-                        throw TypeError(".transit_realtime.TripUpdate.StopTimeUpdate.status: object expected");
-                    message.status = $root.transit_realtime.TripUpdate.StopTimeStatus.fromObject(object.status);
-                }
-
+                if (object.track != null)
+                    message.track = String(object.track);
                 if (object.stopSequence != null)
                     message.stopSequence = object.stopSequence >>> 0;
                 if (object.stopId != null)
@@ -51625,15 +51619,15 @@ $root.transit_realtime = (function() {
                     options = {};
                 var object = {};
                 if (options.defaults) {
-		    object.status = null;
+		                object.track = "";
                     object.stopSequence = 0;
                     object.arrival = null;
                     object.departure = null;
                     object.stopId = "";
                     object.scheduleRelationship = options.enums === String ? "SCHEDULED" : 0;
                 }
-                if (message.status != null && message.hasOwnProperty("status"))
-                    object.status = $root.transit_realtime.TripUpdate.StopTimeStatus.toObject(message.status, options);
+                if (message.track != null && message.hasOwnProperty("track"))
+                    object.track = message.track;
                 if (message.stopSequence != null && message.hasOwnProperty("stopSequence"))
                     object.stopSequence = message.stopSequence;
                 if (message.arrival != null && message.hasOwnProperty("arrival"))
@@ -51850,9 +51844,7 @@ $root.transit_realtime = (function() {
                     message.track = String(object.track);
                 if (object.trainStatus != null)
                     message.trainStatus = String(object.trainStatus);
-
-                
-                                return message;
+                return message;
             };
 
             /**
@@ -51891,10 +51883,9 @@ $root.transit_realtime = (function() {
                 return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
             };
 
-
-
-			return StopTimeStatus;
+			      return StopTimeStatus;
             })();
+          
 
         return TripUpdate;
     })();
@@ -96021,6 +96012,7 @@ request(requestSettings, function (error, response, data) {
 },{"gtfs-realtime-bindings":330,"request":387}],442:[function(require,module,exports){
 var GtfsRealtimeBindings = require('gtfs-realtime-bindings');
 var request = require('request');
+/*var protobuf = require("protobufjs");*/
   
 var requestSettings = {
   method: 'GET',
@@ -96048,4 +96040,19 @@ request(requestSettings, function (error, response, data) {
     });
   }
 });
+/*
+  protobuf.load("gtfs-realtime-LIRR.proto", function(err, root) {
+    if (err)
+      throw err;
+
+    var StopTimeStatus = root.lookupType("transit_realtime.StopTimeStatus");
+
+    var errMsg = StopTimeStatus.verify(payload);
+    if (errMsg)
+      throw Error(errMsg);
+
+    var message = StopTimeStatus.create(payload);
+    console.log(message);
+  })
+*/
 },{"gtfs-realtime-bindings":330,"request":387}]},{},[442,441]);
