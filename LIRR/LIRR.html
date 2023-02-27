@@ -9,6 +9,7 @@
   <link rel="icon" type="image/png" href="images/train.png">
   <!-- Get live data on load (priming) -->
   <script src="/platformtimebasic/LIRR/scripts/bundle.js" type="text/javascript"></script>
+  <!--<script src="/platformtimebasic/LIRR/scripts/getlivedata.js" type="module"></script>-->
 </head>
 
 <body>
@@ -546,8 +547,8 @@
   function setButtonFormat() {
     var r=document.querySelector(':root');
 
-    r.style.setProperty('--route-text-color', '#'+routesArray[route]['5']);
-    r.style.setProperty('--route-background-color', '#'+routesArray[route]['4']);
+    r.style.setProperty('--route-text-color', '#'+routesArray[route]['4']);
+    r.style.setProperty('--route-background-color', '#'+routesArray[route]['3']);
   }
   
   /* Refresh live data */
@@ -571,6 +572,7 @@
 
     var script = document.createElement('script');
     script.src = '/platformtimebasic/LIRR/scripts/bundle.js';
+    /*script.src = '/platformtimebasic/LIRR/scripts/getlivedata.js';*/
     var head = document.getElementsByTagName("head")[0];
     head.appendChild(script);
 
@@ -664,25 +666,27 @@
 
   function addedTrips() {
 
-    for (i = 0; i < globalFeed.entity.length; i++) {
-      if (globalFeed.entity[i].id.slice(-2) == '_T') {
-        if (globalFeed.entity[i].tripUpdate.trip.scheduleRelationship == 1) {
+    if (Array.isArray(globalFeed)) {
+      for (i = 0; i < globalFeed.entity.length; i++) {
+        if (globalFeed.entity[i].id.slice(-2) == '_T') {
+          if (globalFeed.entity[i].tripUpdate.trip.scheduleRelationship == 1) {
 
-          var terminus = stopsArray.filter(j => j['0'] == globalFeed.entity[i].tripUpdate.stopTimeUpdate[globalFeed.entity[i].tripUpdate.stopTimeUpdate.length - 1].stopId);
-          var addedRouteId = globalFeed.entity[i].tripUpdate.trip.routeId;
-          var addedTripId = globalFeed.entity[i].tripUpdate.trip.tripId;
-          var addedDirectionId = globalFeed.entity[i].tripUpdate.trip.directionId.toString();
-          var addedStartDate = globalFeed.entity[i].tripUpdate.trip.startDate
+            var terminus = stopsArray.filter(j => j['0'] == globalFeed.entity[i].tripUpdate.stopTimeUpdate[globalFeed.entity[i].tripUpdate.stopTimeUpdate.length - 1].stopId);
+            var addedRouteId = globalFeed.entity[i].tripUpdate.trip.routeId;
+            var addedTripId = globalFeed.entity[i].tripUpdate.trip.tripId;
+            var addedDirectionId = globalFeed.entity[i].tripUpdate.trip.directionId.toString();
+            var addedStartDate = globalFeed.entity[i].tripUpdate.trip.startDate
 
-          allTrips.push([
-            addedRouteId,
-            '',
-            addedTripId,
-            terminus['0']['2'],
-            '',
-            addedDirectionId,
-            addedStartDate
-          ])
+            allTrips.push([
+              addedRouteId,
+              '',
+              addedTripId,
+              terminus['0']['2'],
+              '',
+              addedDirectionId,
+              addedStartDate
+            ])
+          }
         }
       }
     }
@@ -768,49 +772,51 @@
 
   function addedStops() {
 
-    for (i = 0; i < globalFeed.entity.length; i++) {
-      if (globalFeed.entity[i].id.slice(-2) == '_T') {
-        if (globalFeed.entity[i].tripUpdate.trip.scheduleRelationship == 1) {
-         
-          var terminus = stopsArray.filter(j => j['0'] == globalFeed.entity[i].tripUpdate.stopTimeUpdate[globalFeed.entity[i].tripUpdate.stopTimeUpdate.length - 1].stopId)
-          var addedTripId = globalFeed.entity[i].tripUpdate.trip.tripId;
+    if (Array.isArray(globalFeed)) {
+      for (i = 0; i < globalFeed.entity.length; i++) {
+        if (globalFeed.entity[i].id.slice(-2) == '_T') {
+          if (globalFeed.entity[i].tripUpdate.trip.scheduleRelationship == 1) {
+          
+            var terminus = stopsArray.filter(j => j['0'] == globalFeed.entity[i].tripUpdate.stopTimeUpdate[globalFeed.entity[i].tripUpdate.stopTimeUpdate.length - 1].stopId)
+            var addedTripId = globalFeed.entity[i].tripUpdate.trip.tripId;
 
-          if (!checkAddedTrips(stoptimesArray,addedTripId)) {
-            for (j = 0; j < globalFeed.entity[i].tripUpdate.stopTimeUpdate.length; j++) {
+            if (!checkAddedTrips(stoptimesArray,addedTripId)) {
+              for (j = 0; j < globalFeed.entity[i].tripUpdate.stopTimeUpdate.length; j++) {
 
-              var addedStopTime = "";
-              var addedStopId = "";
-              var addedStopSeq = "";
+                var addedStopTime = "";
+                var addedStopId = "";
+                var addedStopSeq = "";
 
-              if (globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].scheduleRelationship == 0) {
-                if (j == 0) {
-                  addedStopTime = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].departure.time
+                if (globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].scheduleRelationship == 0) {
+                  if (j == 0) {
+                    addedStopTime = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].departure.time
+                  }
+                  else {
+                    addedStopTime = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].arrival.time
+                  }
+                  
+                  addedStopId = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopId
+                  addedStopSeq = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopSequence
                 }
                 else {
-                  addedStopTime = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].arrival.time
+                  addedStopTime = globalFeed.entity[i].tripUpdate.timestamp
+                  addedStopId = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopId
+                  addedStopSeq = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopSequence
                 }
-                
-                addedStopId = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopId
-                addedStopSeq = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopSequence
+
+                addedStopTime = addedStopTime * 1000;
+
+                addedStopTime = new Date(addedStopTime);
+
+                addedStopTime = addedStopTime.toLocaleTimeString('en-US', {hour12: false});
+                stoptimesArray.push([
+                addedTripId,
+                addedStopTime,
+                addedStopTime,
+                addedStopId,
+                addedStopSeq.toString()
+                ])
               }
-              else {
-                addedStopTime = globalFeed.entity[i].tripUpdate.timestamp
-                addedStopId = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopId
-                addedStopSeq = globalFeed.entity[i].tripUpdate.stopTimeUpdate[j].stopSequence
-              }
-
-              addedStopTime = addedStopTime * 1000;
-
-              addedStopTime = new Date(addedStopTime);
-
-              addedStopTime = addedStopTime.toLocaleTimeString('en-US', {hour12: false});
-              stoptimesArray.push([
-              addedTripId,
-              addedStopTime,
-              addedStopTime,
-              addedStopId,
-              addedStopSeq.toString()
-              ])
             }
           }
         }
@@ -876,10 +882,10 @@
     for (i = startTimeIndex; i < len; i++) {
 
       if (routesArray[tripArray[i]['0']]['0'] == '11' || routesArray[tripArray[i]['0']]['0'] == '12') {
-        var service_id = routesArray[tripArray[i]['0']]['2'];
+        var service_id = routesArray[tripArray[i]['0']]['1'];
       }
       else {
-        var service_id = routesArray[tripArray[i]['0']]['2'].slice('0','-7');
+        var service_id = routesArray[tripArray[i]['0']]['1'].slice('0','-7');
       }
       
       var tripId = tripArray[i]['2'];
@@ -888,6 +894,9 @@
       var stopSeq = Number(tripArray[i]['9']);
       var stop_time_noConvert = tripArray[i]['7'];
       var stop_time = "";
+      var stop_time_w_delay = "";
+      var delayed_min = "";
+      var delayed_hour = "";
       var AMPM = "";
       var timeArray = new Array();
 
@@ -918,6 +927,7 @@
 
       /* Get live data */
 
+      
       var currentStatus = "";
       var currentStop = "";
       var currentStopSeq = "";
@@ -925,48 +935,107 @@
       var trainScheduleRelationship = "";
       var stopScheduleRelationship = "";
       
-      for (j = 0; j < globalFeed.entity.length; j++) {
-        if (globalFeed.entity[j].id == tripId+"_V") {
-          currentStatus = globalFeed.entity[j].vehicle.currentStatus;
-          currentStop = globalFeed.entity[j].vehicle.stopId;
+      if (Array.isArray(globalFeed)) {
+        for (j = 0; j < globalFeed.entity.length; j++) {
+          if (globalFeed.entity[j].id == tripId+"_V") {
+            currentStatus = globalFeed.entity[j].vehicle.currentStatus;
+            currentStop = globalFeed.entity[j].vehicle.stopId;
+          }
         }
       }
-      for (j = 0; j < globalFeed.entity.length; j++) {
-        if (globalFeed.entity[j].id == tripId+"_T") {
-          trainScheduleRelationship = globalFeed.entity[j].tripUpdate.trip.scheduleRelationship
-          for (k = 0; k < globalFeed.entity[j].tripUpdate.stopTimeUpdate.length; k++) {
-            stopScheduleRelationship = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].scheduleRelationship;
+        for (j = 0; j < globalFeed.entity.length; j++) {
+          if (globalFeed.entity[j].id == tripId+"_T") {
+            trainScheduleRelationship = globalFeed.entity[j].tripUpdate.trip.scheduleRelationship
+            for (k = 0; k < globalFeed.entity[j].tripUpdate.stopTimeUpdate.length; k++) {
+              stopScheduleRelationship = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].scheduleRelationship;
 
-            if (stopScheduleRelationship == 2) {
-              delay = 0;
-              currentStopSeq = Number(globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopSequence);
-            }
-            else if (stopid == currentStop){
-              delay = 0;
-              currentStopSeq = Number(stopSeq);
-            }
-            else if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId == currentStop) {
-              currentStopSeq = Number(globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopSequence);
-            }
-            else if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId == stopid) {
-              if (stopSeq == "1") {
+              if (stopScheduleRelationship == 2) {
                 delay = 0;
+                currentStopSeq = Number(globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopSequence);
               }
-              else {
-                delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival.delay;
+              else if (stopid == currentStop){
+                delay = 0;
+                currentStopSeq = Number(stopSeq);
+              }
+              else if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId == currentStop) {
+                currentStopSeq = Number(globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopSequence);
+              }
+              else if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId == stopid) {
+                if (stopSeq == "1") {
+                  delay = 0;
+                }
+                else {
+                  delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival.delay;
+                }
               }
             }
           }
         }
-      }
-
+      
       /* Adds results to tables */
+
+      if (Number(timeArray['1'])+Math.floor(delay/60) > 59){
+        delayed_hour = Number(timeArray['0'])+1;
+        delayed_min = Number(timeArray['1'])+Math.floor(delay/60)-60;
+        if (delayed_hour > 12) {
+          delayed_hour = delayed_hour - 12
+          AMPM = " PM"
+        }
+        else if (delayed_hour == 0) {
+          delayed_hour = 12
+          AMPM = " AM"
+        }
+        else if (delayed_hour > 24) {
+          delayed_hour = delayed_hour - 24
+          AMPM = " AM"
+        }
+
+        if (delayed_min < 10) {
+          delayed_min = "0"+delayed_min+AMPM;
+        }
+        else{
+          delayed_min = delayed_min+AMPM;
+        }
+
+        stop_time_w_delay = delayed_hour+":"+delayed_min;
+      }
+      else {
+        delayed_hour = Number(timeArray['0']);
+        delayed_min = Number(timeArray['1'])+Math.floor(delay/60)
+        if (delayed_hour > 12) {
+          delayed_hour = delayed_hour - 12
+          AMPM = " PM"
+        }
+        else if (delayed_hour > 24) {
+          delayed_hour = delayed_hour - 24
+          AMPM = " AM"
+        }
+
+        if (delayed_min < 10) {
+          delayed_min = "0"+delayed_min+AMPM;
+        }
+        else{
+          delayed_min = delayed_min+AMPM;
+        }
+
+        stop_time_w_delay = delayed_hour+":"+delayed_min;
+      }
 
       if (tripDate+stop_time_noConvert > startDate+startTime || ((delay > 600 && delay < 3600 && currentStopSeq < stopSeq) || (delay > 600 && delay < 3600 && currentStopSeq == stopSeq))) {
         result += "<tr class='datarow' onclick='stoppingAt(this)' data-trip-date='"+tripArray[i]['6']+"' data-trip-id='"+tripArray[i]['2']+"' data-stop-seq='"+tripArray[i]['9']+"' id='datarow"+tripArray[i]['2']+"'>";
-        result += "<td><div id='tripService' style='margin-left:5px;width:170px;border:solid 5px;border-top:solid 9px;border-radius:8px;border-color:#"+routesArray[tripArray[i]['0']]['4']+";background-color:#"+routesArray[tripArray[i]['0']]['4']+";color:#"+routesArray[tripArray[i]['0']]['5']+"'>"+service_id+"</div></td>";
-        result += "<td><div id='tripTerminus' style='margin-left:5px;width:170px;border:solid 5px;border-top:solid 9px;border-radius:8px;border-color:#"+routesArray[document.getElementById(terminus_id).getAttribute('data-route')]['4']+";background-color:#"+routesArray[document.getElementById(terminus_id).getAttribute('data-route')]['4']+";color:#"+routesArray[document.getElementById(terminus_id).getAttribute('data-route')]['5']+"'>"+document.getElementById(terminus_id).innerText+"</div></td>";
-        result += "<td style='padding-top:3px;'>"+stop_time;
+        result += "<td><div id='tripService' style='margin-left:5px;width:170px;border:solid 5px;border-top:solid 9px;border-radius:8px;border-color:#"+routesArray[tripArray[i]['0']]['3']+";background-color:#"+routesArray[tripArray[i]['0']]['3']+";color:#"+routesArray[tripArray[i]['0']]['4']+"'>"+service_id+"</div></td>";
+        result += "<td><div id='tripTerminus' style='margin-left:5px;width:170px;border:solid 5px;border-top:solid 9px;border-radius:8px;border-color:#"+routesArray[document.getElementById(terminus_id).getAttribute('data-route')]['3']+";background-color:#"+routesArray[document.getElementById(terminus_id).getAttribute('data-route')]['3']+";color:#"+routesArray[document.getElementById(terminus_id).getAttribute('data-route')]['4']+"'>"+document.getElementById(terminus_id).innerText+"</div></td>";
+        result += "<td style='padding-top:3px;'>";
+        if (delay > 120) {
+          result += "<s>"+stop_time+"</s>";
+        }
+        else {
+          result += stop_time;
+        }
+
+        if (delay > 120) {
+          result += "<br>"+stop_time_w_delay;
+        }
         
         if (tripArray[i]['6'] > startDate || tripArray[i]['7'] > '24:00:00'){
           result += "<br><font size='-1'><i>(Next Day)</i></font>";
@@ -974,7 +1043,10 @@
 
         result += "</td>";
 
-        if (trainScheduleRelationship == 3 && tripDate == currentDate) {
+        if (globalFeed == null) {
+          result += "<td style='padding-top:3px;color:#AAAAAA;font-style:italic;'>No feed data</td>"
+        }
+        else if (trainScheduleRelationship == 3 && tripDate == currentDate) {
           result += "<td style='padding-top:3px;color:#DD0000;font-weight:bold;'>NO SERVICE</td>"
         }
         else if (stopScheduleRelationship == 1 && tripDate == currentDate) {
@@ -1023,6 +1095,7 @@
 
     return result;
   }
+  
 
   /* On trip click, show list of following stops */
 
@@ -1083,7 +1156,7 @@
       stop_time += timeArray['0']+":"+timeArray['1']+AMPM;
 
       stopTimesList += "<tr class='stoprow', onclick='StationSelection(this)', data-route='"+document.getElementById(stop_name).getAttribute('data-route')+"', data-code='"+document.getElementById(stop_name).getAttribute('data-code')+"', data-stop='"+stop_id+"', data-inform='"+document.getElementById(stop_name).getAttribute('data-inform')+"', id='"+stop_name+"', data-trip-id='"+tripId+"', style='text-decoration:none'>";
-      stopTimesList += "<td onclick=window.location='#"+document.getElementById(stop_name).getAttribute('data-code')+"'><div style='text-align:center;text-decoration:none;margin:5px 15px;width:170px;border:solid 5px;border-top:solid 9px;border-radius:8px;border-color:#"+routesArray[document.getElementById(stop_name).getAttribute('data-route')]['4']+";background-color:#"+routesArray[document.getElementById(stop_name).getAttribute('data-route')]['4']+";color:#"+routesArray[document.getElementById(stop_name).getAttribute('data-route')]['5']+"'>"+document.getElementById(stop_name).innerText+"</div></td>";
+      stopTimesList += "<td onclick=window.location='#"+document.getElementById(stop_name).getAttribute('data-code')+"'><div style='text-align:center;text-decoration:none;margin:5px 15px;width:170px;border:solid 5px;border-top:solid 9px;border-radius:8px;border-color:#"+routesArray[document.getElementById(stop_name).getAttribute('data-route')]['3']+";background-color:#"+routesArray[document.getElementById(stop_name).getAttribute('data-route')]['3']+";color:#"+routesArray[document.getElementById(stop_name).getAttribute('data-route')]['4']+"'>"+document.getElementById(stop_name).innerText+"</div></td>";
       stopTimesList += "<td onclick=window.location='#"+document.getElementById(stop_name).getAttribute('data-code')+"' class='stoptime', id='"+stop_name+"' style='padding-right:15px;padding-top:5px;'>";       
       stopTimesList += "<div style='"
 
@@ -1130,31 +1203,32 @@
 
     var alertButton = document.getElementById('alertButton');
     var alertResults = "";
+    
+    /*if (Array.isArray(alertFeed)) {*/
+      for (i = 1; i < alertFeed.entity.length; i++){
+        for (j = 0; j < alertFeed.entity[i].alert.activePeriod.length; j++){
+          var alertStart = alertFeed.entity[i].alert.activePeriod[j].start
+          var alertEnd = alertFeed.entity[i].alert.activePeriod[j].end
 
-    for (i = 0; i < alertFeed.entity.length; i++){
-      for (j = 0; j < alertFeed.entity[i].alert.activePeriod.length; j++){
-        var alertStart = alertFeed.entity[i].alert.activePeriod[j].start
-        var alertEnd = alertFeed.entity[i].alert.activePeriod[j].end
-
-        if (alertFeed.header.timestamp > alertStart && alertFeed.header.timestamp < alertEnd) {
-          for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
-            if (informedRoutes.includes(alertFeed.entity[i].alert.informedEntity[k].routeId)) {
-              alertResults += "<tr><td class='alertTD'><br>"
-              alertResults += alertFeed.entity[i].alert.headerText.translation[1].text
-              if (alertFeed.entity[i].alert.descriptionText == null) {
-                alertResults += "</td></tr>"
+          if (alertFeed.header.timestamp > alertStart && alertFeed.header.timestamp < alertEnd) {
+            for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
+              if (informedRoutes.includes(alertFeed.entity[i].alert.informedEntity[k].routeId)) {
+                alertResults += "<tr><td class='alertTD'><br>"
+                alertResults += alertFeed.entity[i].alert.headerText.translation[1].text
+                if (alertFeed.entity[i].alert.descriptionText == null) {
+                  alertResults += "</td></tr>"
+                }
+                else {
+                  alertResults += alertFeed.entity[i].alert.descriptionText.translation[1].text
+                  alertResults += "</td></tr>"
+                }
               }
-              else {
-                alertResults += alertFeed.entity[i].alert.descriptionText.translation[1].text
-                alertResults += "</td></tr>"
-              }
+              break;
             }
-            break;
           }
         }
       }
-    }
-
+    /*}*/
     if (alertResults == "") {
       alertResults = "<tr><td>No alerts at this time.</td></tr>"
       alertButton.classList.add('hidden');

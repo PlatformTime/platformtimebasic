@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "browserify": "^17.0.0",
+    "google-protobuf": "^3.21.2",
     "http-server": "^14.0.0",
     "match": "^1.2.10",
     "protobufjs": "^6.11.2",
