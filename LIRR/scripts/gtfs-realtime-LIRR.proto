@@ -244,12 +244,11 @@ message TripUpdate {
 
 
     // ADDITION: LIRR STOP TIME STATUS
-    // includes track number and train status (does not seem to be used)
-    message StopTimeStatus {
-      optional string track = 1;
-      optional string trainStatus = 2;
+    message MtaStopTimeUpdate {
+      extend transit_realtime.TripUpdate.StopTimeUpdate {
+      optional string track = 1005;
+      }
     }
-    optional StopTimeStatus status = 1005;
 
     // The extensions namespace allows 3rd-party developers to extend the
     // GTFS Realtime Specification in order to add and evaluate new features
