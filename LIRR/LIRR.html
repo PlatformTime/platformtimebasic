@@ -963,14 +963,16 @@
               if (stopScheduleRelationship == 2) {
                 delay = 0;
                 currentStopSeq = Number(globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopSequence);
+                
+                track = "Not Posted"
 
-                if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"] != ""){                  
+                /*if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"] != ""){                  
                   track = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"];
                   track = track.slice(2);
                 }
                 else {
                   track = "Not Posted"
-                }
+                }*/
               }
               else if (currentStop == globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId){
                 delay = 0;/*
@@ -1000,7 +1002,7 @@
 
                 if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"] != ""){
                   track = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"];
-                  track = track.slice(2);
+                  track = track.slice(2,3);
                 }     
                 else {
                   track = "Not Posted"
