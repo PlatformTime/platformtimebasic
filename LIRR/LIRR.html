@@ -176,6 +176,7 @@
       <th>Service</th>
       <th>Terminus</th>
       <th>Scheduled Time</th>
+      <th>Track</th>
       <th>Status</th>
     </tr>
     <tbody id="wbData"></tbody>
@@ -194,6 +195,7 @@
       <th>Service</th>
       <th>Terminus</th>
       <th>Scheduled Time</th>
+      <th>Track</th>
       <th>Status</th>
     </tr>
     <tbody id="ebData"></tbody>
@@ -667,30 +669,39 @@
 
   function addedTrips() {
 
-    if (Array.isArray(globalFeed)) {
-      for (i = 0; i < globalFeed.entity.length; i++) {
-        if (globalFeed.entity[i].id.slice(-2) == '_T') {
-          if (globalFeed.entity[i].tripUpdate.trip.scheduleRelationship == 1) {
-
+     for (i = 0; i < globalFeed.entity.length; i++) {
+        if (globalFeed.entity[i].id.slice(0,1) == 'L') {
+          
             var terminus = stopsArray.filter(j => j['0'] == globalFeed.entity[i].tripUpdate.stopTimeUpdate[globalFeed.entity[i].tripUpdate.stopTimeUpdate.length - 1].stopId);
             var addedRouteId = globalFeed.entity[i].tripUpdate.trip.routeId;
             var addedTripId = globalFeed.entity[i].tripUpdate.trip.tripId;
             var addedDirectionId = globalFeed.entity[i].tripUpdate.trip.directionId.toString();
             var addedStartDate = globalFeed.entity[i].tripUpdate.trip.startDate
 
-            allTrips.push([
-              addedRouteId,
-              '',
-              addedTripId,
-              terminus['0']['2'],
-              '',
-              addedDirectionId,
-              addedStartDate
-            ])
-          }
+            if (addedRouteId != ("City Terminal Zone" || "Belmont Park")) {
+              addedRouteId += " Branch";
+            }
+
+            for (j = 0; j < routesArray.length; j++) {
+              if (routesArray[j]['1'] == addedRouteId){
+                addedRouteId = routesArray[j]['0'];
+              }
+            }
+
+            if (!checkAddedTrips(allTrips,addedTripId,'2')) {
+              allTrips.push([
+                addedRouteId,
+                '',
+                addedTripId,
+                terminus['0']['2'],
+                '',
+                addedDirectionId,
+                addedStartDate
+              ])
+            }
         }
       }
-    }
+    
     addedStops();
   }
 
@@ -772,16 +783,13 @@
   /* PUSH ADDED STOPS */ 
 
   function addedStops() {
-
-    if (Array.isArray(globalFeed)) {
       for (i = 0; i < globalFeed.entity.length; i++) {
-        if (globalFeed.entity[i].id.slice(-2) == '_T') {
-          if (globalFeed.entity[i].tripUpdate.trip.scheduleRelationship == 1) {
+        if (globalFeed.entity[i].id.slice(0,1) == 'L') {
           
             var terminus = stopsArray.filter(j => j['0'] == globalFeed.entity[i].tripUpdate.stopTimeUpdate[globalFeed.entity[i].tripUpdate.stopTimeUpdate.length - 1].stopId)
             var addedTripId = globalFeed.entity[i].tripUpdate.trip.tripId;
 
-            if (!checkAddedTrips(stoptimesArray,addedTripId)) {
+            if (!checkAddedTrips(stoptimesArray,addedTripId,'0')) {
               for (j = 0; j < globalFeed.entity[i].tripUpdate.stopTimeUpdate.length; j++) {
 
                 var addedStopTime = "";
@@ -819,17 +827,17 @@
                 ])
               }
             }
-          }
+          
         }
       }
-    }
+    
   }
 
   /* Check if added stops have already been added */
 
-  function checkAddedTrips(array,trip) {
+  function checkAddedTrips(array,trip,ref) {
     for (var i = 0; i < array.length; i++) {
-      if (array[i]['0'] == trip) {
+      if (array[i][ref] == trip) {
         return true;
       }
     }
@@ -873,11 +881,11 @@
     }
     
     if ((len - startTimeIndex) == 0) {
-      result += "<td colspan=4><div><i>There are no scheduled trains in the next 24 hours.</i><div></td>"
+      result += "<td colspan=5><div><i>There are no scheduled trains in the next 24 hours.</i><div></td>"
     }
     
     if (((len - startTimeIndex) > 0) && ((len - startTimeIndex) < 6)) {
-      result += "<td colspan=4><div><i>There are few trains in the near future. Here are trains for the next 24 hours.</i><div></td>"
+      result += "<td colspan=5><div><i>There are few trains in the near future. Here are trains for the next 24 hours.</i><div></td>"
     }
 
     for (i = startTimeIndex; i < len; i++) {
@@ -900,6 +908,7 @@
       var delayed_hour = "";
       var AMPM = "";
       var timeArray = new Array();
+      var track = "Not Posted"
 
       /* Sets time to 12-hr AM/PM */
 
@@ -928,50 +937,80 @@
 
       /* Get live data */
 
-      
       var currentStatus = "";
-      var currentStop = "";
+      var currentStop = 0;
       var currentStopSeq = "";
       var delay = "";
       var trainScheduleRelationship = "";
       var stopScheduleRelationship = "";
-      
-      if (Array.isArray(globalFeed)) {
+ 
         for (j = 0; j < globalFeed.entity.length; j++) {
-          if (globalFeed.entity[j].id == tripId+"_V") {
+
+          if (globalFeed.entity[j].id.slice(0,1) == "V" && tripId == globalFeed.entity[j].vehicle.trip.tripId) {
             currentStatus = globalFeed.entity[j].vehicle.currentStatus;
             currentStop = globalFeed.entity[j].vehicle.stopId;
+            currentStopSeq = globalFeed.entity[j].vehicle.currentStopSequence;
           }
-        }
-      }
-        for (j = 0; j < globalFeed.entity.length; j++) {
-          if (globalFeed.entity[j].id == tripId+"_T") {
+
+          if ((globalFeed.entity[j].id.slice(0,1) == "L" || globalFeed.entity[j].id.slice(0,1) == "G") && globalFeed.entity[j].tripUpdate.trip.tripId == tripId) {
+
             trainScheduleRelationship = globalFeed.entity[j].tripUpdate.trip.scheduleRelationship
+
             for (k = 0; k < globalFeed.entity[j].tripUpdate.stopTimeUpdate.length; k++) {
+
               stopScheduleRelationship = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].scheduleRelationship;
 
               if (stopScheduleRelationship == 2) {
                 delay = 0;
                 currentStopSeq = Number(globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopSequence);
+
+                if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"] != ""){                  
+                  track = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"];
+                  track = track.slice(2);
+                }
+                else {
+                  track = "Not Posted"
+                }
               }
-              else if (stopid == currentStop){
+              else if (currentStop == globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId){
                 delay = 0;
                 currentStopSeq = Number(stopSeq);
+                if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"] != ""){                  
+                  track = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"];
+                  track = track.slice(2);
+                }
+                else {
+                  track = "Not Posted"
+                }
               }
               else if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId == currentStop) {
                 currentStopSeq = Number(globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopSequence);
-              }
+              }              
               else if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId == stopid) {
                 if (stopSeq == "1") {
-                  delay = 0;
+                  if (typeof globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].departure != "undefined"){
+                    delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].departure.delay;
+                  }
                 }
                 else {
-                  delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival.delay;
+                  if (typeof globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival != "undefined"){
+                    delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival.delay;
+                  }
                 }
+
+                if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"] != ""){
+                  track = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"];
+                  track = track.slice(2);
+                }     
+                else {
+                  track = "Not Posted"
+                }         
               }
             }
           }
         }
+      
+
       
       /* Adds results to tables */
 
@@ -1021,6 +1060,7 @@
 
         stop_time_w_delay = delayed_hour+":"+delayed_min;
       }
+    
 
       if (tripDate+stop_time_noConvert > startDate+startTime || ((delay > 600 && delay < 3600 && currentStopSeq < stopSeq) || (delay > 600 && delay < 3600 && currentStopSeq == stopSeq))) {
         result += "<tr class='datarow' onclick='stoppingAt(this)' data-trip-date='"+tripArray[i]['6']+"' data-trip-id='"+tripArray[i]['2']+"' data-stop-seq='"+tripArray[i]['9']+"' id='datarow"+tripArray[i]['2']+"'>";
@@ -1042,7 +1082,14 @@
           result += "<br><font size='-1'><i>(Next Day)</i></font>";
         }
 
-        result += "</td>";
+        result += "</td>"
+
+        if (track == "Not Posted") {
+          result += "<td style='padding-top:3px;color:#AAAAAA;font-style:italic;'>"+track+"</td>"
+        }
+        else {
+          result += "<td style='padding-top:3px;'>"+track+"</td>"
+        }
 
         if (globalFeed == null) {
           result += "<td style='padding-top:3px;color:#AAAAAA;font-style:italic;'>No feed data</td>"
@@ -1066,7 +1113,7 @@
           result += "<td style='padding-top:3px;font-weight:bold;'>Arrived</td>"
         }
         else if (currentStopSeq == stopSeq && currentStatus == 0 && tripDate == currentDate) {
-          result += "<td style='padding-top:3px;font-weight:bold;'>Approaching Station</td>"
+          result += "<td style='padding-top:3px;font-weight:bold;'>Due</td>"
         }
         else if (delay > 359 && tripDate == currentDate) {
           result += "<td style='padding-top:3px;color:#CCAA00;font-weight:bold;'>Delayed ("+Math.floor(delay/60)+" min)</td>"
@@ -1082,6 +1129,7 @@
 
       }
     }
+  
 
     if (tripArray.length > len){
       if (tableButton.classList.contains('hidden')){
@@ -1174,7 +1222,7 @@
       stopTimesList += "'>"+stop_time+"</div></td>";
       
       for (j = 0; j < globalFeed.entity.length; j++) {
-        if (globalFeed.entity[j].id == tripId+"_V") {
+        if (globalFeed.entity[j].id.slice(0,1) == "V" && globalFeed.entity[j].vehicle.trip.tripId == tripId) {
           if (globalFeed.entity[j].vehicle.stopId == stop_id && tripDate == currentDate) {
             stopTimesList += "<td onclick=window.location='#"+document.getElementById(stop_name).getAttribute('data-code')+"' class='stoptime' style='padding-right:15px;padding-top:2px;'><img src='images/train.png' height='20'></td>";
           }
@@ -1206,10 +1254,14 @@
     var alertResults = "";
     
     /*if (Array.isArray(alertFeed)) {*/
-      for (i = 1; i < alertFeed.entity.length; i++){
+      for (i = 0; i < alertFeed.entity.length; i++){
         for (j = 0; j < alertFeed.entity[i].alert.activePeriod.length; j++){
-          var alertStart = alertFeed.entity[i].alert.activePeriod[j].start
-          var alertEnd = alertFeed.entity[i].alert.activePeriod[j].end
+          var alertStart = alertFeed.entity[i].alert.activePeriod[0].start
+          var alertEnd = alertFeed.entity[i].alert.activePeriod[0].end
+
+          if (alertEnd == 0) {
+            alertEnd = 99999999999
+          }
 
           if (alertFeed.header.timestamp > alertStart && alertFeed.header.timestamp < alertEnd) {
             for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
