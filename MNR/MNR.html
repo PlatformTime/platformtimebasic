@@ -97,7 +97,7 @@
         <a href="#3NC" onclick= "StationSelection(this)" data-route="4" data-stop="157" data-inform="[4]" data-code="3NC" id="New Canaan">New Canaan</a>
         <a href="#0NM" onclick= "StationSelection(this)" data-route="1" data-stop="49" data-inform="[1]" data-code="0NM" id="New Hamburg">New Hamburg</a>
         <a href="#2NH" onclick= "StationSelection(this)" data-route="3" data-stop="149" data-inform="[3]" data-code="2NH" id="New Haven">New Haven</a>
-        <a href="#2SS" onclick= "StationSelection(this)" data-route="3" data-stop="151" data-inform="[3]" data-code="2SS" id="New Haven - State Street">NH-State St.</a>
+        <a href="#2SS" onclick= "StationSelection(this)" data-route="3" data-stop="151" data-inform="[3]" data-code="2SS" id="New Haven-State St">NH-State St.</a>
         <a href="#2NR" onclick= "StationSelection(this)" data-route="3" data-stop="108" data-inform="[3,4,5,6]" data-code="2NR" id="New Rochelle">New Rochelle</a>
         <a href="#2NO" onclick= "StationSelection(this)" data-route="3" data-stop="127" data-inform="[3,5,6]" data-code="2NO" id="Noroton Heights">Noroton Heights</a>
         <a href="#1NW" onclick= "StationSelection(this)" data-route="2" data-stop="76" data-inform="[2]" data-code="1NW" id="North White Plains">North White Plains</a>
@@ -161,6 +161,7 @@
       <th>Service</th>
       <th>Terminus</th>
       <th>Scheduled Time</th>
+      <th>Track</th>
       <th>Status</th>
     </tr>
     <tbody id="sbData"></tbody>
@@ -179,6 +180,7 @@
       <th>Service</th>
       <th>Terminus</th>
       <th>Scheduled Time</th>
+      <th>Track</th>
       <th>Status</th>
     </tr>
     <tbody id="nbData"></tbody>
@@ -858,8 +860,12 @@ function addedTrips() {
       }
     }
 
+    if ((len - startTimeIndex) == 0) {
+      result += "<td colspan=5><div><i>There are no scheduled trains in the next 24 hours.</i><div></td>"
+    }
+
     if (len - startTimeIndex < 6) {
-      result += "<td colspan=4><div><i>There are few trains in the near future. Here are trains for the next 24 hours.</i><div></td>"
+      result += "<td colspan=5><div><i>There are few trains in the near future. Here are trains for the next 24 hours.</i><div></td>"
     }
 
     for (i = startTimeIndex; i < len; i++) {
@@ -893,6 +899,7 @@ function addedTrips() {
       var delayed_hour = "";
       var AMPM = "";
       var timeArray = new Array();
+      var track = "Not Posted"
 
       /* Sets time to 12-hr AM/PM */
 
@@ -926,43 +933,61 @@ function addedTrips() {
       var currentStopSeq = "";
       var delay = "";
       var trainScheduleRelationship = "";
-      var stopScheduleRelationship = "";
+      var stopTrainStatus = "";
       var tripCheck = "";
-      var terminal_departure = "";
+      var terminal_departure = 0;
       
       for (j = 0; j < globalFeed.entity.length; j++) {
         if (globalFeed.entity[j].id == shortTripId) {
-          tripCheck = globalFeed.entity[j].id
+          tripCheck = globalFeed.entity[j].id;
           currentStatus = globalFeed.entity[j].vehicle.currentStatus;
           currentStop = globalFeed.entity[j].vehicle.stopId;
-          trainScheduleRelationship = globalFeed.entity[j].tripUpdate.trip.scheduleRelationship
-          terminal_departure = globalFeed.entity[j].tripUpdate.stopTimeUpdate[0].departure.time
-        
-          for (k = 0; k < globalFeed.entity[j].tripUpdate.stopTimeUpdate.length; k++) {
-            stopScheduleRelationship = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].scheduleRelationship;
+          trainScheduleRelationship = globalFeed.entity[j].tripUpdate.trip.scheduleRelationship;
 
-            if (stopScheduleRelationship == 2) {
-              delay = 0;
-              currentStopSeq = Number(globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopSequence);
-            }
-            else if (stopid == currentStop){
-              delay = 0;
+          if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[0] != "undefined"){
+            terminal_departure = globalFeed.entity[j].tripUpdate.stopTimeUpdate[0].departure.time;
+          }
+                  
+          for (k = 0; k < globalFeed.entity[j].tripUpdate.stopTimeUpdate.length; k++) {
+
+            if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId == stopid) {
               currentStopSeq = Number(stopSeq);
-            }
-            else if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId == currentStop) {
+
+              for (m = 0; m < northboundTrips.length; m++) {
+
+                if (allTrips[m]['4'] == tripCheck) {
+                  var harlemDirectionId = allTrips[m]['5'];
+                }
+              
+                if (stopid == "4" && currentStop == "1" && harlemDirectionId == "0") {
+                  stopTrainStatus = "Departed"
+                }
+                else {
+                  stopTrainStatus = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].status[0].trainStatus;
+                }
+              }
+
+              if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].status[0].track != ""){
+                track = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].status[0].track;
+              }
+              else {
+                track = "Not Posted"
+              }
+                                    
               for (m = 0; m < stoptimesArray.length; m++) {
                 if (stoptimesArray[m]['0'] == tripId && stoptimesArray[m]['3'] == currentStop) {
                   currentStopSeq = Number(stoptimesArray[m]['4']);
                 }
               }
-            }
-            else if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId == stopid) {
-              if (stopSeq == "1") {
-                delay = 0;
+            
+              delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival.delay;        
+
+              if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].status[0].track != ""){
+                track = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].status[0].track;
               }
               else {
-                delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival.delay;
-              }
+                track = "Not Posted"
+              } 
             }
           }
         }
@@ -1038,20 +1063,27 @@ function addedTrips() {
         }
 
         result += "</td>";
+
+        if (track == "Not Posted") {
+          result += "<td style='padding-top:3px;color:#AAAAAA;font-style:italic;'>"+track+"</td>"
+        }
+        else {
+          result += "<td style='padding-top:3px;'>"+track+"</td>"
+        }
         
         if (trainScheduleRelationship == 3 && tripDate == currentDate) {
           result += "<td style='padding-top:3px;color:#DD0000;font-weight:bold;'>NO SERVICE</td>"
         }
-        else if (stopScheduleRelationship == 1 && tripDate == currentDate) {
+        else if (stopTrainStatus == "Skipped" && tripDate == currentDate) {
           result += "<td style='padding-top:3px;color:#DD0000;font-weight:bold;'>SKIPPED</td>"
         }
         else if (currentStop == stopid && stopSeq == 1 && currentStatus == 1 && tripDate == currentDate) {
           result += "<td style='padding-top:3px;font-weight:bold;'>LAST CALL</td>"
         }
-        else if (stopid == '1' && (currentStop == "" || currentStop == '1') && (currentStatus == 1 || currentStatus == "")) {
+        else if (stopTrainStatus == "Arrived") {
           result += "<td style='padding-top:3px;font-weight:bold;'>Arrived</td>"
         }
-        else if ((currentStopSeq > stopSeq && tripDate == currentDate) || (currentStop == "" && currentDate+currentTime > tripDate+stop_time_noConvert)) {
+        else if (stopTrainStatus == "Departed") {
           result += "<td style='padding-top:3px;color:#AAAAAA;font-style:italic;'>Departed</td>"
         }
         else if (currentStop == stopid && currentStatus == 2 && tripDate == currentDate) {
@@ -1061,7 +1093,7 @@ function addedTrips() {
           result += "<td style='padding-top:3px;font-weight:bold;'>Arrived</td>"
         }
         else if (currentStop == stopid && currentStatus == 0 && tripDate == currentDate) {
-          result += "<td style='padding-top:3px;font-weight:bold;'>Approaching Station</td>"
+          result += "<td style='padding-top:3px;font-weight:bold;'>Due</td>"
         }
         else if (delay > 359 && tripDate == currentDate) {
           result += "<td style='padding-top:3px;color:#CCAA00;font-weight:bold;'>Delayed ("+Math.floor(delay/60)+" min)</td>"
