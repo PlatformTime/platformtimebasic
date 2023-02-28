@@ -12,7 +12,7 @@
 html {
   height: 100%;
   margin: auto;
-  width: 800px;
+  width: 850px;
   overflow-x: hidden;
   overflow-y: scroll;
   font-size: 18px;
@@ -31,7 +31,7 @@ h1 {
 h2 {
   font-size: var(--westheadersize);
   text-align: center;
-  margin-left: 0;
+  margin-left: 5px;
   color: white;
   display: var(--headertabledisplay);
   position: relative;
@@ -47,7 +47,7 @@ h2 {
 h3 {
   font-size: var(--eastheadersize);
   text-align: left;
-  margin-left: 0;
+  margin-left: 5px;
   color: white;
   display: var(--headertabledisplay);
   position: relative;
@@ -121,7 +121,7 @@ a:visited {
 .tables {
   overflow: visible;
   position: absolute;
-  width:760px;
+  width: 810px;
   margin-left: 0;
   z-index: -1;
   top: 155px;
@@ -130,7 +130,7 @@ a:visited {
 
 /* Table Formatting */
 table {
-  width: 760px;
+  width: 810px;
   border-collapse: collapse;
 }
 
@@ -237,7 +237,7 @@ td{
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  margin-left: 289px;
+  margin-left: 314px;
   margin-top: 20px;
   margin-bottom: 10px;
   width: 150px;
@@ -476,7 +476,7 @@ td{
 
 body {
   position: relative;
-  width: 760px;
+  width: 810px;
   margin: 0 auto;
   padding: 20px;
   border: none;
