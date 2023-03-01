@@ -1,5 +1,5 @@
 # PlatformTimeBasic
-Platform Time Basic v1.0
+Platform Time Basic v2.0
 
 Data used in this application is directly sourced from MTA Real-Tima data feeds. Information in this application in not guaranteed to be accurate, complete, or timely and is issued AS-IS.
 
@@ -28,6 +28,8 @@ Time tables have four columns of information:
   
   Scheduled Time - Time at which the train trip is scheduled to depart the station (please note: within the Trip Details window, this time is the scheduled arrival time).
   
+  Track - Track or platform the train will arrive on. 
+  
   Status - Live status of the train trip. Applicable train trip statuses:
   
     On Time - Train is running on time and should depart the station with six minutes of the scheduled time. 
@@ -37,7 +39,7 @@ Time tables have four columns of information:
     
     Enroute - Train is traveling to the selected station next.
     
-    Approaching Station - Train is approaching the station.
+    Due - Train is approaching the station.
     
     Arrived - Train is at the station and is loading at the platform.
     
@@ -60,3 +62,7 @@ v1.1 - 2021-12-20: Updated styles for MetroNorth to match station signage and fi
 v1.2 - 2021-12-23: Added NJT timetables
 
 v1.3 - 2023-02-06: Added ability to navigate using browser history and load a specific staion on start via hash
+
+v2.0 - 2023-02-28: Added track information for LIRR and MNR
+
+v2.1 - 2023-03-01: Added carriage details for LIRR trains
