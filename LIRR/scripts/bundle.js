@@ -97058,7 +97058,7 @@ request(requestSettings, function (error, response, data) {
   if (!error && response.statusCode == 200) {
     var feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(data);
       
-    alertFeed = feed;
+    alertFeed = feed || [];
 
     feed.entity.forEach(function(entity) {
       if (entity.trip_update) {
@@ -97088,7 +97088,7 @@ request(requestSettings, function (error, response, data) {
 
     console.log("Data Refreshed At: "+currentDate+' '+currentTime);
 
-    globalFeed = feed;
+    globalFeed = feed || [];
 
     feed.entity.forEach(function(entity) {
       if (entity.trip_update) {
