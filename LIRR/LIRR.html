@@ -209,7 +209,7 @@
   <div class="listContainer hidden" id="stopList">
     <table id=stopListTable>
       <th colspan="3">Stopping At:</th>
-      <th class="occupancyTable hidden" id="occupancyHeader" style="width:auto;text-align:center;" colspan="2">Occupancy</th>
+      <th class="occupancyTable hidden" id="occupancyHeader" style="width:auto;text-align:left;" colspan="2"> Occupancy</th>
       <tbody id="stopListBody"></tbody>
     </table>
   </div>
@@ -364,6 +364,8 @@
     stoptimesTXT = stoptimesTXT.replace(/["]+/g, '');
     stoptimesArray = stoptimesTXTToArray(stoptimesTXT);
     /*console.table(stoptimesArray);*/
+    getAlerts();
+    await sleep(400);
     refreshData();
     await sleep(400);
     checkHash();
@@ -1149,6 +1151,8 @@
     var stopSeq = parseInt(tripSelection.getAttribute('data-stop-seq'));
     var tripStopArray = stoptimesArray.filter(i => i['0'].match("^"+tripId+"$"));
     var len = tripStopArray.length;
+    var trainLength = 0;
+    var rowCount = 0;
 
     dataRowSelection = "";
     dataRowSelection = tripSelection.getAttribute('id');
@@ -1162,7 +1166,7 @@
       var AMPM = "";
       var timeArray = new Array();
       var convertedTime = [];
-
+      
       /* Sets time to 12-hr AM/PM */
 
       timeArray = tripStopArray[i]['1'].split(':');
@@ -1217,34 +1221,55 @@
             stopTimesList += "<td style='width:auto;'></td>"
           }
 
-          /*if (document.getElementById('occupancyHeader').classList.contains('hidden')) {
-            document.getElementById('occupancyHeader').classList.remove('hidden')
+          trainLength = globalFeed.entity[j].vehicle.multiCarriageDetails.length;
+          if (trainLength != 0) {
+            if (document.getElementById('occupancyHeader').classList.contains('hidden')) {
+              document.getElementById('occupancyHeader').classList.remove('hidden')
+            }
           }
+          
+          if (rowCount == 0) {  
+            stopTimesList += "<td class='train' style='padding-top:2px;width:50px;'><img src='images/arrow.png' height='20'></td>";
+            stopTimesList += "<td class='train' style='width:75px;'></td>";
+          }
+          else if (rowCount-1 < trainLength) {
+              var occupancyStatus = globalFeed.entity[j].vehicle.multiCarriageDetails[rowCount-1].occupancyStatus
+              stopTimesList += "<td class='train' style='width:50px;text-align:center;'><div class='carriage'><a data-occupancy="+occupancyStatus+" data-sequence="+rowCount+"></a></div></td>";
+              stopTimesList += "<td class='train' style='width:75px;font-style:italic;text-align:left'>";
+              if (occupancyStatus != 8){
+                stopTimesList += globalFeed.entity[j].vehicle.multiCarriageDetails[rowCount-1].label;
+              }
+              stopTimesList += "</td>";
+          }
+          
 
-          stopTimesList += "<td style='width:auto;'>"+globalFeed.entity[j].vehicle.multiCarriageDetails[0].occupancyStatus+"</td>"
-          stopTimesList += "<td style='width:auto;font-style:italic;'>"+globalFeed.entity[j].vehicle.multiCarriageDetails[0].label+"</td>"*/
         }
       }
       stopTimesList += "</tr>";
+      rowCount++; 
+    }
+
+    if (trainLength > len){
+      for (i = 0; i < globalFeed.entity.length; i++) {
+        if (globalFeed.entity[i].id.slice(0,1) == "V" && globalFeed.entity[i].vehicle.trip.tripId == tripId) {
+          for (j = rowCount-1; j < trainLength; j++) {
+            var occupancyStatus = globalFeed.entity[i].vehicle.multiCarriageDetails[rowCount-1].occupancyStatus
+            stopTimesList += "<tr style='height:44.44px;'><td style='width:auto'><td style='width:auto'><td style='width:auto'>";
+            stopTimesList += "<td class='train' style='width:50px;text-align:center;'><div class='carriage'><a data-occupancy="+occupancyStatus+" data-sequence="+rowCount+"></a></div></td>";
+            stopTimesList += "<td class='train' style='width:75px;font-style:italic;text-align:left'>";
+            if (occupancyStatus != 8){
+              stopTimesList += globalFeed.entity[i].vehicle.multiCarriageDetails[j].label;
+            }
+            stopTimesList += "</td>";
+            stopTimesList += "</tr>";
+        }
+        }
+      }
     }
 
     document.getElementById('stopListBody').innerHTML = stopTimesList;
 
   }
-
-  /*function trainOccupancy(j,stopTimesList) {
-
-    if (document.getElementById('occupancyHeader').classList.contains('hidden')) {
-      document.getElementById('occupancyHeader').classList.remove('hidden')
-    }
-    
-    for (k = 0; k < globalFeed.entity[j].vehicle.multiCarriageDetails.length; k++) {
-      stopTimesList += "<td style='width:auto;'>"+globalFeed.entity[j].vehicle.multiCarriageDetails[k].occupancyStatus+"</td>"
-      stopTimesList += "<td style='width:auto;font-style:italic;'>"+globalFeed.entity[j].vehicle.multiCarriageDetails[k].label+"</td>"
-    }
-
-    return stopTimesList;
-  }*/
 
   /* Add alerts to table */
 
