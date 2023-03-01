@@ -1249,11 +1249,11 @@
       rowCount++; 
     }
 
-    if (trainLength > len){
+    if (trainLength >= len){
       for (i = 0; i < globalFeed.entity.length; i++) {
         if (globalFeed.entity[i].id.slice(0,1) == "V" && globalFeed.entity[i].vehicle.trip.tripId == tripId) {
           for (j = rowCount-1; j < trainLength; j++) {
-            var occupancyStatus = globalFeed.entity[i].vehicle.multiCarriageDetails[rowCount-1].occupancyStatus
+            var occupancyStatus = globalFeed.entity[i].vehicle.multiCarriageDetails[j].occupancyStatus
             stopTimesList += "<tr style='height:44.44px;'><td style='width:auto'><td style='width:auto'><td style='width:auto'>";
             stopTimesList += "<td class='train' style='width:50px;text-align:center;'><div class='carriage'><a data-occupancy="+occupancyStatus+" data-sequence="+rowCount+"></a></div></td>";
             stopTimesList += "<td class='train' style='width:75px;font-style:italic;text-align:left'>";
