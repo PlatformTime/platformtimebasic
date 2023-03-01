@@ -966,13 +966,6 @@ function addedTrips() {
                   stopTrainStatus = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].status[0].trainStatus;
                 }
               }
-
-              if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].status[0].track != ""){
-                track = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].status[0].track;
-              }
-              else {
-                track = "Not Posted"
-              }
                                     
               for (m = 0; m < stoptimesArray.length; m++) {
                 if (stoptimesArray[m]['0'] == tripId && stoptimesArray[m]['3'] == currentStop) {
