@@ -900,6 +900,13 @@ function addedTrips() {
       var AMPM = "";
       var timeArray = new Array();
       var track = "Not Posted"
+      var peakoffpeak = "0"
+
+      for (j = 0; j < tripsArray.length; j++) {
+        if (tripId.includes(tripsArray[j]["2"])) {
+          peakoffpeak = tripsArray[j]["9"]
+        }
+      }
 
       /* Sets time to 12-hr AM/PM */
 
@@ -1045,10 +1052,16 @@ function addedTrips() {
         }
         else {
           result += stop_time;
+          if (peakoffpeak == 1) {
+            result += "&ensp;<img src='images/peak.png' style='display:inline' height='15'>";
+          }
         }
 
         if (delay > 120) {
           result += "<br>"+stop_time_w_delay;
+          if (peakoffpeak == 1) {
+            result += "&ensp;<img src='images/peak.png' style='display:inline' height='15'>";
+          }
         }
         
         if (tripArray[i]['6'] > startDate || tripArray[i]['7'] > '24:00:00'){
