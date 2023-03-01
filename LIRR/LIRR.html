@@ -492,7 +492,7 @@
   var wbTableLength = "";
   var ebTableLength = "";
     
-  function StationSelection(element) {
+  async function StationSelection(element) {
     station = (element.id);
     route = (element.getAttribute("data-route"));
     stopid = (element.getAttribute("data-stop"));
@@ -521,6 +521,7 @@
     document.getElementById('wbDataButton').classList.add('hidden');
     document.getElementById('ebDataButton').classList.add('hidden');
     drawTables();
+    await sleep(200);
     getAlerts();
     refreshData();
   }
