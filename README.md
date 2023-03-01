@@ -5,21 +5,31 @@ Data used in this application is directly sourced from MTA Real-Tima data feeds.
 
 Platform Time Basic is in no way associated with MTA and is not licensed by such.
 
-ABOUT
+///ABOUT///
 
 Platform Time Basic is a commuter-oriented application designed to show trains arriving and departing from stations in the next 24-hour period on commuter rail lines in and around New York City.
 
+///USING THIS APPLICATION///
+
 To use this application, select a transit agency to begin.
 
-Find a station or search for it in the dropdown menu. Click the station name to show the next 12 train trips departing (or arriving for terminal stations) at the selected station on two time tables. (6 towards NYC (Westbound, Southbound) and 6 towards suburban areas (Eastbound, Northbound)).
+Find a station or search for it in the dropdown menu. Click the station name to show the next 12 train trips departing (or arriving for terminal stations) at the   selected station on two time tables. (6 towards NYC (Westbound, Southbound) and 6 towards suburban areas (Eastbound, Northbound)).
+
+///SHOW MORE TRIPS///
 
 To reveal more train trips, click the "Show more..." button below the list to show 6 more train trips for that time table. This can be repeated until the end of the 24-hour period has been reached.
 
+///TRIP DETAILS///
+
 To see the preceeding and following station stops with stop times, click on a train trip to open the Trip Details window. If the train has been dispatched for the trip, this window will also show the current stop position of the train. Within this window, clicking on a station will redirect the time tables to show train trips at that station. Click outside of the Trip Details window and time tables to close this window.
+
+If available, this window shows the carriage occupancy statuses and car numbers as well.
+
+///SERVICE ALERTS///
 
 If there is a service alert affecting the station or line the station is on, a "!" icon will appear next to the station name. Click this icon to show the Service Alert window. Click outside of the Service Alert window to close it.
 
-TIME TABLES
+///TIME TABLES///
 
 Time tables have four columns of information:
   Service - Service or Line the train is serving.
@@ -66,3 +76,5 @@ v1.3 - 2023-02-06: Added ability to navigate using browser history and load a sp
 v2.0 - 2023-02-28: Added track information for LIRR and MNR
 
 v2.1 - 2023-03-01: Added carriage details for LIRR trains
+
+v2.2 - 2023-03-01: Added peak train designations
