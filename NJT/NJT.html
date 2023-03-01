@@ -576,7 +576,7 @@
     var text = "Select Station..."
 
       if (station.length >= 1) {
-        if (route == 7) {
+        if (route == 6) {
           document.getElementById('StationDropdown').classList.add('italic');
         }
         else {
@@ -598,7 +598,7 @@
     r.style.setProperty('--route-top-color', '#'+routesArray[route]['6']);
     r.style.setProperty('--route-text-color', '#'+routesArray[route]['7']);
 
-    if (route == 7) {
+    if (route == 6) {
       r.style.setProperty('--route-background-color', '#FFFFFF');
     }
     else {
@@ -1001,7 +1001,7 @@
       if (tripDate+stop_time_noConvert > startDate+startTime || ((delay > 600 && delay < 3600 && currentStopSeq <= stopSeq) || (delay > 600 && delay < 3600 && currentStopSeq == stopSeq))) {
         result += "<tr class='datarow' onclick='stoppingAt(this)' data-trip-date='"+tripArray[i]['6']+"' data-trip-id='"+tripArray[i]['2']+"' data-stop-seq='"+tripArray[i]['9']+"' id='datarow"+tripArray[i]['2']+"'>";
         result += "<td><div id='tripService' style='margin-left:5px;width:240px;padding-top:2px;padding-bottom:2px;border-top:solid 10px #"+routesArray[tripArray[i]['0']]['6']+";border-radius:8px;";
-        if (tripArray[i]['0'] == 7){
+        if (tripArray[i]['0'] == 6){
           result += "background-color:#FFFFFF;color:#000000;font-style:italic;font-weight:bold;'>";
         }
         else {
@@ -1009,7 +1009,7 @@
         }
         result += service_id+"</div></td>";
         result += "<td><div id='tripTerminus' style='margin-left:5px;width:240px;padding-top:2px;padding-bottom:2px;border-top:solid 10px #"+routesArray[terminus_service_id]['6']+";border-radius:8px;";
-        if (terminus_service_id == 7){
+        if (terminus_service_id == 6){
           result += "background-color:#FFFFFF;color:#000000;font-style:italic;font-weight:bold;'>";
         }
         else { 
@@ -1137,7 +1137,7 @@
 
       stopTimesList += "<tr class='stoprow', onclick='StationSelection(this)', data-route='"+document.getElementById(stop_name).getAttribute('data-route')+"', data-code='"+document.getElementById(stop_name).getAttribute('data-code')+"', data-stop='"+stop_id+"', data-inform='"+document.getElementById(stop_name).getAttribute('data-inform')+"', id='"+stop_name+"', style='text-decoration:none'>";
       stopTimesList += "<td onclick=window.location='#"+document.getElementById(stop_name).getAttribute('data-stop')+"'><div style='text-align:center;margin:5px 15px;width:240px;padding-top:2px;padding-bottom:2px;border-top:solid 10px #"+routesArray[stop_service_id]['6']+";border-radius:8px;";
-      if (stop_service_id == 7) {
+      if (stop_service_id == 6) {
         stopTimesList += "background-color:#FFFFFF;color:#000000;font-style:italic;font-weight:bold;'>";
       }
       else {
