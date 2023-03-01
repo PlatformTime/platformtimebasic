@@ -208,7 +208,8 @@
 
   <div class="listContainer hidden" id="stopList">
     <table id=stopListTable>
-      <th>Stopping At:</th>
+      <th colspan="3">Stopping At:</th>
+      <th class="occupancyTable hidden" id="occupancyHeader" style="width:auto;text-align:center;" colspan="2">Occupancy</th>
       <tbody id="stopListBody"></tbody>
     </table>
   </div>
@@ -908,8 +909,7 @@
       var delayed_hour = "";
       var AMPM = "";
       var timeArray = new Array();
-      var track = "Not Posted"
-
+      
       /* Sets time to 12-hr AM/PM */
 
       timeArray = tripArray[i]['7'].split(':')
@@ -943,6 +943,7 @@
       var delay = "";
       var trainScheduleRelationship = "";
       var stopScheduleRelationship = "";
+      var track = "Not Posted";
  
         for (j = 0; j < globalFeed.entity.length; j++) {
 
@@ -958,56 +959,32 @@
 
             for (k = 0; k < globalFeed.entity[j].tripUpdate.stopTimeUpdate.length; k++) {
 
-              stopScheduleRelationship = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].scheduleRelationship;
-
-              if (stopScheduleRelationship == 2) {
-                delay = 0;
-                currentStopSeq = Number(globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopSequence);
+              if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId == stopid) {
                 
-                track = "Not Posted"
+                stopScheduleRelationship = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].scheduleRelationship;                
+                
+                track = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"]
+                  track = track.slice(2)
+                if (track == "") {
+                  track = "Not Posted"
+                }
 
-                /*if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"] != ""){                  
-                  track = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"];
-                  track = track.slice(2);
+                if (stopScheduleRelationship == 2) {
+                  delay = 0;
                 }
                 else {
-                  track = "Not Posted"
-                }*/
-              }
-              else if (currentStop == globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId){
-                delay = 0;/*
-                currentStopSeq = Number(stopSeq);
-                if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"] != ""){                  
-                  track = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"];
-                  track = track.slice(2);
+                  if (stopSeq == "1") {
+                    if (typeof globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].departure != "undefined"){
+                      delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].departure.delay;
+                    }
+                  }
+                  else {
+                    if (typeof globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival != "undefined"){
+                      delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival.delay;
+                    }
+                  }
                 }
-                else {
-                  track = "Not Posted"
-                }
-              }
-              else if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId == currentStop) {*/
-                currentStopSeq = Number(globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopSequence);
               }              
-              else if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId == stopid) {
-                if (stopSeq == "1") {
-                  if (typeof globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].departure != "undefined"){
-                    delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].departure.delay;
-                  }
-                }
-                else {
-                  if (typeof globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival != "undefined"){
-                    delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival.delay;
-                  }
-                }
-
-                if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"] != ""){
-                  track = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"];
-                  track = track.slice(2);
-                }     
-                else {
-                  track = "Not Posted"
-                }         
-              }
             }
           }
         }
@@ -1153,6 +1130,13 @@
   var dataRowSelection
 
   function stoppingAt(tripSelection) {
+
+    if (document.getElementById('occupancyHeader').classList.contains('hidden')) {
+    }
+    else {
+    document.getElementById('occupancyHeader').classList.add('hidden');
+    }
+
     var stopList = document.getElementById('stopList');
     var stopTimesList = "";
 
@@ -1225,12 +1209,20 @@
       
       for (j = 0; j < globalFeed.entity.length; j++) {
         if (globalFeed.entity[j].id.slice(0,1) == "V" && globalFeed.entity[j].vehicle.trip.tripId == tripId) {
+
           if (globalFeed.entity[j].vehicle.stopId == stop_id && tripDate == currentDate) {
             stopTimesList += "<td onclick=window.location='#"+document.getElementById(stop_name).getAttribute('data-code')+"' class='stoptime' style='padding-right:15px;padding-top:2px;'><img src='images/train.png' height='20'></td>";
           }
           else {
             stopTimesList += "<td style='width:auto;'></td>"
           }
+
+          /*if (document.getElementById('occupancyHeader').classList.contains('hidden')) {
+            document.getElementById('occupancyHeader').classList.remove('hidden')
+          }
+
+          stopTimesList += "<td style='width:auto;'>"+globalFeed.entity[j].vehicle.multiCarriageDetails[0].occupancyStatus+"</td>"
+          stopTimesList += "<td style='width:auto;font-style:italic;'>"+globalFeed.entity[j].vehicle.multiCarriageDetails[0].label+"</td>"*/
         }
       }
       stopTimesList += "</tr>";
@@ -1239,6 +1231,20 @@
     document.getElementById('stopListBody').innerHTML = stopTimesList;
 
   }
+
+  /*function trainOccupancy(j,stopTimesList) {
+
+    if (document.getElementById('occupancyHeader').classList.contains('hidden')) {
+      document.getElementById('occupancyHeader').classList.remove('hidden')
+    }
+    
+    for (k = 0; k < globalFeed.entity[j].vehicle.multiCarriageDetails.length; k++) {
+      stopTimesList += "<td style='width:auto;'>"+globalFeed.entity[j].vehicle.multiCarriageDetails[k].occupancyStatus+"</td>"
+      stopTimesList += "<td style='width:auto;font-style:italic;'>"+globalFeed.entity[j].vehicle.multiCarriageDetails[k].label+"</td>"
+    }
+
+    return stopTimesList;
+  }*/
 
   /* Add alerts to table */
 
