@@ -1261,7 +1261,7 @@
     var alertButton = document.getElementById('alertButton');
     var alertResults = "";
     
-    if (Array.isArray(alertFeed)) {
+    /*if (Array.isArray(alertFeed)) {*/
       for (i = 0; i < alertFeed.entity.length; i++){
         for (j = 0; j < alertFeed.entity[i].alert.activePeriod.length; j++){
           var alertStart = alertFeed.entity[i].alert.activePeriod[0].start
@@ -1289,7 +1289,7 @@
           }
         }
       }
-    }
+    /*}*/
     if (alertResults == "") {
       alertResults = "<tr><td>No alerts at this time.</td></tr>"
       alertButton.classList.add('hidden');
