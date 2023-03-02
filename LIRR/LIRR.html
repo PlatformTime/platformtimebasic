@@ -1317,11 +1317,12 @@
     }
   }
 
+  var alertResults = "";
+  
   function getAlerts() {
 
     var alertButton = document.getElementById('alertButton');
-    var alertResults = "";
-    
+        
     try {
       for (i = 0; i < alertFeed.entity.length; i++){
         for (j = 0; j < alertFeed.entity[i].alert.activePeriod.length; j++){
