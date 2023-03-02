@@ -1228,6 +1228,8 @@
       
       for (j = 0; j < globalFeed.entity.length; j++) {
         if (globalFeed.entity[j].id.slice(0,1) == "V" && globalFeed.entity[j].vehicle.trip.tripId == tripId) {
+          
+          vehicleId = Number(globalFeed.entity[j].vehicle.vehicle.label);
 
           if (globalFeed.entity[j].vehicle.stopId == stop_id && tripDate == currentDate) {
             stopTimesList += "<td onclick=window.location='#"+document.getElementById(stop_name).getAttribute('data-code')+"' class='stoptime' style='padding-right:15px;padding-top:2px;'><img src='images/train.png' height='20'></td>";
@@ -1317,7 +1319,7 @@
     var alertButton = document.getElementById('alertButton');
     var alertResults = "";
     
-    /*if (Array.isArray(alertFeed)) {*/
+    try {
       for (i = 0; i < alertFeed.entity.length; i++){
         for (j = 0; j < alertFeed.entity[i].alert.activePeriod.length; j++){
           var alertStart = alertFeed.entity[i].alert.activePeriod[0].start
@@ -1345,7 +1347,13 @@
           }
         }
       }
-    /*}*/
+    }
+    catch {
+      console.log("Alert feed not loaded.")
+    }
+    finally {
+      alertResults = "";
+    }
     if (alertResults == "") {
       alertResults = "<tr><td>No alerts at this time.</td></tr>"
       alertButton.classList.add('hidden');
