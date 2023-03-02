@@ -520,11 +520,11 @@
     setButtonFormat();
     document.getElementById('wbDataButton').classList.add('hidden');
     document.getElementById('ebDataButton').classList.add('hidden');
-    drawTables();
     await sleep(400);
     getAlerts();
     await sleep(400);
     refreshData();
+    drawTables();
    }
 
   window.onhashchange = function() {
