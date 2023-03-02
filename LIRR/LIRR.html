@@ -501,6 +501,12 @@
     rawDate = new Date();
     currentDate = rawDate.getFullYear()+''+("0"+(rawDate.getMonth()+1)).slice(-2)+''+("0"+rawDate.getDate()).slice(-2);
     currentTime = rawDate.toLocaleTimeString('en-US', {hour12: false});
+    
+    var r=document.querySelector(':root');
+    
+    r.style.setProperty('--westtabledisplay', 'none');
+    r.style.setProperty('--easttabledisplay', 'none');
+    r.style.setProperty('--headertabledisplay', 'none');
 
     /* Clears header */
 
@@ -612,10 +618,6 @@
   async function drawTables() {
     var r=document.querySelector(':root');
     
-    r.style.setProperty('--westtabledisplay', 'none');
-    r.style.setProperty('--easttabledisplay', 'none');
-    r.style.setProperty('--headertabledisplay', 'none');
-    await sleep(300);
     r.style.setProperty('--headertabledisplay', 'show');
 
     if (stopid == '118' || stopid == '237' || stopid == '241' || stopid == '349') {
