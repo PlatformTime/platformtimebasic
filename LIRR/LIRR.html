@@ -364,10 +364,10 @@
     stoptimesTXT = stoptimesTXT.replace(/["]+/g, '');
     stoptimesArray = stoptimesTXTToArray(stoptimesTXT);
     /*console.table(stoptimesArray);*/
+    getAlerts();
+    await sleep(400);
     refreshData();
     await sleep(400);
-    /*getAlerts();
-    await sleep(400);*/
     checkHash();
 
     return stoptimesTXT;
@@ -521,11 +521,11 @@
     document.getElementById('wbDataButton').classList.add('hidden');
     document.getElementById('ebDataButton').classList.add('hidden');
     drawTables();
-    await sleep(200);
+    await sleep(400);
+    getAlerts();
+    await sleep(400);
     refreshData();
-    await sleep(200);
-    /*getAlerts();*/
-  }
+   }
 
   window.onhashchange = function() {
     if(window.location.hash) {
