@@ -364,9 +364,9 @@
     stoptimesTXT = stoptimesTXT.replace(/["]+/g, '');
     stoptimesArray = stoptimesTXTToArray(stoptimesTXT);
     /*console.table(stoptimesArray);*/
-    getAlerts();
-    await sleep(400);
     refreshData();
+    await sleep(400);
+    getAlerts();
     await sleep(400);
     checkHash();
 
@@ -522,8 +522,9 @@
     document.getElementById('ebDataButton').classList.add('hidden');
     drawTables();
     await sleep(200);
-    getAlerts();
     refreshData();
+    await sleep(200);
+    getAlerts();
   }
 
   window.onhashchange = function() {
