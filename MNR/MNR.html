@@ -656,8 +656,17 @@ window.onclick = function(event) {
   /*PUSH ADDED TRIPS*/
 
 function addedTrips() {
+  var len = 0;
 
-  for (i = 0; i < globalFeed.entity.length; i++) {
+  try {
+    len = globalFeed.entity.length;
+  }
+  catch {
+    len = 0;
+    console.log("Live feed not loaded.")
+  }
+
+  for (i = 0; i < len; i++) {
     if (globalFeed.entity[i].id.slice(-2) == '_T') {
       if (globalFeed.entity[i].tripUpdate.trip.scheduleRelationship == 1) {
 
@@ -760,6 +769,16 @@ function addedTrips() {
   /* PUSH ADDED STOPS */ 
 
   function addedStops() {
+
+    var len = 0;
+
+    try {
+      len = globalFeed.entity.length;
+    }
+    catch {
+      len = 0;
+      console.log("Live feed not loaded.")
+    }
 
     for (i = 0; i < globalFeed.entity.length; i++) {
       if (globalFeed.entity[i].id.slice(-2) == '_T') {
