@@ -8,7 +8,7 @@
   <link href="styles/style.css" rel="stylesheet" type="text/css">
   <link rel="icon" type="image/png" href="images/train.png">
   <!-- Get live data on load (priming) -->
-  <script src="/platformtimebasic/LIRR/scripts/bundle.js" type="text/javascript"></script>
+  <script src="/LIRR/scripts/bundle.js" type="text/javascript"></script>
   <!--<script src="/platformtimebasic/LIRR/scripts/getlivedata.js" type="module"></script>-->
 </head>
 
@@ -578,7 +578,7 @@
     console.log('Retrieving trips from '+station+' between '+startDate+' '+startTime+' and '+endDate+' '+endTime);
 
     var script = document.createElement('script');
-    script.src = '/platformtimebasic/LIRR/scripts/bundle.js';
+    script.src = '/LIRR/scripts/bundle.js';
     /*script.src = '/platformtimebasic/LIRR/scripts/getlivedata.js';*/
     var head = document.getElementsByTagName("head")[0];
     head.appendChild(script);
@@ -1312,7 +1312,20 @@
 
     if (trainLength >= len){
       for (i = 0; i < globalFeed.entity.length; i++) {
-        if (globalFeed.entity[i].id.slice(0,1) == "V" && globalFeed.entity[i].vehicle.trip.tripId == tripId) {
+
+        try {
+            if (globalFeed.entity[i].id.slice(0,1) == "V") {
+              vehicleTripId = globalFeed.entity[i].vehicle.trip.tripId;
+            }
+          }
+        catch {
+          if (globalFeed.entity[i].id.slice(0,1) == "V") {
+            vehicleTripId = "";
+            console.log("Vehicle "+globalFeed.entity[i].vehicle.vehicle.label+": Trip Id missing. Skipped.");
+          }
+        }
+
+        if (globalFeed.entity[i].id.slice(0,1) == "V" && vehicleTripId == tripId) {
           for (j = rowCount-1; j < trainLength; j++) {
             var occupancyStatus = globalFeed.entity[i].vehicle.multiCarriageDetails[j].occupancyStatus
             stopTimesList += "<tr style='height:44.44px;'><td style='width:auto'><td style='width:auto'><td style='width:auto'>";
