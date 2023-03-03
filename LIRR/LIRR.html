@@ -8,7 +8,7 @@
   <link href="styles/style.css" rel="stylesheet" type="text/css">
   <link rel="icon" type="image/png" href="images/train.png">
   <!-- Get live data on load (priming) -->
-  <script src="/platformtimebasic/LIRR/scripts/bundle.js" type="text/javascript"></script>
+  <script src="/LIRR/scripts/bundle.js" type="text/javascript"></script>
   <!--<script src="/platformtimebasic/LIRR/scripts/getlivedata.js" type="module"></script>-->
 </head>
 
@@ -501,12 +501,6 @@
     rawDate = new Date();
     currentDate = rawDate.getFullYear()+''+("0"+(rawDate.getMonth()+1)).slice(-2)+''+("0"+rawDate.getDate()).slice(-2);
     currentTime = rawDate.toLocaleTimeString('en-US', {hour12: false});
-    
-    var r=document.querySelector(':root');
-    
-    r.style.setProperty('--westtabledisplay', 'none');
-    r.style.setProperty('--easttabledisplay', 'none');
-    r.style.setProperty('--headertabledisplay', 'none');
 
     /* Clears header */
 
@@ -526,12 +520,11 @@
     setButtonFormat();
     document.getElementById('wbDataButton').classList.add('hidden');
     document.getElementById('ebDataButton').classList.add('hidden');
-    await sleep(400);
-    getAlerts();
-    await sleep(400);
-    refreshData();
     drawTables();
-   }
+    await sleep(200);
+    getAlerts();
+    refreshData();
+  }
 
   window.onhashchange = function() {
     if(window.location.hash) {
@@ -585,7 +578,7 @@
     console.log('Retrieving trips from '+station+' between '+startDate+' '+startTime+' and '+endDate+' '+endTime);
 
     var script = document.createElement('script');
-    script.src = '/platformtimebasic/LIRR/scripts/bundle.js';
+    script.src = '/LIRR/scripts/bundle.js';
     /*script.src = '/platformtimebasic/LIRR/scripts/getlivedata.js';*/
     var head = document.getElementsByTagName("head")[0];
     head.appendChild(script);
@@ -618,6 +611,10 @@
   async function drawTables() {
     var r=document.querySelector(':root');
     
+    r.style.setProperty('--westtabledisplay', 'none');
+    r.style.setProperty('--easttabledisplay', 'none');
+    r.style.setProperty('--headertabledisplay', 'none');
+    await sleep(300);
     r.style.setProperty('--headertabledisplay', 'show');
 
     if (stopid == '118' || stopid == '237' || stopid == '241' || stopid == '349') {
@@ -957,10 +954,23 @@
       var trainScheduleRelationship = "";
       var stopScheduleRelationship = "";
       var track = "Not Posted";
+      var vehicleTripId = "";
  
         for (j = 0; j < globalFeed.entity.length; j++) {
 
-          if (globalFeed.entity[j].id.slice(0,1) == "V" && tripId == globalFeed.entity[j].vehicle.trip.tripId) {
+          try {
+            if (globalFeed.entity[j].id.slice(0,1) == "V") {
+              vehicleTripId = globalFeed.entity[j].vehicle.trip.tripId;
+            }
+          }
+          catch {
+            if (globalFeed.entity[j].id.slice(0,1) == "V") {
+              vehicleTripId = "";
+              console.log("Vehicle "+globalFeed.entity[j].vehicle.vehicle.label+": Trip Id missing. Skipped.");
+            }
+          }
+
+          if (globalFeed.entity[j].id.slice(0,1) == "V" && tripId == vehicleTripId) {
             currentStatus = globalFeed.entity[j].vehicle.currentStatus;
             currentStop = globalFeed.entity[j].vehicle.stopId;
             currentStopSeq = globalFeed.entity[j].vehicle.currentStopSequence;
@@ -1171,6 +1181,7 @@
     var trainLength = 0;
     var rowCount = 0;
     var vehicleId = 0;
+    var vehicleTripId = "";
 
     dataRowSelection = "";
     dataRowSelection = tripSelection.getAttribute('id');
@@ -1228,9 +1239,23 @@
       }
       
       stopTimesList += "'>"+stop_time+"</div></td>";
-      
+
+           
       for (j = 0; j < globalFeed.entity.length; j++) {
-        if (globalFeed.entity[j].id.slice(0,1) == "V" && globalFeed.entity[j].vehicle.trip.tripId == tripId) {
+
+        try {
+            if (globalFeed.entity[j].id.slice(0,1) == "V") {
+              vehicleTripId = globalFeed.entity[j].vehicle.trip.tripId;
+            }
+          }
+        catch {
+          if (globalFeed.entity[j].id.slice(0,1) == "V") {
+            vehicleTripId = "";
+            console.log("Vehicle "+globalFeed.entity[j].vehicle.vehicle.label+": Trip Id missing. Skipped.");
+          }
+        }
+
+        if (globalFeed.entity[j].id.slice(0,1) == "V" && vehicleTripId == tripId) {
           
           vehicleId = Number(globalFeed.entity[j].vehicle.vehicle.label);
 
@@ -1317,11 +1342,11 @@
     }
   }
 
-    
   function getAlerts() {
-    var alertResults = "";
+
     var alertButton = document.getElementById('alertButton');
-        
+    var alertResults = "";
+    
     try {
       for (i = 0; i < alertFeed.entity.length; i++){
         for (j = 0; j < alertFeed.entity[i].alert.activePeriod.length; j++){
@@ -1354,7 +1379,7 @@
     catch {
       console.log("Alert feed not loaded.")
     }
-    if (alertResults == "" || alertResults == "<tr><td>No alerts at this time.</td></tr>") {
+    if (alertResults == "") {
       alertResults = "<tr><td>No alerts at this time.</td></tr>"
       alertButton.classList.add('hidden');
     }
