@@ -864,7 +864,7 @@ function addedTrips() {
       result += "<td colspan=5><div><i>There are no scheduled trains in the next 24 hours.</i><div></td>"
     }
 
-    if (len - startTimeIndex < 6) {
+    if (len - startTimeIndex < 6 && len - startTimeIndex < 0) {
       result += "<td colspan=5><div><i>There are few trains in the near future. Here are trains for the next 24 hours.</i><div></td>"
     }
 
@@ -1243,52 +1243,57 @@ function addedTrips() {
     var alertButton = document.getElementById('alertButton');
     var alertResults = "";
 
-    for (i = 0; i < alertFeed.entity.length; i++){
-      if (alertFeed.entity[i].id.includes('MNR')){
-        for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
-          if (stopid == alertFeed.entity[i].alert.informedEntity[k].stopId) {
-            alertResults += "<tr><td class='alertTD'><br>"+alertFeed.entity[i].alert.headerText.translation[0].text+"<p></p></td></tr>"
+    try {
+      for (i = 0; i < alertFeed.entity.length; i++){
+        if (alertFeed.entity[i].id.includes('MNR')){
+          for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
+            if (stopid == alertFeed.entity[i].alert.informedEntity[k].stopId) {
+              alertResults += "<tr><td class='alertTD'><br>"+alertFeed.entity[i].alert.headerText.translation[0].text+"<p></p></td></tr>"
+            }
+            break;
           }
-          break;
         }
-      }
-      else if (alertFeed.entity[i].id.includes('alert')) {
-        for (j = 0; j < alertFeed.entity[i].alert.activePeriod.length; j++) {
-          var alertStart = alertFeed.entity[i].alert.activePeriod[j].start
-          var alertEnd = 9999999999
-          if (unixTime > alertStart && unixTime < alertEnd) {
-            for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
-              if (informedRoutes.includes(alertFeed.entity[i].alert.informedEntity[k].routeId)) {
-                alertResults += "<tr><td class='alertTD'><br>"
-                alertResults += alertFeed.entity[i].alert.headerText.translation[0].text
-                if (alertFeed.entity[i].alert.descriptionText == null) {
-                  alertResults += "</td></tr>"
+        else if (alertFeed.entity[i].id.includes('alert')) {
+          for (j = 0; j < alertFeed.entity[i].alert.activePeriod.length; j++) {
+            var alertStart = alertFeed.entity[i].alert.activePeriod[j].start
+            var alertEnd = 9999999999
+            if (unixTime > alertStart && unixTime < alertEnd) {
+              for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
+                if (informedRoutes.includes(alertFeed.entity[i].alert.informedEntity[k].routeId)) {
+                  alertResults += "<tr><td class='alertTD'><br>"
+                  alertResults += alertFeed.entity[i].alert.headerText.translation[0].text
+                  if (alertFeed.entity[i].alert.descriptionText == null) {
+                    alertResults += "</td></tr>"
+                  }
+                  else {
+                    alertResults += alertFeed.entity[i].alert.descriptionText.translation[1].text
+                    alertResults += "</td></tr>"
+                  }
                 }
-                else {
-                  alertResults += alertFeed.entity[i].alert.descriptionText.translation[1].text
-                  alertResults += "</td></tr>"
-                }
+                break;
               }
-              break;
+            }
+          }
+        }
+        else {
+          for (j = 0; j < alertFeed.entity[i].alert.activePeriod.length; j++) {
+            var alertStart = alertFeed.entity[i].alert.activePeriod[j].start
+            var alertEnd = alertFeed.entity[i].alert.activePeriod[j].end
+            if (unixTime > alertStart && unixTime < alertEnd) {
+              for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
+                if (informedRoutes.includes(alertFeed.entity[i].alert.informedEntity[k].routeId)) {
+                  alertResults += "<tr><td class='alertTD'><br>"+alertFeed.entity[i].alert.headerText.translation[1].text
+                  alertResults += alertFeed.entity[i].alert.descriptionText.translation[1].text+"</td></tr>"
+                }
+                break;
+              }
             }
           }
         }
       }
-      else {
-        for (j = 0; j < alertFeed.entity[i].alert.activePeriod.length; j++) {
-          var alertStart = alertFeed.entity[i].alert.activePeriod[j].start
-          var alertEnd = alertFeed.entity[i].alert.activePeriod[j].end
-          if (unixTime > alertStart && unixTime < alertEnd) {
-            for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
-              if (informedRoutes.includes(alertFeed.entity[i].alert.informedEntity[k].routeId)) {
-                alertResults += "<tr><td class='alertTD'><br>"+alertFeed.entity[i].alert.headerText.translation[1].text
-                alertResults += alertFeed.entity[i].alert.descriptionText.translation[1].text+"</td></tr>"
-              }
-              break;
-            }
-          }
-        }
-      }
+    }
+    catch {
+      console.log("Alert feed not loaded.")
     }
 
     if (alertResults == "") {
