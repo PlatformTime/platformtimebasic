@@ -1034,6 +1034,7 @@
 
               if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopId == stopid) {
                 
+                stopSeq = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].stopSequence;
                 stopScheduleRelationship = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].scheduleRelationship;                
                 
                 track = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"]
@@ -1155,7 +1156,7 @@
         else if (trainScheduleRelationship == 3 && tripDate == currentDate) {
           result += "<td style='padding-top:3px;color:#DD0000;font-weight:bold;'>NO SERVICE</td>"
         }
-        else if (stopScheduleRelationship == 1 && tripDate == currentDate) {
+        else if ((stopScheduleRelationship == 1 && tripDate == currentDate) || (currentStop != stopid && currentStopSeq == stopSeq && tripDate == currentDate)) {
           result += "<td style='padding-top:3px;color:#DD0000;font-weight:bold;'>SKIPPED</td>"
         }
         else if (currentStopSeq == stopSeq && stopSeq == 1 && currentStatus == 1 && tripDate == currentDate) {
