@@ -477,6 +477,7 @@ tr.stoprow:hover > td.train, tr.stoprow:focus > td.train {
 #alertListTable {
   position: absolute;
   margin: 0 auto;
+  margin-left: 20px;
   padding: 0;
   padding-bottom: 5px;
   z-index: 99;
