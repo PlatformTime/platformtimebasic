@@ -176,7 +176,7 @@
       <th>Service</th>
       <th>Terminus</th>
       <th>Scheduled Time</th>
-      <th>Track</th>
+      <th id="trackHeader1">Track</th>
       <th>Status</th>
     </tr>
     <tbody id="wbData"></tbody>
@@ -195,7 +195,7 @@
       <th>Service</th>
       <th>Terminus</th>
       <th>Scheduled Time</th>
-      <th>Track</th>
+      <th id="trackHeader2">Track</th>
       <th>Status</th>
     </tr>
     <tbody id="ebData"></tbody>
@@ -336,7 +336,7 @@
     stopsTXT = stopsTXT.replace(/["]+/g, '');
     stopsArray = stopsTXTToArray(stopsTXT);
     /*console.table(stopsArray);*/
-    loadStopTimes();
+    loadTrackPlatform();
 
     return stopsTXT;
   }
@@ -347,6 +347,35 @@
       return row.split(",");
     });
   }
+
+  /* Track Platform Array */
+
+  var trackPlatformArray = [];
+
+  function loadTrackPlatform() {
+    var trackTXT = null;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "data/track.txt", false);
+    xmlhttp.send();
+    if (xmlhttp.status==200) {
+      trackTXT = xmlhttp.responseText;
+    }
+
+    trackTXT = trackTXT.replace(/["]+/g, '');
+    trackPlatformArray = trackTXTToArray(trackTXT);
+    /*console.table(trackPlatformArray);*/
+    loadStopTimes();
+
+    return trackTXT;
+  }
+
+  function trackTXTToArray(trackTXT) {
+    rows = trackTXT.split("\r\n");
+    return rows.map(function (row) {
+      return row.split(",");
+    });
+  } 
+
 
   /* Stop Times Array */
 
@@ -501,6 +530,26 @@
     rawDate = new Date();
     currentDate = rawDate.getFullYear()+''+("0"+(rawDate.getMonth()+1)).slice(-2)+''+("0"+rawDate.getDate()).slice(-2);
     currentTime = rawDate.toLocaleTimeString('en-US', {hour12: false});
+
+    /* Determine Track or Platform header */
+
+    for (i = 1; i < trackPlatformArray.length; i++) {
+      if (trackPlatformArray[i]['0'] === stopid) {
+        document.getElementById('trackHeader1').innerHTML = "Track";
+        document.getElementById('trackHeader2').innerHTML = "Track";
+        break;
+      }
+      else if (trackPlatformArray[i]['1'] === stopid) {
+        document.getElementById('trackHeader1').innerHTML = "Platform";
+        document.getElementById('trackHeader2').innerHTML = "Platform";
+        break;
+      }
+      else if (trackPlatformArray[i]['2'] === stopid) {
+        document.getElementById('trackHeader1').innerHTML = "Platform";
+        document.getElementById('trackHeader2').innerHTML = "Platform";
+        break;
+      }
+    }
 
     /* Clears header */
 
