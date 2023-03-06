@@ -1026,8 +1026,18 @@
       var stopScheduleRelationship = "";
       var track = "Not Posted";
       var vehicleTripId = "";
+      var len = 0;
+
+      try {
+        len = globalFeed.entity.length;
+      }
+      catch {
+        len = 0;
+        console.log("Live feed not loaded.")
+      }
+      
  
-        for (j = 0; j < globalFeed.entity.length; j++) {
+        for (j = 0; j < len; j++) {
 
           try {
             if (globalFeed.entity[j].id.slice(0,1) == "V") {
@@ -1267,6 +1277,15 @@
       var AMPM = "";
       var timeArray = new Array();
       var convertedTime = [];
+      var globalFeedLen = 0;
+
+      try {
+        globalFeedLen = globalFeed.entity.length;
+      }
+      catch {
+        globalFeedLen = 0;
+        console.log("Live feed not loaded.")
+      }
       
       /* Sets time to 12-hr AM/PM */
 
@@ -1313,7 +1332,7 @@
       stopTimesList += "'>"+stop_time+"</div></td>";
 
            
-      for (j = 0; j < globalFeed.entity.length; j++) {
+      for (j = 0; j < globalFeedLen; j++) {
 
         try {
             if (globalFeed.entity[j].id.slice(0,1) == "V") {
@@ -1383,7 +1402,7 @@
     }
 
     if (trainLength >= len){
-      for (i = 0; i < globalFeed.entity.length; i++) {
+      for (i = 0; i < globalFeedLen; i++) {
 
         try {
             if (globalFeed.entity[i].id.slice(0,1) == "V") {
