@@ -8,7 +8,7 @@
   <link href="styles/style.css" rel="stylesheet" type="text/css">
   <link rel="icon" type="image/png" href="images/train.png">
   <!-- Get live data on load (priming) -->
-  <script src="/platformtimebasic/MNR/scripts/bundle.js" type="text/javascript"></script>
+  <script src="/MNR/scripts/bundle.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -32,119 +32,119 @@
       </div>
 
       <div id="StationList" class="dropdown-content">
-        <a href="#5AN" onclick= "StationSelection(this)" data-route="6" data-stop="168" data-inform="[6]" data-code="5AN" id="Ansonia">Ansonia</a>
-        <a href="#1AT" onclick= "StationSelection(this)" data-route="2" data-stop="99" data-inform="[2]" data-code="1AT" id="Appalachian Trail">Appalachian Trail</a>
-        <a href="#0AR" onclick= "StationSelection(this)" data-route="1" data-stop="24" data-inform="[1]" data-code="0AR" id="Ardsley-on-Hudson">Ardsley-on-Hudson</a>
-        <a href="#0BC" onclick= "StationSelection(this)" data-route="1" data-stop="46" data-inform="[1]" data-code="0BC" id="Beacon">Beacon</a>
-        <a href="#5BF" onclick= "StationSelection(this)" data-route="6" data-stop="170" data-inform="[6]" data-code="5BF" id="Beacon Falls">Beacon Falls</a>
-        <a href="#1BH" onclick= "StationSelection(this)" data-route="2" data-stop="85" data-inform="[2]" data-code="1BH" id="Bedford Hills">Bedford Hills</a>
-        <a href="#4BE" onclick= "StationSelection(this)" data-route="5" data-stop="164" data-inform="[5]" data-code="4BE" id="Bethel">Bethel</a>
-        <a href="#1BG" onclick= "StationSelection(this)" data-route="2" data-stop="57" data-inform="[2]" data-code="1BG" id="Botanical Garden">Botanical Garden</a>
-        <a href="#4BV" onclick= "StationSelection(this)" data-route="5" data-stop="162" data-inform="[5]" data-code="4BV" id="Branchville">Branchville</a>
-        <a href="#0BK" onclick= "StationSelection(this)" data-route="1" data-stop="44" data-inform="[1]" data-code="0BK" id="Breakneck Ridge">Breakneck Ridge</a>
-        <a href="#1BW" onclick= "StationSelection(this)" data-route="2" data-stop="91" data-inform="[2]" data-code="1BW" id="Brewster">Brewster</a>
-        <a href="#2BP" onclick= "StationSelection(this)" data-route="3" data-stop="140" data-inform="[3,6]" data-code="2BP" id="Bridgeport">Bridgeport</a>
-        <a href="#1BX" onclick= "StationSelection(this)" data-route="2" data-stop="65" data-inform="[2]" data-code="1BX" id="Bronxville">Bronxville</a>
-        <a href="#4CA" onclick= "StationSelection(this)" data-route="5" data-stop="161" data-inform="[5]" data-code="4CA" id="Cannondale">Cannondale</a>
-        <a href="#1CQ" onclick= "StationSelection(this)" data-route="2" data-stop="83" data-inform="[2]" data-code="1CQ" id="Chappaqua">Chappaqua</a>
-        <a href="#0CS" onclick= "StationSelection(this)" data-route="1" data-stop="43" data-inform="[1]" data-code="0CS" id="Cold Spring">Cold Spring</a>
-        <a href="#0CT" onclick= "StationSelection(this)" data-route="1" data-stop="37" data-inform="[1]" data-code="0CT" id="Cortlandt">Cortlandt</a>
-        <a href="#2CC" onclick= "StationSelection(this)" data-route="3" data-stop="118" data-inform="[3,4,5,6]" data-code="2CC" id="Cos Cob">Cos Cob</a>
-        <a href="#1CW" onclick= "StationSelection(this)" data-route="2" data-stop="68" data-inform="[2]" data-code="1CW" id="Crestwood">Crestwood</a>
-        <a href="#1CF" onclick= "StationSelection(this)" data-route="2" data-stop="90" data-inform="[2]" data-code="1CF" id="Croton Falls">Croton Falls</a>
-        <a href="#0HM" onclick= "StationSelection(this)" data-route="1" data-stop="33" data-inform="[1]" data-code="0HM" id="Croton-Harmon">Croton-Harmon</a>
-        <a href="#4DN" onclick= "StationSelection(this)" data-route="5" data-stop="165" data-inform="[5]" data-code="4DN" id="Danbury">Danbury</a>
-        <a href="#2DA" onclick= "StationSelection(this)" data-route="3" data-stop="128" data-inform="[3,5,6]" data-code="2DA" id="Darien">Darien</a>
-        <a href="#5DE" onclick= "StationSelection(this)" data-route="6" data-stop="167" data-inform="[6]" data-code="5DE" id="Derby-Shleton">Derby-Shleton</a>
-        <a href="#0DF" onclick= "StationSelection(this)" data-route="1" data-stop="23" data-inform="[1]" data-code="0DF" id="Dobbs Ferry">Dobbs Ferry</a>
-        <a href="#1DO" onclick= "StationSelection(this)" data-route="2" data-stop="101" data-inform="[2]" data-code="1DO" id="Dover Plains">Dover Plains</a>
-        <a href="#2EN" onclick= "StationSelection(this)" data-route="3" data-stop="133" data-inform="[3,6]" data-code="2EN" id="East Norwalk">East Norwalk</a>
-        <a href="#2FF" onclick= "StationSelection(this)" data-route="3" data-stop="138" data-inform="[3,6]" data-code="2FF" id="Fairfield">Fairfield</a>
-        <a href="#2FM" onclick= "StationSelection(this)" data-route="3" data-stop="188" data-inform="[3,6]" data-code="2FM" id="Fairfield Metro">Fairfield Metro</a>
-        <a href="#1FW" onclick= "StationSelection(this)" data-route="2" data-stop="64" data-inform="[2]" data-code="1FW" id="Fleetwood">Fleetwood</a>
-        <a href="#1FO" onclick= "StationSelection(this)" data-route="2" data-stop="56" data-inform="[2]" data-inform="[2,3,4,5,6]" data-code="1FO" id="Fordham">Fordham</a>
-        <a href="#0GA" onclick= "StationSelection(this)" data-route="1" data-stop="42" data-inform="[1]" data-code="0GA" id="Garrison">Garrison</a>
-        <a href="#3GB" onclick= "StationSelection(this)" data-route="4" data-stop="153" data-inform="[4]" data-code="3GB" id="Glenbrook">Glenbrook</a>
-        <a href="#0GD" onclick= "StationSelection(this)" data-route="1" data-stop="19" data-inform="[1]" data-code="0GD" id="Glenwood">Glenwood</a>
-        <a href="#1GO" onclick= "StationSelection(this)" data-route="2" data-stop="88" data-inform="[2]" data-code="1GO" id="Goldens Bridge">Goldens Bridge</a>
-        <a href="#0NY" onclick= "StationSelection(this)" data-route="0" data-stop="1" data-inform="[1,2,3,4,5,6]" data-code="0NY" id="Grand Central">Grand Central</a>
-        <a href="#2GF" onclick= "StationSelection(this)" data-route="3" data-stop="136" data-inform="[3,6]" data-code="2GF" id="Green's Farms">Green's Farms</a>
-        <a href="#2GN" onclick= "StationSelection(this)" data-route="3" data-stop="116" data-inform="[3,4,5,6]" data-code="2GN" id="Greenwich">Greenwich</a>
-        <a href="#0GY" onclick= "StationSelection(this)" data-route="1" data-stop="20" data-inform="[1]" data-code="0GY" id="Greystone">Greystone</a>
-        <a href="#0HL" onclick= "StationSelection(this)" data-route="0" data-stop="4" data-inform="[1,2,3,4,5,6]" data-code="0HL" id="Harlem-125th St.">Harlem-125th St.</a>
-        <a href="#1WI" onclick= "StationSelection(this)" data-route="2" data-stop="100" data-inform="[2]" data-code="1WI" id="Harlem Valley-Wingdale">HM Valley-Wingdale</a>
-        <a href="#2HS" onclick= "StationSelection(this)" data-route="3" data-stop="112" data-inform="[3,4,5,6]" data-code="2HS" id="Harrison">Harrison</a>
-        <a href="#1HA" onclick= "StationSelection(this)" data-route="2" data-stop="72" data-inform="[2]" data-code="1HA" id="Hartsdale">Hartsdale</a>
-        <a href="#0HS" onclick= "StationSelection(this)" data-route="1" data-stop="22" data-inform="[1]" data-code="0HS" id="Hastings-on-Hudson">Hastings-on-Hudson</a>
-        <a href="#1HN" onclick= "StationSelection(this)" data-route="2" data-stop="80" data-inform="[2]" data-code="1HN" id="Hawthorne">Hawthorne</a>
-        <a href="#0HI" onclick= "StationSelection(this)" data-route="1" data-stop="184" data-inform="[1]" data-code="0HI" id="Highbridge Yard">Highbridge Yard</a>
-        <a href="#0IV" onclick= "StationSelection(this)" data-route="1" data-stop="25" data-inform="[1]" data-code="0IV" id="Irvington">Irvington</a>
-        <a href="#1KA" onclick= "StationSelection(this)" data-route="2" data-stop="86" data-inform="[2]" data-code="1KA" id="Katonah">Katonah</a>
-        <a href="#2LA" onclick= "StationSelection(this)" data-route="3" data-stop="110" data-inform="[3,4,5,6]" data-code="2LA" id="Larchmont">Larchmont</a>
-        <a href="#0LU" onclick= "StationSelection(this)" data-route="1" data-stop="17" data-inform="[1]" data-code="0LU" id="Ludlow">Ludlow</a>
-        <a href="#2MA" onclick= "StationSelection(this)" data-route="3" data-stop="111" data-inform="[3,4,5,6]" data-code="2MA" id="Mamaroneck">Mamaroneck</a>
-        <a href="#0MN" onclick= "StationSelection(this)" data-route="1" data-stop="40" data-inform="[1]" data-code="0MN" id="Manitou">Manitou</a>
-        <a href="#0MB" onclick= "StationSelection(this)" data-route="1" data-stop="11" data-inform="[1]" data-code="0MB" id="Marble Hill">Marble Hill</a>
-        <a href="#1ML" onclick= "StationSelection(this)" data-route="2" data-stop="54" data-inform="[2]" data-code="1ML" id="Melrose">Melrose</a>
-        <a href="#4M7" onclick= "StationSelection(this)" data-route="5" data-stop="158" data-inform="[5]" data-code="4M7" id="Merritt 7">Merritt 7</a>
-        <a href="#2MI" onclick= "StationSelection(this)" data-route="3" data-stop="145" data-inform="[3]" data-code="2MI" id="Milford">Milford</a>
-        <a href="#0MH" onclick= "StationSelection(this)" data-route="1" data-stop="9" data-inform="[1]" data-code="0MH" id="Morris Heights">Morris Heights</a>
-        <a href="#1MK" onclick= "StationSelection(this)" data-route="2" data-stop="84" data-inform="[2]" data-code="1MK" id="Mt Kisco">Mount Kisco</a>
-        <a href="#1MP" onclick= "StationSelection(this)" data-route="2" data-stop="79" data-inform="[2]" data-code="1MP" id="Mt Pleasant">Mount Pleasant</a>
-        <a href="#2ME" onclick= "StationSelection(this)" data-route="3" data-stop="105" data-inform="[3,4,5,6]" data-code="2ME" id="Mt Vernon East ">Mt Vernon East </a>
-        <a href="#1MW" onclick= "StationSelection(this)" data-route="2" data-stop="62" data-inform="[2]" data-code="1MW" id="Mt Vernon West">Mt Vernon West</a>
-        <a href="#5NA" onclick= "StationSelection(this)" data-route="6" data-stop="171" data-inform="[6]" data-code="5NA" id="Naugatuck">Naugatuck</a>
-        <a href="#3NC" onclick= "StationSelection(this)" data-route="4" data-stop="157" data-inform="[4]" data-code="3NC" id="New Canaan">New Canaan</a>
-        <a href="#0NM" onclick= "StationSelection(this)" data-route="1" data-stop="49" data-inform="[1]" data-code="0NM" id="New Hamburg">New Hamburg</a>
-        <a href="#2NH" onclick= "StationSelection(this)" data-route="3" data-stop="149" data-inform="[3]" data-code="2NH" id="New Haven">New Haven</a>
-        <a href="#2SS" onclick= "StationSelection(this)" data-route="3" data-stop="151" data-inform="[3]" data-code="2SS" id="New Haven-State St">NH-State St.</a>
-        <a href="#2NR" onclick= "StationSelection(this)" data-route="3" data-stop="108" data-inform="[3,4,5,6]" data-code="2NR" id="New Rochelle">New Rochelle</a>
-        <a href="#2NO" onclick= "StationSelection(this)" data-route="3" data-stop="127" data-inform="[3,5,6]" data-code="2NO" id="Noroton Heights">Noroton Heights</a>
-        <a href="#1NW" onclick= "StationSelection(this)" data-route="2" data-stop="76" data-inform="[2]" data-code="1NW" id="North White Plains">North White Plains</a>
-        <a href="#20G" onclick= "StationSelection(this)" data-route="3" data-stop="121" data-inform="[3,4,5,6]" data-code="2OG" id="Old Greenwich">Old Greenwich</a>
-        <a href="#0OS" onclick= "StationSelection(this)" data-route="1" data-stop="31" data-inform="[1]" data-code="0OS" id="Ossining">Ossining</a>
-        <a href="#1PA" onclick= "StationSelection(this)" data-route="2" data-stop="97" data-inform="[2]" data-code="1PA" id="Patterson">Patterson</a>
-        <a href="#1PW" onclick= "StationSelection(this)" data-route="2" data-stop="98" data-inform="[2]" data-code="1PW" id="Pawling">Pawling</a>
-        <a href="#1PE" onclick= "StationSelection(this)" data-route="1" data-stop="39" data-inform="[1]" data-code="0PE" id="Peekskill">Peekskill</a>
-        <a href="#2PH" onclick= "StationSelection(this)" data-route="3" data-stop="106" data-inform="[3,4,5,6]" data-code="2PH" id="Pelham">Pelham</a>
-        <a href="#0PM" onclick= "StationSelection(this)" data-route="1" data-stop="29" data-inform="[1]" data-code="0PM" id="Philipse Manor">Philipse Manor</a>
-        <a href="#1PV" onclick= "StationSelection(this)" data-route="2" data-stop="81" data-inform="[2]" data-code="1PV" id="Pleasantville">Pleasantville</a>
-        <a href="#2PC" onclick= "StationSelection(this)" data-route="3" data-stop="115" data-inform="[3,4,5,6]" data-code="2PC" id="Port Chester">Port Chester</a>
-        <a href="#0PO" onclick= "StationSelection(this)" data-route="1" data-stop="51" data-inform="[1]" data-code="0PO" id="Poughkeepsie">Poughkeepsie</a>
-        <a href="#1PY" onclick= "StationSelection(this)" data-route="2" data-stop="89" data-inform="[2]" data-code="1PY" id="Purdy's">Purdy's</a>
-        <a href="#4RD" onclick= "StationSelection(this)" data-route="5" data-stop="163" data-inform="[5]" data-code="4RD" id="Redding">Redding</a>
-        <a href="#0RV" onclick= "StationSelection(this)" data-route="1" data-stop="16" data-inform="[1]" data-code="0RV" id="Riverdale">Riverdale</a>
-        <a href="#2RS" onclick= "StationSelection(this)" data-route="3" data-stop="120" data-inform="[3,4,5,6]" data-code="2RS" id="Riverside">Riverside</a>
-        <a href="#2RO" onclick= "StationSelection(this)" data-route="3" data-stop="129" data-inform="[3,5,6]" data-code="2RO" id="Rowayton">Rowayton</a>
-        <a href="#2RY" onclick= "StationSelection(this)" data-route="3" data-stop="114" data-inform="[3,4,5,6]" data-code="2RY" id="Rye">Rye</a>
-        <a href="#0SB" onclick= "StationSelection(this)" data-route="1" data-stop="30" data-inform="[1]" data-code="0SB" id="Scarborough">Scarborough</a>
-        <a href="#1SC" onclick= "StationSelection(this)" data-route="2" data-stop="71" data-inform="[2]" data-code="1SC" id="Scarsdale">Scarsdale</a>
-        <a href="#5SE" onclick= "StationSelection(this)" data-route="6" data-stop="169" data-inform="[6]" data-code="5SE" id="Seymour">Seymour</a>
-        <a href="#2SN" onclick= "StationSelection(this)" data-route="3" data-stop="131" data-inform="[3,5,6]" data-code="2SN" id="South Norwalk">South Norwalk</a>
-        <a href="#1BR" onclick= "StationSelection(this)" data-route="2" data-stop="94" data-inform="[2]" data-code="1BR" id="Southeast">Southeast</a>
-        <a href="#2SP" onclick= "StationSelection(this)" data-route="3" data-stop="137" data-inform="[3,6]" data-code="2SP" id="Southport">Southport</a>
-        <a href="#3SD" onclick= "StationSelection(this)" data-route="4" data-stop="154" data-inform="[4]" data-code="3SD" id="Springdale">Springdale</a>
-        <a href="#0DV" onclick= "StationSelection(this)" data-route="1" data-stop="14" data-inform="[1]" data-code="0DV" id="Spuyten Duyvil">Spuyten Duyvil</a>
-        <a href="#2SM" onclick= "StationSelection(this)" data-route="3" data-stop="124" data-inform="[3,4,5,6]" data-code="2SM" id="Stamford">Stamford</a>
-        <a href="#2SR" onclick= "StationSelection(this)" data-route="3" data-stop="143" data-inform="[3,6]" data-code="2SR" id="Stratford">Stratford</a>
-        <a href="#3TH" onclick= "StationSelection(this)" data-route="4" data-stop="155" data-inform="[4]" data-code="3TH" id="Talmadge Hill">Talmadge Hill</a>
-        <a href="#0TT" onclick= "StationSelection(this)" data-route="1" data-stop="27" data-inform="[1]" data-code="0TT" id="Tarrytown">Tarrytown</a>
-        <a href="#1TM" onclick= "StationSelection(this)" data-route="2" data-stop="176" data-inform="[2]" data-code="1TM" id="Tenmile River">Tenmile River</a>
-        <a href="#1TR" onclick= "StationSelection(this)" data-route="2" data-stop="55" data-inform="[2]" data-code="1TR" id="Tremont">Tremont</a>
-        <a href="#1TK" onclick= "StationSelection(this)" data-route="2" data-stop="66" data-inform="[2]" data-code="1TK" id="Tuckahoe">Tuckahoe</a>
-        <a href="#0UH" onclick= "StationSelection(this)" data-route="1" data-stop="10" data-inform="[1]" data-code="0UH" id="University Heights">University Heights</a>
-        <a href="#1VA" onclick= "StationSelection(this)" data-route="2" data-stop="78" data-inform="[2]" data-code="1VA" id="Valhalla">Valhalla</a>
-        <a href="#1WF" onclick= "StationSelection(this)" data-route="2" data-stop="61" data-inform="[2]" data-code="1WF" id="Wakefield">Wakefield</a>
-        <a href="#1WA" onclick= "StationSelection(this)" data-route="2" data-stop="177" data-inform="[2]" data-code="1WA" id="Wassaic">Wassaic</a>
-        <a href="#5WB" onclick= "StationSelection(this)" data-route="6" data-stop="172" data-inform="[6]" data-code="5WB" id="Waterbury">Waterbury</a>
-        <a href="#2WH" onclick= "StationSelection(this)" data-route="3" data-stop="190" data-inform="[3]" data-code="2WH" id="West Haven">West Haven</a>
-        <a href="#2WP" onclick= "StationSelection(this)" data-route="3" data-stop="134" data-inform="[3,6]" data-code="2WP" id="Westport">Westport</a>
-        <a href="#1WP" onclick= "StationSelection(this)" data-route="2" data-stop="74" data-inform="[2]" data-code="1WP" id="White Plains">White Plains</a>
-        <a href="#1WG" onclick= "StationSelection(this)" data-route="2" data-stop="58" data-inform="[2]" data-code="1WG" id="Williams Bridge">Williams Bridge</a>
-        <a href="#4WI" onclick= "StationSelection(this)" data-route="5" data-stop="160" data-inform="[5]" data-code="4WI" id="Wilton">Wilton</a>
-        <a href="#1WN" onclick= "StationSelection(this)" data-route="2" data-stop="59" data-inform="[2]" data-code="1WN" id="Woodlawn">Woodlawn</a>
-        <a href="#0YS" onclick= "StationSelection(this)" data-route="1" data-stop="622" data-inform="[1]" data-code="0YS" id="Yankees-E153 St.">Yankees-E153 St.</a>
-        <a href="#0YK" onclick= "StationSelection(this)" data-route="1" data-stop="18" data-inform="[1]" data-code="0YK" id="Yonkers">Yonkers</a>
+        <a href="#5AN" data-route="6" data-stop="168" data-inform="[6]" data-code="5AN" id="Ansonia">Ansonia</a>
+        <a href="#1AT" data-route="2" data-stop="99" data-inform="[2]" data-code="1AT" id="Appalachian Trail">Appalachian Trail</a>
+        <a href="#0AR" data-route="1" data-stop="24" data-inform="[1]" data-code="0AR" id="Ardsley-on-Hudson">Ardsley-on-Hudson</a>
+        <a href="#0BC" data-route="1" data-stop="46" data-inform="[1]" data-code="0BC" id="Beacon">Beacon</a>
+        <a href="#5BF" data-route="6" data-stop="170" data-inform="[6]" data-code="5BF" id="Beacon Falls">Beacon Falls</a>
+        <a href="#1BH" data-route="2" data-stop="85" data-inform="[2]" data-code="1BH" id="Bedford Hills">Bedford Hills</a>
+        <a href="#4BE" data-route="5" data-stop="164" data-inform="[5]" data-code="4BE" id="Bethel">Bethel</a>
+        <a href="#1BG" data-route="2" data-stop="57" data-inform="[2]" data-code="1BG" id="Botanical Garden">Botanical Garden</a>
+        <a href="#4BV" data-route="5" data-stop="162" data-inform="[5]" data-code="4BV" id="Branchville">Branchville</a>
+        <a href="#0BK" data-route="1" data-stop="44" data-inform="[1]" data-code="0BK" id="Breakneck Ridge">Breakneck Ridge</a>
+        <a href="#1BW" data-route="2" data-stop="91" data-inform="[2]" data-code="1BW" id="Brewster">Brewster</a>
+        <a href="#2BP" data-route="3" data-stop="140" data-inform="[3,6]" data-code="2BP" id="Bridgeport">Bridgeport</a>
+        <a href="#1BX" data-route="2" data-stop="65" data-inform="[2]" data-code="1BX" id="Bronxville">Bronxville</a>
+        <a href="#4CA" data-route="5" data-stop="161" data-inform="[5]" data-code="4CA" id="Cannondale">Cannondale</a>
+        <a href="#1CQ" data-route="2" data-stop="83" data-inform="[2]" data-code="1CQ" id="Chappaqua">Chappaqua</a>
+        <a href="#0CS" data-route="1" data-stop="43" data-inform="[1]" data-code="0CS" id="Cold Spring">Cold Spring</a>
+        <a href="#0CT" data-route="1" data-stop="37" data-inform="[1]" data-code="0CT" id="Cortlandt">Cortlandt</a>
+        <a href="#2CC" data-route="3" data-stop="118" data-inform="[3,4,5,6]" data-code="2CC" id="Cos Cob">Cos Cob</a>
+        <a href="#1CW" data-route="2" data-stop="68" data-inform="[2]" data-code="1CW" id="Crestwood">Crestwood</a>
+        <a href="#1CF" data-route="2" data-stop="90" data-inform="[2]" data-code="1CF" id="Croton Falls">Croton Falls</a>
+        <a href="#0HM" data-route="1" data-stop="33" data-inform="[1]" data-code="0HM" id="Croton-Harmon">Croton-Harmon</a>
+        <a href="#4DN" data-route="5" data-stop="165" data-inform="[5]" data-code="4DN" id="Danbury">Danbury</a>
+        <a href="#2DA" data-route="3" data-stop="128" data-inform="[3,5,6]" data-code="2DA" id="Darien">Darien</a>
+        <a href="#5DE" data-route="6" data-stop="167" data-inform="[6]" data-code="5DE" id="Derby-Shleton">Derby-Shleton</a>
+        <a href="#0DF" data-route="1" data-stop="23" data-inform="[1]" data-code="0DF" id="Dobbs Ferry">Dobbs Ferry</a>
+        <a href="#1DO" data-route="2" data-stop="101" data-inform="[2]" data-code="1DO" id="Dover Plains">Dover Plains</a>
+        <a href="#2EN" data-route="3" data-stop="133" data-inform="[3,6]" data-code="2EN" id="East Norwalk">East Norwalk</a>
+        <a href="#2FF" data-route="3" data-stop="138" data-inform="[3,6]" data-code="2FF" id="Fairfield">Fairfield</a>
+        <a href="#2FM" data-route="3" data-stop="188" data-inform="[3,6]" data-code="2FM" id="Fairfield Metro">Fairfield Metro</a>
+        <a href="#1FW" data-route="2" data-stop="64" data-inform="[2]" data-code="1FW" id="Fleetwood">Fleetwood</a>
+        <a href="#1FO" data-route="2" data-stop="56" data-inform="[2]" data-inform="[2,3,4,5,6]" data-code="1FO" id="Fordham">Fordham</a>
+        <a href="#0GA" data-route="1" data-stop="42" data-inform="[1]" data-code="0GA" id="Garrison">Garrison</a>
+        <a href="#3GB" data-route="4" data-stop="153" data-inform="[4]" data-code="3GB" id="Glenbrook">Glenbrook</a>
+        <a href="#0GD" data-route="1" data-stop="19" data-inform="[1]" data-code="0GD" id="Glenwood">Glenwood</a>
+        <a href="#1GO" data-route="2" data-stop="88" data-inform="[2]" data-code="1GO" id="Goldens Bridge">Goldens Bridge</a>
+        <a href="#0NY" data-route="0" data-stop="1" data-inform="[1,2,3,4,5,6]" data-code="0NY" id="Grand Central">Grand Central</a>
+        <a href="#2GF" data-route="3" data-stop="136" data-inform="[3,6]" data-code="2GF" id="Green's Farms">Green's Farms</a>
+        <a href="#2GN" data-route="3" data-stop="116" data-inform="[3,4,5,6]" data-code="2GN" id="Greenwich">Greenwich</a>
+        <a href="#0GY" data-route="1" data-stop="20" data-inform="[1]" data-code="0GY" id="Greystone">Greystone</a>
+        <a href="#0HL" data-route="0" data-stop="4" data-inform="[1,2,3,4,5,6]" data-code="0HL" id="Harlem-125th St.">Harlem-125th St.</a>
+        <a href="#1WI" data-route="2" data-stop="100" data-inform="[2]" data-code="1WI" id="Harlem Valley-Wingdale">HM Valley-Wingdale</a>
+        <a href="#2HS" data-route="3" data-stop="112" data-inform="[3,4,5,6]" data-code="2HS" id="Harrison">Harrison</a>
+        <a href="#1HA" data-route="2" data-stop="72" data-inform="[2]" data-code="1HA" id="Hartsdale">Hartsdale</a>
+        <a href="#0HS" data-route="1" data-stop="22" data-inform="[1]" data-code="0HS" id="Hastings-on-Hudson">Hastings-on-Hudson</a>
+        <a href="#1HN" data-route="2" data-stop="80" data-inform="[2]" data-code="1HN" id="Hawthorne">Hawthorne</a>
+        <a href="#0HI" data-route="1" data-stop="184" data-inform="[1]" data-code="0HI" id="Highbridge Yard">Highbridge Yard</a>
+        <a href="#0IV" data-route="1" data-stop="25" data-inform="[1]" data-code="0IV" id="Irvington">Irvington</a>
+        <a href="#1KA" data-route="2" data-stop="86" data-inform="[2]" data-code="1KA" id="Katonah">Katonah</a>
+        <a href="#2LA" data-route="3" data-stop="110" data-inform="[3,4,5,6]" data-code="2LA" id="Larchmont">Larchmont</a>
+        <a href="#0LU" data-route="1" data-stop="17" data-inform="[1]" data-code="0LU" id="Ludlow">Ludlow</a>
+        <a href="#2MA" data-route="3" data-stop="111" data-inform="[3,4,5,6]" data-code="2MA" id="Mamaroneck">Mamaroneck</a>
+        <a href="#0MN" data-route="1" data-stop="40" data-inform="[1]" data-code="0MN" id="Manitou">Manitou</a>
+        <a href="#0MB" data-route="1" data-stop="11" data-inform="[1]" data-code="0MB" id="Marble Hill">Marble Hill</a>
+        <a href="#1ML" data-route="2" data-stop="54" data-inform="[2]" data-code="1ML" id="Melrose">Melrose</a>
+        <a href="#4M7" data-route="5" data-stop="158" data-inform="[5]" data-code="4M7" id="Merritt 7">Merritt 7</a>
+        <a href="#2MI" data-route="3" data-stop="145" data-inform="[3]" data-code="2MI" id="Milford">Milford</a>
+        <a href="#0MH" data-route="1" data-stop="9" data-inform="[1]" data-code="0MH" id="Morris Heights">Morris Heights</a>
+        <a href="#1MK" data-route="2" data-stop="84" data-inform="[2]" data-code="1MK" id="Mt Kisco">Mount Kisco</a>
+        <a href="#1MP" data-route="2" data-stop="79" data-inform="[2]" data-code="1MP" id="Mt Pleasant">Mount Pleasant</a>
+        <a href="#2ME" data-route="3" data-stop="105" data-inform="[3,4,5,6]" data-code="2ME" id="Mt Vernon East ">Mt Vernon East </a>
+        <a href="#1MW" data-route="2" data-stop="62" data-inform="[2]" data-code="1MW" id="Mt Vernon West">Mt Vernon West</a>
+        <a href="#5NA" data-route="6" data-stop="171" data-inform="[6]" data-code="5NA" id="Naugatuck">Naugatuck</a>
+        <a href="#3NC" data-route="4" data-stop="157" data-inform="[4]" data-code="3NC" id="New Canaan">New Canaan</a>
+        <a href="#0NM" data-route="1" data-stop="49" data-inform="[1]" data-code="0NM" id="New Hamburg">New Hamburg</a>
+        <a href="#2NH" data-route="3" data-stop="149" data-inform="[3]" data-code="2NH" id="New Haven">New Haven</a>
+        <a href="#2SS" data-route="3" data-stop="151" data-inform="[3]" data-code="2SS" id="New Haven-State St">NH-State St.</a>
+        <a href="#2NR" data-route="3" data-stop="108" data-inform="[3,4,5,6]" data-code="2NR" id="New Rochelle">New Rochelle</a>
+        <a href="#2NO" data-route="3" data-stop="127" data-inform="[3,5,6]" data-code="2NO" id="Noroton Heights">Noroton Heights</a>
+        <a href="#1NW" data-route="2" data-stop="76" data-inform="[2]" data-code="1NW" id="North White Plains">North White Plains</a>
+        <a href="#20G" data-route="3" data-stop="121" data-inform="[3,4,5,6]" data-code="2OG" id="Old Greenwich">Old Greenwich</a>
+        <a href="#0OS" data-route="1" data-stop="31" data-inform="[1]" data-code="0OS" id="Ossining">Ossining</a>
+        <a href="#1PA" data-route="2" data-stop="97" data-inform="[2]" data-code="1PA" id="Patterson">Patterson</a>
+        <a href="#1PW" data-route="2" data-stop="98" data-inform="[2]" data-code="1PW" id="Pawling">Pawling</a>
+        <a href="#1PE" data-route="1" data-stop="39" data-inform="[1]" data-code="0PE" id="Peekskill">Peekskill</a>
+        <a href="#2PH" data-route="3" data-stop="106" data-inform="[3,4,5,6]" data-code="2PH" id="Pelham">Pelham</a>
+        <a href="#0PM" data-route="1" data-stop="29" data-inform="[1]" data-code="0PM" id="Philipse Manor">Philipse Manor</a>
+        <a href="#1PV" data-route="2" data-stop="81" data-inform="[2]" data-code="1PV" id="Pleasantville">Pleasantville</a>
+        <a href="#2PC" data-route="3" data-stop="115" data-inform="[3,4,5,6]" data-code="2PC" id="Port Chester">Port Chester</a>
+        <a href="#0PO" data-route="1" data-stop="51" data-inform="[1]" data-code="0PO" id="Poughkeepsie">Poughkeepsie</a>
+        <a href="#1PY" data-route="2" data-stop="89" data-inform="[2]" data-code="1PY" id="Purdy's">Purdy's</a>
+        <a href="#4RD" data-route="5" data-stop="163" data-inform="[5]" data-code="4RD" id="Redding">Redding</a>
+        <a href="#0RV" data-route="1" data-stop="16" data-inform="[1]" data-code="0RV" id="Riverdale">Riverdale</a>
+        <a href="#2RS" data-route="3" data-stop="120" data-inform="[3,4,5,6]" data-code="2RS" id="Riverside">Riverside</a>
+        <a href="#2RO" data-route="3" data-stop="129" data-inform="[3,5,6]" data-code="2RO" id="Rowayton">Rowayton</a>
+        <a href="#2RY" data-route="3" data-stop="114" data-inform="[3,4,5,6]" data-code="2RY" id="Rye">Rye</a>
+        <a href="#0SB" data-route="1" data-stop="30" data-inform="[1]" data-code="0SB" id="Scarborough">Scarborough</a>
+        <a href="#1SC" data-route="2" data-stop="71" data-inform="[2]" data-code="1SC" id="Scarsdale">Scarsdale</a>
+        <a href="#5SE" data-route="6" data-stop="169" data-inform="[6]" data-code="5SE" id="Seymour">Seymour</a>
+        <a href="#2SN" data-route="3" data-stop="131" data-inform="[3,5,6]" data-code="2SN" id="South Norwalk">South Norwalk</a>
+        <a href="#1BR" data-route="2" data-stop="94" data-inform="[2]" data-code="1BR" id="Southeast">Southeast</a>
+        <a href="#2SP" data-route="3" data-stop="137" data-inform="[3,6]" data-code="2SP" id="Southport">Southport</a>
+        <a href="#3SD" data-route="4" data-stop="154" data-inform="[4]" data-code="3SD" id="Springdale">Springdale</a>
+        <a href="#0DV" data-route="1" data-stop="14" data-inform="[1]" data-code="0DV" id="Spuyten Duyvil">Spuyten Duyvil</a>
+        <a href="#2SM" data-route="3" data-stop="124" data-inform="[3,4,5,6]" data-code="2SM" id="Stamford">Stamford</a>
+        <a href="#2SR" data-route="3" data-stop="143" data-inform="[3,6]" data-code="2SR" id="Stratford">Stratford</a>
+        <a href="#3TH" data-route="4" data-stop="155" data-inform="[4]" data-code="3TH" id="Talmadge Hill">Talmadge Hill</a>
+        <a href="#0TT" data-route="1" data-stop="27" data-inform="[1]" data-code="0TT" id="Tarrytown">Tarrytown</a>
+        <a href="#1TM" data-route="2" data-stop="176" data-inform="[2]" data-code="1TM" id="Tenmile River">Tenmile River</a>
+        <a href="#1TR" data-route="2" data-stop="55" data-inform="[2]" data-code="1TR" id="Tremont">Tremont</a>
+        <a href="#1TK" data-route="2" data-stop="66" data-inform="[2]" data-code="1TK" id="Tuckahoe">Tuckahoe</a>
+        <a href="#0UH" data-route="1" data-stop="10" data-inform="[1]" data-code="0UH" id="University Heights">University Heights</a>
+        <a href="#1VA" data-route="2" data-stop="78" data-inform="[2]" data-code="1VA" id="Valhalla">Valhalla</a>
+        <a href="#1WF" data-route="2" data-stop="61" data-inform="[2]" data-code="1WF" id="Wakefield">Wakefield</a>
+        <a href="#1WA" data-route="2" data-stop="177" data-inform="[2]" data-code="1WA" id="Wassaic">Wassaic</a>
+        <a href="#5WB" data-route="6" data-stop="172" data-inform="[6]" data-code="5WB" id="Waterbury">Waterbury</a>
+        <a href="#2WH" data-route="3" data-stop="190" data-inform="[3]" data-code="2WH" id="West Haven">West Haven</a>
+        <a href="#2WP" data-route="3" data-stop="134" data-inform="[3,6]" data-code="2WP" id="Westport">Westport</a>
+        <a href="#1WP" data-route="2" data-stop="74" data-inform="[2]" data-code="1WP" id="White Plains">White Plains</a>
+        <a href="#1WG" data-route="2" data-stop="58" data-inform="[2]" data-code="1WG" id="Williams Bridge">Williams Bridge</a>
+        <a href="#4WI" data-route="5" data-stop="160" data-inform="[5]" data-code="4WI" id="Wilton">Wilton</a>
+        <a href="#1WN" data-route="2" data-stop="59" data-inform="[2]" data-code="1WN" id="Woodlawn">Woodlawn</a>
+        <a href="#0YS" data-route="1" data-stop="622" data-inform="[1]" data-code="0YS" id="Yankees-E153 St.">Yankees-E153 St.</a>
+        <a href="#0YK" data-route="1" data-stop="18" data-inform="[1]" data-code="0YK" id="Yonkers">Yonkers</a>
       </div>
     </div>
   </div>
@@ -344,6 +344,8 @@
     
     stoptimesArray = stoptimesTXTToArray(stoptimesTXT);
     /*console.table(stoptimesArray);*/
+    getAlerts();
+    await sleep(400);
     refreshData();
     await sleep(400);
     checkHash();
@@ -566,7 +568,7 @@ window.onclick = function(event) {
     console.log('Retrieving trips from '+station+' between '+startDate+' '+startTime+' and '+endDate+' '+endTime);
 
     var script = document.createElement('script');
-    script.src = '/platformtimebasic/MNR/scripts/bundle.js';
+    script.src = '/MNR/scripts/bundle.js';
     var head = document.getElementsByTagName("head")[0];
     head.appendChild(script);
 
@@ -586,7 +588,7 @@ window.onclick = function(event) {
   }
 
   setInterval(refreshData,20000);
-  setInterval(getAlerts,20000);
+  setInterval(getAlerts,20000)
 
   /* Draw Tables */
   
@@ -657,17 +659,8 @@ window.onclick = function(event) {
   /*PUSH ADDED TRIPS*/
 
 function addedTrips() {
-  var len = 0;
-
-  try {
-    len = globalFeed.entity.length;
-  }
-  catch {
-    len = 0;
-    console.log("Live feed not loaded.")
-  }
-
-  for (i = 0; i < len; i++) {
+  
+  for (i = 0; i < globalFeedLen; i++) {
     if (globalFeed.entity[i].id.slice(-2) == '_T') {
       if (globalFeed.entity[i].tripUpdate.trip.scheduleRelationship == 1) {
 
@@ -676,16 +669,18 @@ function addedTrips() {
         var addedTripId = globalFeed.entity[i].tripUpdate.trip.tripId;
         var addedDirectionId = globalFeed.entity[i].tripUpdate.trip.directionId.toString();
         var addedStartDate = globalFeed.entity[i].tripUpdate.trip.startDate
-
-        allTrips.push([
-          addedRouteId,
-          '',
-          addedTripId,
-          terminus['0']['2'],
-          '',
-          addedDirectionId,
-          addedStartDate
-        ])
+        
+        if (!checkAddedTrips(allTrips,addedTripId,'2')) {
+          allTrips.push([
+            addedRouteId,
+            '',
+            addedTripId,
+            terminus['0']['2'],
+            '',
+            addedDirectionId,
+            addedStartDate
+          ])
+        }
       }
     }
   }
@@ -771,24 +766,14 @@ function addedTrips() {
 
   function addedStops() {
 
-    var len = 0;
-
-    try {
-      len = globalFeed.entity.length;
-    }
-    catch {
-      len = 0;
-      console.log("Live feed not loaded.")
-    }
-
-    for (i = 0; i < len; i++) {
+    for (i = 0; i < globalFeedLen; i++) {
       if (globalFeed.entity[i].id.slice(-2) == '_T') {
         if (globalFeed.entity[i].tripUpdate.trip.scheduleRelationship == 1) {
         
           var terminus = stopsArray.filter(j => j['0'] == globalFeed.entity[i].tripUpdate.stopTimeUpdate[globalFeed.entity[i].tripUpdate.stopTimeUpdate.length - 1].stopId)
           var addedTripId = globalFeed.entity[i].tripUpdate.trip.tripId;
 
-          if (!checkAddedTrips(stoptimesArray,addedTripId)) {
+          if (!checkAddedTrips(stoptimesArray,addedTripId,'0')) {
             for (j = 0; j < globalFeed.entity[i].tripUpdate.stopTimeUpdate.length; j++) {
 
               var addedStopTime = "";
@@ -833,9 +818,9 @@ function addedTrips() {
 
   /* Check if added stops have already been added */
 
-  function checkAddedTrips(array,trip) {
+  function checkAddedTrips(array,trip,ref) {
     for (var i = 0; i < array.length; i++) {
-      if (array[i]['0'] == trip) {
+      if (array[i][ref] == trip) {
         return true;
       }
     }
@@ -919,7 +904,6 @@ function addedTrips() {
       var delayed_hour = "";
       var AMPM = "";
       var timeArray = new Array();
-      var track = "Not Posted"
       var peakoffpeak = "0"
 
       for (j = 0; j < tripsArray.length; j++) {
@@ -961,10 +945,11 @@ function addedTrips() {
       var delay = "";
       var trainScheduleRelationship = "";
       var stopTrainStatus = "";
+      var track = "Not Posted"
       var tripCheck = "";
       var terminal_departure = 0;
       
-      for (j = 0; j < globalFeed.entity.length; j++) {
+      for (j = 0; j < globalFeedLen; j++) {
         if (globalFeed.entity[j].id == shortTripId) {
           tripCheck = globalFeed.entity[j].id;
           currentStatus = globalFeed.entity[j].vehicle.currentStatus;
@@ -1000,9 +985,12 @@ function addedTrips() {
                 }
               }
             
-              delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival.delay;        
+              delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival.delay;
 
-              if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].status[0].track != ""){
+              if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].departure.time >= unixTime+1800) {
+                track = "Not Posted"
+              }
+              else if (globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].status[0].track != ""){
                 track = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].status[0].track;
               }
               else {
@@ -1215,7 +1203,7 @@ function addedTrips() {
 
       stop_time += timeArray['0']+":"+timeArray['1']+AMPM;
       
-      stopTimesList += "<tr class='stoprow', onclick='StationSelection(this)', data-route='"+document.getElementById(stop_name).getAttribute('data-route')+"', data-code='"+document.getElementById(stop_name).getAttribute('data-code')+"', data-stop='"+stop_id+"', data-inform='"+document.getElementById(stop_name).getAttribute('data-inform')+"', id='"+stop_name+"', data-trip-id='"+tripId+"', style='text-decoration:none'>";
+      stopTimesList += "<tr class='stoprow', data-route='"+document.getElementById(stop_name).getAttribute('data-route')+"', data-code='"+document.getElementById(stop_name).getAttribute('data-code')+"', data-stop='"+stop_id+"', data-inform='"+document.getElementById(stop_name).getAttribute('data-inform')+"', id='"+stop_name+"', data-trip-id='"+tripId+"', style='text-decoration:none'>";
       stopTimesList += "<td onclick=window.location='#"+document.getElementById(stop_name).getAttribute('data-code')+"'><div style='text-align:center;margin:5px 15px;width:170px;padding-top:2px;padding-bottom:2px;font-style:italic;font-weight:bold;border-top:solid 10px #"+routesArray[true_route_index]['7']+";border-radius:8px;background-color:#FFFFFF;color:#000000'>"+document.getElementById(stop_name).innerText+"</div></td>";
       stopTimesList += "<td onclick=window.location='#"+document.getElementById(stop_name).getAttribute('data-code')+"' class='stoptime', id='"+stop_name+"' style='padding-right:15px;padding-top:5px;'>";       
       stopTimesList += "<div style='"
@@ -1232,7 +1220,7 @@ function addedTrips() {
       
       stopTimesList += "'>"+stop_time+"</div></td>";
       
-      for (j = 0; j < globalFeed.entity.length; j++) {
+      for (j = 0; j < globalFeedLen; j++) {
         if (globalFeed.entity[j].id == shortTripId) {
           if (globalFeed.entity[j].vehicle.stopId == stop_id && tripDate == currentDate) {
             stopTimesList += "<td onclick=window.location='#"+document.getElementById(stop_name).getAttribute('data-code')+"' class='stoptime' style='padding-right:15px;padding-top:2px;'><img src='images/train.png' height='20'></td>";
@@ -1262,62 +1250,57 @@ function addedTrips() {
     var unixTime = Date.now()/1000;
     var alertButton = document.getElementById('alertButton');
     var alertResults = "";
+    
+    for (i = 0; i < alertFeedLen; i++){
+      if (alertFeed.entity[i].id.includes('MNR')){
+        for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
+          if (stopid == alertFeed.entity[i].alert.informedEntity[k].stopId) {
+            alertResults += "<tr><td class='alertTD'><br>"+alertFeed.entity[i].alert.headerText.translation[0].text+"<p></p></td></tr>"
+          }
+          break;
+        }
+      }
+      else if (alertFeed.entity[i].id.includes('alert')) {
+        for (j = 0; j < alertFeed.entity[i].alert.activePeriod.length; j++) {
+          var alertStart = alertFeed.entity[i].alert.activePeriod[j].start
+          var alertEnd = 9999999999
 
-    try {
-      for (i = 0; i < alertFeed.entity.length; i++){
-        if (alertFeed.entity[i].id.includes('MNR')){
-          for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
-            if (stopid == alertFeed.entity[i].alert.informedEntity[k].stopId) {
-              alertResults += "<tr><td class='alertTD'><br>"+alertFeed.entity[i].alert.headerText.translation[0].text+"<p></p></td></tr>"
-            }
-            break;
-          }
-        }
-        else if (alertFeed.entity[i].id.includes('alert')) {
-          for (j = 0; j < alertFeed.entity[i].alert.activePeriod.length; j++) {
-            var alertStart = alertFeed.entity[i].alert.activePeriod[j].start
-            var alertEnd = 9999999999
-            if (unixTime > alertStart && unixTime < alertEnd) {
-              for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
-                if (informedRoutes.includes(alertFeed.entity[i].alert.informedEntity[k].routeId)) {
-                  alertResults += "<tr><td class='alertTD'><br>"
-                  alertResults += alertFeed.entity[i].alert.headerText.translation[0].text
-                  if (alertFeed.entity[i].alert.descriptionText == null) {
-                    alertResults += "</td></tr>"
-                  }
-                  else {
-                    alertResults += alertFeed.entity[i].alert.descriptionText.translation[1].text
-                    alertResults += "</td></tr>"
-                  }
+          if (unixTime > alertStart && unixTime < alertEnd) {
+            for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
+              if (informedRoutes.includes(alertFeed.entity[i].alert.informedEntity[k].routeId)) {
+                alertResults += "<tr><td class='alertTD'><br>"
+                alertResults += alertFeed.entity[i].alert.headerText.translation[0].text
+                if (alertFeed.entity[i].alert.descriptionText == null) {
+                  alertResults += "</td></tr>"
                 }
-                break;
+                else {
+                  alertResults += alertFeed.entity[i].alert.descriptionText.translation[1].text
+                  alertResults += "</td></tr>"
+                }
               }
+              break;
             }
           }
         }
-        else {
-          for (j = 0; j < alertFeed.entity[i].alert.activePeriod.length; j++) {
-            var alertStart = alertFeed.entity[i].alert.activePeriod[j].start
-            var alertEnd = alertFeed.entity[i].alert.activePeriod[j].end
-            if (unixTime > alertStart && unixTime < alertEnd) {
-              for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
-                if (informedRoutes.includes(alertFeed.entity[i].alert.informedEntity[k].routeId)) {
-                  alertResults += "<tr><td class='alertTD'><br>"+alertFeed.entity[i].alert.headerText.translation[1].text
-                  alertResults += alertFeed.entity[i].alert.descriptionText.translation[1].text+"</td></tr>"
-                }
-                break;
+      }
+      else {
+        for (j = 0; j < alertFeed.entity[i].alert.activePeriod.length; j++) {
+          var alertStart = alertFeed.entity[i].alert.activePeriod[j].start
+          var alertEnd = alertFeed.entity[i].alert.activePeriod[j].end
+          if (unixTime > alertStart && unixTime < alertEnd) {
+            for (k = 0; k < alertFeed.entity[i].alert.informedEntity.length; k++) {
+              if (informedRoutes.includes(alertFeed.entity[i].alert.informedEntity[k].routeId)) {
+                alertResults += "<tr><td class='alertTD'><br>"+alertFeed.entity[i].alert.headerText.translation[1].text
+                alertResults += alertFeed.entity[i].alert.descriptionText.translation[1].text+"</td></tr>"
               }
+              break;
             }
           }
         }
       }
     }
-    catch {
-      console.log("Alert feed not loaded.")
-    }
-
+    
     if (alertResults == "") {
-      alertResults = "<tr><td>No alerts at this time.</td></tr>"
       alertButton.classList.add('hidden');
     }
     else if (alertButton.classList.contains('hidden')) {
