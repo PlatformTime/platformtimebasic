@@ -1026,18 +1026,17 @@
       var stopScheduleRelationship = "";
       var track = "Not Posted";
       var vehicleTripId = "";
-      var len = 0;
+      var globalFeedLen = 0;
 
       try {
-        len = globalFeed.entity.length;
+        globalFeedLen = globalFeed.entity.length;
       }
       catch {
-        len = 0;
+        globalFeedLen = 0;
         console.log("Live feed not loaded.")
       }
-      
  
-        for (j = 0; j < len; j++) {
+        for (j = 0; j < globalFeedLen; j++) {
 
           try {
             if (globalFeed.entity[j].id.slice(0,1) == "V") {
@@ -1264,6 +1263,15 @@
     var rowCount = 0;
     var vehicleId = 0;
     var vehicleTripId = "";
+    var globalFeedLen = 0;
+
+    try {
+      globalFeedLen = globalFeed.entity.length;
+    }
+    catch {
+      globalFeedLen = 0;
+      console.log("Live feed not loaded.")
+    }
 
     dataRowSelection = "";
     dataRowSelection = tripSelection.getAttribute('id');
@@ -1277,16 +1285,7 @@
       var AMPM = "";
       var timeArray = new Array();
       var convertedTime = [];
-      var globalFeedLen = 0;
-
-      try {
-        globalFeedLen = globalFeed.entity.length;
-      }
-      catch {
-        globalFeedLen = 0;
-        console.log("Live feed not loaded.")
-      }
-      
+            
       /* Sets time to 12-hr AM/PM */
 
       timeArray = tripStopArray[i]['1'].split(':');
