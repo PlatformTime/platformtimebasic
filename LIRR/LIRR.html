@@ -723,7 +723,17 @@
 
   function addedTrips() {
 
-     for (i = 0; i < globalFeed.entity.length; i++) {
+    var len = 0;
+
+    try {
+      len = globalFeed.entity.length;
+    }
+    catch {
+      len = 0;
+      console.log("Live feed not loaded.")
+    }
+
+     for (i = 0; i < len; i++) {
         if (globalFeed.entity[i].id.slice(0,1) == 'L') {
           
             var terminus = stopsArray.filter(j => j['0'] == globalFeed.entity[i].tripUpdate.stopTimeUpdate[globalFeed.entity[i].tripUpdate.stopTimeUpdate.length - 1].stopId);
@@ -837,7 +847,18 @@
   /* PUSH ADDED STOPS */ 
 
   function addedStops() {
-      for (i = 0; i < globalFeed.entity.length; i++) {
+
+    var len = 0;
+
+    try {
+      len = globalFeed.entity.length;
+    }
+    catch {
+      len = 0;
+      console.log("Live feed not loaded.")
+    }
+
+      for (i = 0; i < len; i++) {
         if (globalFeed.entity[i].id.slice(0,1) == 'L') {
           
             var terminus = stopsArray.filter(j => j['0'] == globalFeed.entity[i].tripUpdate.stopTimeUpdate[globalFeed.entity[i].tripUpdate.stopTimeUpdate.length - 1].stopId)
@@ -1437,6 +1458,7 @@
               break;
             }
           }
+          break;
         }
       }
     }
