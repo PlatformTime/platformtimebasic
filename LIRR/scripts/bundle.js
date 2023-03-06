@@ -1,6 +1,9 @@
 var globalFeed = [];
 var alertFeed = [];
 
+var globalFeedLen = 0;
+var alertFeedLen = 0;
+
 
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 
@@ -97058,15 +97061,18 @@ request(requestSettings, function (error, response, data) {
   if (!error && response.statusCode == 200) {
     var feed = null;
     
+    alertFeedLen = 0;
     feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(data) || [];
       
-    alertFeed = feed || [];
+    alertFeed = feed;
 
-    feed.entity.forEach(function(entity) {
-      if (entity.trip_update) {
-        console.log(entity.trip_update);6
-      }
-    });
+    try {
+      alertFeedLen = alertFeed.entity.length;
+    }
+    catch {
+      console.log("Error: Alert feed not loaded.")
+    }
+
   }
 });
 },{"gtfs-realtime-bindings":330,"request":387}],442:[function(require,module,exports){
@@ -97083,6 +97089,7 @@ request(requestSettings, function (error, response, data) {
   if (!error && response.statusCode == 200) {
     var feed = null;
     
+    globalFeedLen = 0;
     feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(data) || [];
       
     var timestamp = (feed.header.timestamp * 1000)
@@ -97094,26 +97101,14 @@ request(requestSettings, function (error, response, data) {
 
     globalFeed = feed;
 
-    feed.entity.forEach(function(entity) {
-      if (entity.trip_update) {
-        console.log(entity.trip_update);6
-      }
-    });
+    try {
+      globalFeedLen = globalFeed.entity.length;
+    }
+    catch {    
+      console.log("Error: Live feed not loaded.")
+    }
+    
   }
 });
-/*
-protobuf.load("gtfs-realtime-LIRR.proto", function(err, root) {
-    if (err)
-      throw err;
 
-    var StopTimeStatus = root.lookupType("transit_realtime.StopTimeStatus");
-
-    var errMsg = StopTimeStatus.verify(payload);
-    if (errMsg)
-      throw Error(errMsg);
-
-    var message = StopTimeStatus.create(payload);
-    console.log(message);
-  })
-*/
 },{"gtfs-realtime-bindings":330,"request":387}]},{},[442,441]);
