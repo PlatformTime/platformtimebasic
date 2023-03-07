@@ -515,6 +515,8 @@
   var currentTime = [];
   var startDate = [];
   var startTime = [];
+  var displayDate = [];
+  var distplayTime = [];
   var endDate = [];
   var endTime = [];
   var wbTableLength = "";
@@ -612,8 +614,10 @@
 
     rawDate = new Date();
     var MLseconds = rawDate.getTime();
-    startDate = new Date(MLseconds - 300000);
-    startTime = new Date(MLseconds - 300000);
+    startDate = new Date(MLseconds - 3600000);
+    startTime = new Date(MLseconds - 3600000);
+    displayDate = new Date(MLseconds - 300000);
+    displayTime = new Date(MLseconds - 300000);
     endDate = new Date (MLseconds + 86400000);
     endTime = new Date (MLseconds + 86400000);
 
@@ -911,14 +915,14 @@
 
     /* If there are few trips, display message */
 
-    /*if (tripArray.length < 6) {
+    if (tripArray.length < 6) {
       len = tripArray.length;
       startTimeIndex = 0;
-    }*/
+    }
 
     /* Adjust start index if there are more than 6 trips */
 
-    /*else {
+    else {
       for (i = 0; i < tripArray.length; i++) {
         var tripDate = tripArray[i]['6']
         if (tripDate+tripArray[i]['7'] > startDate+startTime) {
@@ -930,7 +934,7 @@
       if (len > tripArray.length) {
         len = tripArray.length
       }
-    }*/
+    }
     
     if ((len - startTimeIndex) == 0) {
       result += "<td colspan=5><div><i>There are no scheduled trains in the next 24 hours.</i><div></td>"
@@ -1110,7 +1114,7 @@
       }
     
 
-      if (tripDate+stop_time_w_delay_noConvert > startDate+startTime) {
+      if (tripDate+stop_time_w_delay_noConvert > displayDate+displayTime) {
         result += "<tr class='datarow' onclick='stoppingAt(this)' data-trip-date='"+tripArray[i]['6']+"' data-trip-id='"+tripArray[i]['2']+"' data-stop-seq='"+tripArray[i]['9']+"' id='datarow"+tripArray[i]['2']+"'>";
         result += "<td><div id='tripService' style='margin-left:5px;width:170px;border:solid 5px;border-top:solid 9px;border-radius:8px;border-color:#"+routesArray[tripArray[i]['0']]['3']+";background-color:#"+routesArray[tripArray[i]['0']]['3']+";color:#"+routesArray[tripArray[i]['0']]['4']+"'>"+service_id+"</div></td>";
         result += "<td><div id='tripTerminus' style='margin-left:5px;width:170px;border:solid 5px;border-top:solid 9px;border-radius:8px;border-color:#"+routesArray[document.getElementById(terminus_id).getAttribute('data-route')]['3']+";background-color:#"+routesArray[document.getElementById(terminus_id).getAttribute('data-route')]['3']+";color:#"+routesArray[document.getElementById(terminus_id).getAttribute('data-route')]['4']+"'>"+document.getElementById(terminus_id).innerText+"</div></td>";
