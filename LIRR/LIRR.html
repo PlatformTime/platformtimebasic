@@ -907,21 +907,22 @@
     var result = "";
     var len = "";
     var tableButton = document.getElementById(tripTable+'Button')
+    var startTimeIndex = 0;
 
     /* If there are few trips, display message */
 
-    if (tripArray.length < 6) {
+    /*if (tripArray.length < 6) {
       len = tripArray.length;
-      var startTimeIndex = 0;
-    }
+      startTimeIndex = 0;
+    }*/
 
     /* Adjust start index if there are more than 6 trips */
 
-    else {
+    /*else {
       for (i = 0; i < tripArray.length; i++) {
         var tripDate = tripArray[i]['6']
         if (tripDate+tripArray[i]['7'] > startDate+startTime) {
-          var startTimeIndex = i
+          startTimeIndex = i
           break;
         }
       }
@@ -929,7 +930,7 @@
       if (len > tripArray.length) {
         len = tripArray.length
       }
-    }
+    }*/
     
     if ((len - startTimeIndex) == 0) {
       result += "<td colspan=5><div><i>There are no scheduled trains in the next 24 hours.</i><div></td>"
