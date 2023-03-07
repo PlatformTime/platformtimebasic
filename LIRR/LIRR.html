@@ -1123,10 +1123,6 @@
           AMPM = " AM"
         }
 
-        if (delayed_min < 10) {
-          delayed_min = "0"+delayed_min;
-        }
-        
         stop_time_w_delay = delayed_hour+":"+delayed_min+AMPM;
         
        }
@@ -1203,6 +1199,9 @@
               
         result += "</tr>";
 
+      }
+      else {
+        len++;
       }
     }
   
