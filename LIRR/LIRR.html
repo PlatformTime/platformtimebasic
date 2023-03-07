@@ -1080,7 +1080,10 @@
           delayed_min = "0"+delayed_min;
         }
         
-        stop_time_w_delay_noConvert = delayed_hour+":"+delayed_min+":00";
+        stop_time_w_delay_noConvert = delayed_hour+":"+delayed_min+":00";        
+        if (delayed_hour > 10) {
+          stop_time_w_delay_noConvert = "0"+stop_time_w_delay_noConvert
+        }
         
         if (delayed_hour > 12) {
           delayed_hour = delayed_hour - 12
@@ -1097,10 +1100,6 @@
         
         stop_time_w_delay = delayed_hour+":"+delayed_min+AMPM;
         
-        if (delayed_hour > 10) {
-          stop_time_w_delay_noConvert = "0"+stop_time_w_delay_noConvert
-        }
-
       }
       else {
         delayed_hour = Number(timeArray['0']);
@@ -1111,6 +1110,9 @@
         }
         
         stop_time_w_delay_noConvert = delayed_hour+":"+delayed_min+":00";
+        if (delayed_hour > 10) {
+          stop_time_w_delay_noConvert = "0"+stop_time_w_delay_noConvert
+        }
         
         if (delayed_hour > 12) {
           delayed_hour = delayed_hour - 12
@@ -1127,10 +1129,7 @@
         
         stop_time_w_delay = delayed_hour+":"+delayed_min+AMPM;
         
-        if (delayed_hour > 10) {
-          stop_time_w_delay_noConvert = "0"+stop_time_w_delay_noConvert
-        }
-      }
+       }
     
 
       if (tripDate+stop_time_w_delay_noConvert > displayDate+displayTime) {
