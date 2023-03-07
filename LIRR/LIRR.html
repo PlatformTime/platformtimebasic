@@ -1075,6 +1075,13 @@
       if (Number(timeArray['1'])+Math.floor(delay/60) > 59){
         delayed_hour = Number(timeArray['0'])+1;
         delayed_min = Number(timeArray['1'])+Math.floor(delay/60)-60;
+        
+        if (delayed_min < 10) {
+          delayed_min = "0"+delayed_min;
+        }
+        
+        stop_time_w_delay_noConvert = delayed_hour+":"+delayed_min+":00";
+        
         if (delayed_hour > 12) {
           delayed_hour = delayed_hour - 12
           AMPM = " PM"
@@ -1086,18 +1093,21 @@
         else if (delayed_hour > 24) {
           delayed_hour = delayed_hour - 24
           AMPM = " AM"
-        }
-
-        if (delayed_min < 10) {
-          delayed_min = "0"+delayed_min;
-        }
+        }       
         
         stop_time_w_delay = delayed_hour+":"+delayed_min+AMPM;
-        stop_time_w_delay_noConvert = delayed_hour+":"+delayed_min+":00";
+
       }
       else {
         delayed_hour = Number(timeArray['0']);
         delayed_min = Number(timeArray['1'])+Math.floor(delay/60)
+        
+        if (delayed_min < 10) {
+          delayed_min = "0"+delayed_min;
+        }
+        
+        stop_time_w_delay_noConvert = delayed_hour+":"+delayed_min+":00";
+        
         if (delayed_hour > 12) {
           delayed_hour = delayed_hour - 12
           AMPM = " PM"
@@ -1112,7 +1122,6 @@
         }
         
         stop_time_w_delay = delayed_hour+":"+delayed_min+AMPM;
-        stop_time_w_delay_noConvert = delayed_hour+":"+delayed_min+":00";
       }
     
 
