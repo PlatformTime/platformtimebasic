@@ -624,7 +624,7 @@
     startDate = startDate.getFullYear()+''+("0"+(startDate.getMonth()+1)).slice(-2)+''+("0"+startDate.getDate()).slice(-2);
     startTime = startTime.toLocaleTimeString('en-US', {hour12: false});
     displayDate = displayDate.getFullYear()+''+("0"+(displayDate.getMonth()+1)).slice(-2)+''+("0"+displayDate.getDate()).slice(-2);
-    displayTime = displayTime.toLocaleTimeString('en-US', {hour12: false, hour: "numeric"});
+    displayTime = displayTime.toLocaleTimeString('en-US', {hour12: false});
     endDate = endDate.getFullYear()+''+("0"+(endDate.getMonth()+1)).slice(-2)+''+("0"+endDate.getDate()).slice(-2);
     endTime = endTime.toLocaleTimeString('en-US', {hour12: false});
   
@@ -1096,6 +1096,10 @@
         }       
         
         stop_time_w_delay = delayed_hour+":"+delayed_min+AMPM;
+        
+        if (delayed_hour > 10) {
+          stop_time_w_delay_noConvert = "0"+stop_time_w_delay_noConvert
+        }
 
       }
       else {
@@ -1122,6 +1126,10 @@
         }
         
         stop_time_w_delay = delayed_hour+":"+delayed_min+AMPM;
+        
+        if (delayed_hour > 10) {
+          stop_time_w_delay_noConvert = "0"+stop_time_w_delay_noConvert
+        }
       }
     
 
