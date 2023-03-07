@@ -1074,14 +1074,17 @@
       /* Adds results to tables */
 
       if (Number(timeArray['1'])+Math.floor(delay/60) > 59){
-        delayed_hour = delayed_hour+1;
+        delayed_hour = Number(delayed_hour)+1;
         delayed_min = Number(timeArray['1'])+Math.floor(delay/60)-60;
         
         if (delayed_min < 10) {
           delayed_min = "0"+delayed_min;
         }
         
-        stop_time_w_delay_noConvert = delayed_hour+":"+delayed_min+":00";        
+        stop_time_w_delay_noConvert = delayed_hour+":"+delayed_min+":00";
+        if (delayed_hour < 10) {
+          stop_time_w_delay_noConvert = "0"+stop_time_w_delay_noConvert;
+        }
                 
         if (delayed_hour > 12) {
           delayed_hour = delayed_hour - 12
@@ -1100,6 +1103,7 @@
         
       }
       else {
+        delayed_hour = Number(delayed_hour);
         delayed_min = Number(timeArray['1'])+Math.floor(delay/60)
         
         if (delayed_min < 10) {
@@ -1107,6 +1111,9 @@
         }
         
         stop_time_w_delay_noConvert = delayed_hour+":"+delayed_min+":00";
+        if (delayed_hour < 10) {
+          stop_time_w_delay_noConvert = "0"+stop_time_w_delay_noConvert;
+        }
                 
         if (delayed_hour > 12) {
           delayed_hour = delayed_hour - 12
