@@ -1053,15 +1053,20 @@
                   delay = 0;
                 }
                 else {
-                  if (stopSeq == "1") {
-                    if (typeof globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].departure != "undefined"){
-                      delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].departure.delay;
+                  try {
+                    if (stopSeq == "1") {
+                      if (typeof globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].departure != "undefined"){
+                        delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].departure.delay;
+                      }
+                    }
+                    else {
+                      if (typeof globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival != "undefined"){
+                        delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival.delay;
+                      }
                     }
                   }
-                  else {
-                    if (typeof globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival != "undefined"){
-                      delay = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].arrival.delay;
-                    }
+                  catch {
+                    delay = 0;
                   }
                 }
               }              
