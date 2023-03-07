@@ -959,7 +959,6 @@
       var terminus_id = tripArray[i]['3'];
       var tripDate = tripArray[i]['6']
       var stopSeq = Number(tripArray[i]['9']);
-      var stop_time_noConvert = tripArray[i]['7'];
       var stop_time = "";
       var stop_time_w_delay = "";
       var stop_time_w_delay_noConvert = "";
@@ -978,6 +977,8 @@
       /* Sets time to 12-hr AM/PM */
 
       timeArray = tripArray[i]['7'].split(':')
+      
+      delayed_hour = timeArray['0'];
       
       if (timeArray['0'] < '12' || timeArray['0'] >= '24') {
         var AMPM = " AM";
@@ -1073,7 +1074,7 @@
       /* Adds results to tables */
 
       if (Number(timeArray['1'])+Math.floor(delay/60) > 59){
-        delayed_hour = Number(timeArray['0'])+1;
+        delayed_hour = delayed_hour+1;
         delayed_min = Number(timeArray['1'])+Math.floor(delay/60)-60;
         
         if (delayed_min < 10) {
@@ -1102,7 +1103,6 @@
         
       }
       else {
-        delayed_hour = Number(timeArray['0']);
         delayed_min = Number(timeArray['1'])+Math.floor(delay/60)
         
         if (delayed_min < 10) {
