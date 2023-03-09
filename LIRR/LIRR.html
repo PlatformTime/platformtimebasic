@@ -1187,7 +1187,7 @@
         else if (currentStopSeq == stopSeq && currentStatus == 2 && tripDate == currentDate) {
           result += "<td style='padding-top:3px;''>Enroute"
           if (delay > 359 && tripDate == currentDate) {
-            result += "<br><p style='margin:0;color:#CCAA00;font-weight:bold;'><font size='-1'>Delayed ("+Math.floor(delay/60)+" min)</font></p>"
+            result += "<br><p style='margin:0;color:#CCAA00;font-weight:bold;align:center;'><font size='-1'>Delayed ("+Math.floor(delay/60)+" min)</font></p>"
           }
           result += "</td>"
         }
