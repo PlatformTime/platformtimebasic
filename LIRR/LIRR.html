@@ -1032,7 +1032,7 @@
             currentStopSeq = globalFeed.entity[j].vehicle.currentStopSequence;
           }
 
-          if ((globalFeed.entity[j].id.slice(0,1) == "L" || globalFeed.entity[j].id.slice(0,1) == "G") && globalFeed.entity[j].tripUpdate.trip.tripId == tripId) {
+          if ((globalFeed.entity[j].id.slice(0,1) != "V" /*|| globalFeed.entity[j].id.slice(0,1) == "G"*/) && globalFeed.entity[j].tripUpdate.trip.tripId == tripId) {
 
             trainScheduleRelationship = globalFeed.entity[j].tripUpdate.trip.scheduleRelationship
 
@@ -1044,7 +1044,7 @@
                 stopScheduleRelationship = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].scheduleRelationship;                
                 
                 track = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"]
-                  track = track.slice(2)
+                  track = track.replace(/[^0-9]/g,"");
                 if (track == "") {
                   track = "Not Posted"
                 }
