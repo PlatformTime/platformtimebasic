@@ -97082,10 +97082,10 @@ var request = require('request');
 var requestSettings = {
   method: 'GET',
   headers: {
-    'x-api-key':'aJD7AswEA1aZM6y2tvON436fIcsuGvD16ZzdxSri'/*,
-    'Accept-version': '3.0'*/
+    'x-api-key':'aJD7AswEA1aZM6y2tvON436fIcsuGvD16ZzdxSri',
+    'Accept-version': 'SSLv3'
   },
-  url: 'http://backend-unified.mylirr.org/gtfs/lirr',
+  url: 'https://backend-unified.mylirr.org/gtfs/lirr',
   encoding: null
 };
 request(requestSettings, function (error, response, data) {
