@@ -26,7 +26,7 @@
 "135","MPK","Massapequa Park","Sunrise Highway (Route 27) and Park Boulevard.","40.677859099302","-73.454737237713","http://lirr42.mta.info/stationInfo.php?id=114","2"
 "136","MQA","Massapequa","Sunrise Highway (Route 27), just East of Broadway and Route 107.","40.676930139365","-73.469055515159","http://lirr42.mta.info/stationInfo.php?id=113","1"
 "14","BK","Stony Brook","North Country Road (Route 25A) and Chapman Street, just West of Nicolls Road.","40.920322518837","-73.128549431354","http://lirr42.mta.info/stationInfo.php?id=66","1"
-"140","MSY","Mastic Shirley","William Floyd Parkway and Northern Boulevard, just South of 27A.","40.798988151573","-72.864422717948","http://lirr42.mta.info/stationInfo.php?id=127","1"
+"140","MSY","Mastic-Shirley","William Floyd Parkway and Northern Boulevard, just South of 27A.","40.798988151573","-72.864422717948","http://lirr42.mta.info/stationInfo.php?id=127","1"
 "141","MTK","Montauk","Edgemere Street and Fort Pond Road.  One mile north Old Montauk Highway.","41.047108960897","-71.953881026163","http://lirr42.mta.info/stationInfo.php?id=138","1"
 "142","MVN","Malverne","Hempstead Avenue and Utterby Road","40.675478439206","-73.668863639489","http://lirr42.mta.info/stationInfo.php?id=89","1"
 "148","NAV","Nostrand Avenue","Nostrand Avenue and Atlantic Avenue.","40.678387847361","-73.948221083404","http://lirr42.mta.info/stationInfo.php?id=13","1"
