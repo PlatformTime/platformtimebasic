@@ -1,6 +1,6 @@
 route_id,agency_id,route_short_name,route_long_name,route_type,route_url,route_color
 1,"NJT","ATLC","Atlantic City Rail Line",2,"",075AAA
-2,"NJT","BMGM","BetMGM Meadowlands Rail Line",2,"",000000
+2,"NJT","BMGM","BetMGM Meadowlands Rail Line",2,"",C1AA72
 3,"NJT","BNTN","Montclair-Boonton Line",2,"",E66859
 4,"NJT","BNTNM","Montclair-Boonton Line",2,"",E66859
 5,"NJT","HBLR","Hudson-Bergen Light Rail",0,"",008080
