@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>LIRR - Platform Time Realtime Map</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
+    <link href="styles/ol.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/png" href="images/train.png">
+  </head>
+
+  <body>
+    <div id="js-map" class="map"></div>
+    <div id="branchtooltip" class="tooltip" style="display: none;"></div>
+    <div id="toggleLabels" class="labelsToggle" onclick="toggleLabels()">Toggle Lables</div>
+    <div id="trainDetails" class="infoBox" style="display: none;"></div>
+    <script src="/platformtimebasic/LIRR_RealtimeMap/scripts/dataprime.js"></script>
+    <script src="/platformtimebasic/LIRR_RealtimeMap/scripts/bundle.js"></script>
+    <script src="/platformtimebasic/LIRR_RealtimeMap/scripts/refreshData.js"></script>
+    <script src="/platformtimebasic/LIRR_RealtimeMap/scripts/ol/dist/ol.js"></script>
+    <script src="/platformtimebasic/LIRR_RealtimeMap/scripts/map.js"></script>
+    <script src="/platformtimebasic/LIRR_RealtimeMap/scripts/drawBranches.js"></script>
+    <script src="/platformtimebasic/LIRR_RealtimeMap/scripts/drawBlips.js"></script>
+    <script src="/platformtimebasic/LIRR_RealtimeMap/scripts/trainDetails.js"></script>
+  </body>
+
+</html>
