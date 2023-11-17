@@ -97155,7 +97155,10 @@ var request = require('request');
   
 var requestSettings = {
   method: 'GET',
-  headers: {'x-api-key':'aJD7AswEA1aZM6y2tvON436fIcsuGvD16ZzdxSri'},
+  headers: {
+    'x-api-key':'aJD7AswEA1aZM6y2tvON436fIcsuGvD16ZzdxSri'/*,
+    'Accept-version': 'SSLv3'*/
+  },
   url: 'https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/mnr%2Fgtfs-mnr',
   encoding: null
 };
