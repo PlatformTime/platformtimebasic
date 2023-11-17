@@ -228,7 +228,7 @@
   window.onload = function loadRoutes() {
     var routesTXT = null;
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "data/routesMod.txt", false);
+    xmlhttp.open("GET", "/platformtimebasic/MNR/data/routesMod.txt", false);
     xmlhttp.send();
     if (xmlhttp.status==200) {
       routesTXT = xmlhttp.responseText;
@@ -255,7 +255,7 @@
   function loadCalendar() {
     var calendarTXT = null;
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "data/calendar_dates.txt", false);
+    xmlhttp.open("GET", "/platformtimebasic/MNR/data/calendar_dates.txt", false);
     xmlhttp.send();
     if (xmlhttp.status==200) {
       calendarTXT = xmlhttp.responseText;
@@ -282,7 +282,7 @@
   function loadTrips() {
     var tripsTXT = null;
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "data/trips.txt", false);
+    xmlhttp.open("GET", "/platformtimebasic/MNR/data/trips.txt", false);
     xmlhttp.send();
     if (xmlhttp.status==200) {
       tripsTXT = xmlhttp.responseText;
@@ -309,7 +309,7 @@
   function loadStops() {
     var stopsTXT = null;
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "data/stops.txt", false);
+    xmlhttp.open("GET", "/platformtimebasic/MNR/data/stops.txt", false);
     xmlhttp.send();
     if (xmlhttp.status==200) {
       stopsTXT = xmlhttp.responseText;
@@ -336,7 +336,7 @@
   async function loadStopTimes() {
     var stoptimesTXT = null;
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "data/stop_times.txt", false);
+    xmlhttp.open("GET", "/platformtimebasic/MNR/data/stop_times.txt", false);
     xmlhttp.send();
     if (xmlhttp.status==200) {
       stoptimesTXT = xmlhttp.responseText;
