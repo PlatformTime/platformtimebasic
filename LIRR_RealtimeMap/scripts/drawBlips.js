@@ -19,7 +19,7 @@ function drawBlips() {
             var routeName = routeArray[routeId]['1'];
             var tripId = globalFeed.entity[i].vehicle.trip.tripId;
             var tripNum = tripId.split('_');
-            var speed = Math.round((globalFeed.entity[i].vehicle.position.speed*100)/100);
+            var speed = Math.round((globalFeed.entity[i].vehicle.position.speed*223.694)/100);
             var currentStation = globalFeed.entity[i].vehicle.stopId;
             var currentStatus = globalFeed.entity[i].vehicle.currentStatus;
             var vehicleId = globalFeed.entity[i].vehicle.vehicle.label;
