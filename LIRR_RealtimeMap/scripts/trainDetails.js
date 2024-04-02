@@ -124,7 +124,7 @@ function drawShape(clickedTrip) {
 
     for (t = 0; t < tripsArray.length; t++){
         if (tripsArray[t][2] == tripId) {
-            tripNum = tripsArray[t][4];
+            tripNum = tripsArray[t][3];
         }
     }
 
