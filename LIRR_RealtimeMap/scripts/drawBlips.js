@@ -30,7 +30,7 @@ function drawBlips() {
                 routeName = routeName.slice(0,-7);
             }
 
-            var blipName = routeName+'\n'+tripNum[3];
+            var blipName = routeName+'\n'+tripNum[2];
 
             for (m = 0; m < stationArray.length; m++){
                 if (currentStation == stationArray[m]['0']){
@@ -111,9 +111,9 @@ function drawBlips() {
                         routeId: routeId,
                         tripId: tripId,
                         bearing: bearing,
-                        name: routeName+' '+tripNum[3],
-                        tripName: routeName+'\n'+tripNum[3],
-                        toolText: '<b>'+routeName+' '+tripNum[3]+'</b><br>Type: '+carType+'<br>Speed: '+speed+' mph<br>'+currentStatus+currentStation,
+                        name: routeName+' '+tripNum[2],
+                        tripName: routeName+'\n'+tripNum[2],
+                        toolText: '<b>'+routeName+' '+tripNum[2]+'</b><br>Type: '+carType+'<br>Speed: '+speed+' mph<br>'+currentStatus+currentStation,
                     })] 
 
                 }),
