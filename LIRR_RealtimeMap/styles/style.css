@@ -22,7 +22,7 @@ html {
 
 .tooltip {
   position: absolute;
-  font-size: 75%;
+  font-size: 100%;
   background-color: #222211;
   border: 2px solid;
   border-top-color: #ffffff;
