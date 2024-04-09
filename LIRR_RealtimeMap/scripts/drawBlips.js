@@ -143,7 +143,7 @@ function blipTextVis(blipText,blipName) {
             }),
             offsetX: 20,
             offsetY: 15,
-            scale: 1.25,
+            scale: 1.75,
             textAlign: 'left',
             text: blipName,
             backgroundFill: new ol.style.Fill({
