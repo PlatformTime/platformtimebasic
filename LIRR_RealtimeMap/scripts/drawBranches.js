@@ -59,12 +59,12 @@ function drawStations() {
             image: new ol.style.Circle({
               stroke: new ol.style.Stroke({
                 color: '#4D5357',
-                width: 1
+                width: 2
               }),
               fill: new ol.style.Fill({
                 color: stationColor
               }),
-              radius: 4
+              radius: 6
             })
           })
         ],
