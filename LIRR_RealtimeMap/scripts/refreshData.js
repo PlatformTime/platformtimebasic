@@ -44,4 +44,4 @@ function refreshData() {
     }*/
   }
 
-setInterval(refreshData,2500);
+setInterval(refreshData,5000);
