@@ -100,7 +100,7 @@ stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,zone_id,stop_url,locatio
 136,2GF,Green's Farms,,41.122265,-73.315408,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=240,0,,0
 137,2SP,Southport,,41.134844,-73.28897,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=242,0,,0
 138,2FF,Fairfield,,41.143077,-73.257742,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=244,0,,0
-188,2FM,Fairfield Metro,,41.161,-73.234336,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=245,0,,0
+188,2FM,Fairfield-Black Rock,,41.161,-73.234336,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=245,0,,0
 140,2BP,Bridgeport,,41.178677,-73.187076,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=246,0,,1
 143,2SR,Stratford,,41.194255,-73.131532,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=248,0,,0
 167,5DB,Derby-Shelton,,41.319718,-73.083548,,http://as0.mta.info/mnr/stations/station_detail.cfm?key=290,0,,0
