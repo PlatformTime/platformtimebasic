@@ -280,7 +280,7 @@
   window.onload = function loadRoutes() {
     var routesTXT = null;
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "data/routesMod.txt", false);
+    xmlhttp.open("GET", "data/routes.txt", false);
     xmlhttp.send();
     if (xmlhttp.status==200) {
       routesTXT = xmlhttp.responseText;
