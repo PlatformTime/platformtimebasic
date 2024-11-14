@@ -23,7 +23,7 @@
 "130","MHL","Murray Hill","40.76270926","-73.81453928","https://new.mta.info/mta-stations/murray-hill","1"
 "131","MHT","Manhasset","40.7967241","-73.69989909","https://new.mta.info/mta-stations/manhasset","1"
 "132","MIN","Mineola","40.74034743","-73.64086293","https://new.mta.info/mta-stations/mineola","1"
-"135","MPK","Massapequa Park","40.6778591","-73.45473724","https://new.mta.info/mta-stations/massapequa-park","2"
+"135","MPK","Massapequa Park","40.6778591","-73.45473724","https://new.mta.info/mta-stations/massapequa-park","1"
 "136","MQA","Massapequa","40.67693014","-73.46905552","https://new.mta.info/mta-stations/massapequa","1"
 "14","BK","Stony Brook","40.92032252","-73.12854943","https://new.mta.info/mta-stations/stony-brook","1"
 "140","MSY","Mastic-Shirley","40.79898815","-72.86442272","https://new.mta.info/mta-stations/mastic-shirley","1"
