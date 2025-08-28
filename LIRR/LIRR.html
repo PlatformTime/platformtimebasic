@@ -1044,16 +1044,16 @@
                 stopScheduleRelationship = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].scheduleRelationship;                
                 
                 track = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"]
-                if (track.includes("At Station");) {
-                  track = "At Station"
+                if (track.includes("At Station") == true) {
+                  track = "At Station";
                 }
-                else if (track.includes("Departed");) {
-                  track = "Departed"
+                else if (track.includes("Departed") == true) {
+                  track = "Departed";
                 }
                 else {
                   track = track.replace(/[^A-B0-9]/g,"");
                   if (track == "") {
-                    track = "Not Posted"
+                    track = "Not Posted";
                   }
                 }
 
