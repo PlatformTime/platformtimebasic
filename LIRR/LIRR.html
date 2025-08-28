@@ -1044,7 +1044,7 @@
                 stopScheduleRelationship = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k].scheduleRelationship;                
                 
                 track = globalFeed.entity[j].tripUpdate.stopTimeUpdate[k][".transit_realtime.TripUpdate.StopTimeUpdate.MtaStopTimeUpdate.track"]
-                  track = track.replace(/[^A-Z0-9]/g,"");
+                  track = track.replace(/[^A-C0-9]/g,"");
                 if (track == "") {
                   track = "Not Posted"
                 }
